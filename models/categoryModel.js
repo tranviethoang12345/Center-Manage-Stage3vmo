@@ -24,18 +24,13 @@ const projectTypeSchema = new Schema({
   priorityWeight: {
     type: Number,
     trim: true,
-    validate: {
-      min: 1
-    }
+    min: 1
   },
   status: {
     type: String, 
-    default: Inactive, 
+    default: 'Inactive', 
     trim: true, 
-    enum: {
-      value: ['Active', 'Inactive'],
-      message: 'Wrong Status Supplied (Active || Inactive)'
-    },
+    enum: ['Active', 'Inactive'],
     required: true
   }
 });
@@ -54,12 +49,9 @@ const statesProjectSchema = new Schema({
   },
   status: {
     type: String, 
-    default: Inactive, 
+    default: 'Inactive', 
     trim: true, 
-    enum: {
-      value: ['Active', 'Inactive'],
-      message: 'Wrong Status Supplied (Active || Inactive)'
-    },
+    enum: ['Active', 'Inactive'],
     required: true
   }
 });
@@ -78,12 +70,9 @@ const techStackSchema = new Schema({
   },
   status: {
     type: String, 
-    default: Inactive, 
+    default: 'Inactive', 
     trim: true, 
-    enum: {
-      value: ['Active', 'Inactive'],
-      message: 'Wrong Status Supplied (Active || Inactive)'
-    },
+    enum: ['Active', 'Inactive'],
     required: true
   }
 });
@@ -103,18 +92,13 @@ const customerGroupSchema = new Schema({
   priorityWeight: {
     type: Number,
     trim: true,
-    validate: {
-      min: 1
-    }
+    min: 1
   },
   status: {
     type: String, 
-    default: Inactive, 
+    default: 'Inactive', 
     trim: true, 
-    enum: {
-      value: ['Active', 'Inactive'],
-      message: 'Wrong Status Supplied (Active || Inactive)'
-    },
+    enum: ['Active', 'Inactive'],
     required: true
   }
 });
