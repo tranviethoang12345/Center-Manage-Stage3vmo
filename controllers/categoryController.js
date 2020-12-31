@@ -1,18 +1,20 @@
 const jwt = require('jsonwebtoken');
 
 const categoryModel = require('../models/categoryModel');
+const serviceProjectType =  require('../service/serviceProjectType')
 
 // // 1. Project type
 // Create
 exports.createProjectType = async(req, res) => {
   try {
     let body = req.body;
-    let create = await categoryModel.projectType.create(body);
+    let create = await serviceProjectType.createOne(body);
     res.json(create)
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };
+
 
 // Get All
 exports.getAllProjectType = async(req, res) => {
@@ -148,6 +150,7 @@ exports.createCustomerGroup = async(req, res) => {
   try {
     let body = req.body;
     let create = await categoryModel.customerGroup.create(body);
+    console.log(create);
     return res.status(200).json({
       message: 'Create Customer Group successful',
       messageCode: 'CREATE_CUSTOMER_GROUP_SUCCESSFUL',

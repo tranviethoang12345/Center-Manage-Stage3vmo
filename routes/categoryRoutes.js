@@ -5,7 +5,7 @@ const router = express.Router();
 
 // // 1. Project type
 //Post => Create
-router.post('/projectType', categoryController.createProduct);
+router.post('/projectType', categoryController.createProjectType);
 
 //Post => GetAll
 router.get('/projectType', categoryController.getAllProjectType);
