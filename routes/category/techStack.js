@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/techStack', categoryTechStackController.createTechStack);
 
 //Get => Get All
-router.get('/techStack', categoryTechStackController.getAllProjectType);
+router.get('/techStack', categoryTechStackController.getAllTechStack);
 
 //Get => Get 1
 router.get('/techStack/:id', categoryTechStackController.getOneTechStack);

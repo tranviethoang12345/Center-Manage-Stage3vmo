@@ -1,8 +1,8 @@
-const categoryProjectTypeRouter = require('../routes/category/projectType');
-const categoryStatesProjectRouter = require('../routes/category/statesProject');
-const categoryTechStackRouter = require('../routes/category/techStack');
-const categoryCustomerGroupRouter = require('../routes/category/customerGroup');
+const express = require('express');
+const routes = express.Router();
 
-const routes = [categoryProjectTypeRouter, categoryStatesProjectRouter, categoryTechStackRouter, categoryCustomerGroupRouter]
+const categoryRoutes = require('../routes/categoryRoutes')
+
+routes.use('/category', categoryRoutes);
 
 module.exports = routes;

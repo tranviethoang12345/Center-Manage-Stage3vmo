@@ -5,15 +5,23 @@ exports.createCustomerGroup = async(req, res) => {
     let body = req.body;
     let create = await categoryModel.customerGroup.create(body);
     console.log(create);
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Create Customer Group successful',
       messageCode: 'CREATE_CUSTOMER_GROUP_SUCCESSFUL',
       data: create,
       status: 200
     })
   } catch (error) {
-    // console.log(error);
-    res.json(error);
+    res.json(error.message);
+  }
+}
+
+// Get All
+exports.getAllCustomerGroup = async(req, res) => {
+  try {
+    
+  } catch (error) {
+    res.json(error.message);
   }
 }
 
@@ -29,8 +37,7 @@ exports.getOneCustomerGroup = async(req, res) => {
       status: 200
     });
   } catch (error) {
-    // console.log(error);
-    res.json(error);
+    res.json(error.message);
   }
 }
 
@@ -47,8 +54,7 @@ exports.updateCustomerGroup = async(req, res) => {
       status: 200 
       });
   } catch (error) {
-    // console.log(error);
-    res.json(error);
+    res.json(error.message);
   }
 }
 
@@ -64,7 +70,6 @@ exports.deleteCustomerGroup = async(req, res) => {
       status: 200
     });
   } catch (error) {
-    // console.log(error);
-    res.json(error);
+    res.json(error.message);
   }
 }

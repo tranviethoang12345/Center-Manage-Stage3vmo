@@ -10,6 +10,15 @@ exports.createTechStack = async(req, res) => {
   }
 };
 
+// Get All
+exports.getAllTechStack = async(req, res) => {
+  try {
+    
+  } catch (error) {
+    res.json(error.message);
+  }
+}
+
 // Get 1
 exports.getOneTechStack = async(req, res) => {
   try {

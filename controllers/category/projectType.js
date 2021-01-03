@@ -1,5 +1,5 @@
-const categoryModel = require('../models/categoryModel');
-const serviceProjectType =  require('../service/serviceProjectType')
+const categoryModel = require('../../models/category/projectType');
+const serviceProjectType =  require('../../service/category/projectType')
 
 // // 1. Project type
 // Create
@@ -7,7 +7,12 @@ exports.createProjectType = async(req, res) => {
   try {
     let body = req.body;
     let create = await serviceProjectType.createOne(body);
-    res.json(create)
+    res.status(200).json({
+      message: 'Create Project Type successful',
+      messageCode: 'CREATE_PROJECT_TYPE_SUCCESSFUL',
+      data: create,
+      status: 200
+    })
   } catch (error) {
     res.json(error.message);
   }
@@ -18,16 +23,17 @@ exports.getAllProjectType = async(req, res) => {
   try {
     
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };
 
 // Get 1
 exports.getOneProjectType = async(req, res) => {
   try {
-    
+    let id = req.params.id;
+    let getOne = await 
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };
 
@@ -36,10 +42,16 @@ exports.updateProjectType = async(req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await categoryModel.projectType.findOneAndUpdate({_id: id}, body, {new: true});
+    let update = await serviceProjectType.updateOne(id, body);
     res.json(update);
+    res.status(200).json({
+      message: 'Update Project Type successful',
+      messageCode: 'UPDATE_PROJECT_TYPE_SUCCESSFUL',
+      data: update,
+      status: 200
+    })
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };
 
@@ -47,9 +59,14 @@ exports.updateProjectType = async(req, res) => {
 exports.deleteProjectType = async(req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await categoryModel.projectType.deleteOne({_id: id});
-    res.json(deleteData);
+    let deleteData = await serviceProjectType.deleteOne(id);
+    res.status(200).json({
+      message: 'Delete Project Type successful',
+      messageCode: 'DELETE_PROJECT_TYPE_SUCCESSFUL',
+      data: deleteData,
+      status: 200
+    });
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };

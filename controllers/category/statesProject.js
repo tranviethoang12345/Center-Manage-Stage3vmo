@@ -10,12 +10,21 @@ exports.createStatesProject = async(req, res) => {
   }
 };
 
+// Get All
+exports.getAllProjectType = async(req, res) => {
+  try {
+    
+  } catch (error) {
+    res.json(error.message);
+  }
+}
+
 // Get 1
 exports.getOneStatesProject = async(req, res) => {
   try {
     
   } catch (error) {
-    console.log(error);
+    res.json(error.message);
   }
 };
 

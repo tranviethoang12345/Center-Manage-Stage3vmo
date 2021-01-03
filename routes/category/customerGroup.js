@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/customerGroup', categoryCustomerGroupController.createCustomerGroup);
 
 //Get => Get All
-router.get('/customerGroup', categoryCustomerGroupController.getAllProjectType);
+router.get('/customerGroup', categoryCustomerGroupController.getAllCustomerGroup);
 
 //Get => Get 1
 router.get('/customerGroup/:id', categoryCustomerGroupController.getOneCustomerGroup);
