@@ -1,13 +1,15 @@
+// // Import npm
 const express = require('express');
 const bodyParser =  require('body-parser');
 const mongoose = require('mongoose');
 
-//Import
-const routes = require('./config/routes')
+// // Import 
+const routes = require('./config/routes');
+// const test = require('./test/service/test')
 
 const app = express();
 
-//Connect Database
+// // Connect Database
 mongoose.connect('mongodb://localhost/stage3vmo-centerManage', {useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -18,9 +20,10 @@ db.once('open', function() {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Use
 app.use('/', routes);
 
-//Port
+// Port
 app.listen(3000, () => {
     console.log('Success!');
 });

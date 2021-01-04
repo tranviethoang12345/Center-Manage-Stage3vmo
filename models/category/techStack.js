@@ -12,6 +12,7 @@ const techStackSchema = new Schema({
   },
   description: {
     type: String,
+    default: '',
     trim: true
   },
   status: {

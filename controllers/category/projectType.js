@@ -1,4 +1,4 @@
-const categoryModel = require('../../models/category/projectType');
+//Import
 const serviceProjectType =  require('../../service/category/projectType')
 
 // // 1. Project type
@@ -21,7 +21,13 @@ exports.createProjectType = async(req, res) => {
 // Get All
 exports.getAllProjectType = async(req, res) => {
   try {
-    
+    let getAll = await serviceProjectType.getAll();
+    res.status(200).json({
+      message: 'Find All Project Type successful',
+      messageCode: 'FIND_ALL_PROJECT_TYPE_SUCCESSFUL',
+      data: getAll,
+      status: 200
+    })
   } catch (error) {
     res.json(error.message);
   }
@@ -31,7 +37,13 @@ exports.getAllProjectType = async(req, res) => {
 exports.getOneProjectType = async(req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await 
+    let getOne = await serviceProjectType.getOne(id);
+    res.status(200).json({
+      message: 'Find Project Type successful',
+      messageCode: 'FIND_PROJECT_TYPE_SUCCESSFUL',
+      data: getOne,
+      status: 200
+    })
   } catch (error) {
     res.json(error.message);
   }

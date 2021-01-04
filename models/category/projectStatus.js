@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 //States Project
-const statesProjectSchema = new Schema({
+const statusProjectSchema = new Schema({
   name: {
     type: String,
     // unique: true,
@@ -12,6 +12,7 @@ const statesProjectSchema = new Schema({
   },
   description: {
     type: String,
+    default: '',
     trim: true
   },
   status: {
@@ -23,6 +24,6 @@ const statesProjectSchema = new Schema({
   }
 });
 
-const statesProject = mongoose.model('statesProject', statesProjectSchema);
+const statusProject = mongoose.model('statesProject', statusProjectSchema);
 
-module.exports = statesProject;
+module.exports = statusProject;

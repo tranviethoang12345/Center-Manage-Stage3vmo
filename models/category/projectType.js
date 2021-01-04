@@ -12,10 +12,12 @@ const projectTypeSchema = new Schema({
   },
   description: {
     type: String,
+    default: '',
     trim: true
   },
   priorityWeight: {
     type: Number,
+    default: 10,
     trim: true,
     min: 1
   },
