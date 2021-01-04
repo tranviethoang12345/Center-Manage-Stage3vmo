@@ -4,7 +4,7 @@ const bodyParser =  require('body-parser');
 const mongoose = require('mongoose');
 
 // // Import 
-const routes = require('./config/routes');
+const routes = require('./config/routes'); 
 // const test = require('./test/service/test')
 
 const app = express();

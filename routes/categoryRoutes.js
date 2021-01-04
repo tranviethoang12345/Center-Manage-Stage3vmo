@@ -3,6 +3,6 @@ const categoryProjectStatusRouter = require('../routes/category/projectStatus');
 const categoryTechStackRouter = require('../routes/category/techStack');
 const categoryCustomerGroupRouter = require('../routes/category/customerGroup');
 
-const routes = [categoryProjectTypeRouter, categoryProjectStatusRouter, categoryTechStackRouter, categoryCustomerGroupRouter]
+const routes = [categoryProjectTypeRouter, categoryProjectStatusRouter, categoryTechStackRouter, categoryCustomerGroupRouter];
 
 module.exports = routes;

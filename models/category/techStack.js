@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-//Tech stack
+// Tech stack
 const techStackSchema = new Schema({
   name: {
     type: String,
