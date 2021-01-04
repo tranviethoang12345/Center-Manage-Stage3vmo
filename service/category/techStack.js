@@ -23,3 +23,31 @@ exports.getAll = async () => {
 }
 
 // Get One
+exports.getOne = async (id) => {
+  try {
+    let result = await categoryTechStackModel.findOne({_id: id});
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Update
+exports.updateOne = async (id, body) => {
+  try {
+    let result = await categoryTechStackModel.findOneAndUpdate({_id: id}, body, {new: true});
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Delete
+exports.deleteOne = async (id) => {
+  try {
+    let result = await categoryTechStackModel.deleteOne({_id: id});
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

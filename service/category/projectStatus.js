@@ -25,7 +25,7 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await categoryProjectStatusModel.findOne(id);
+    let result = await categoryProjectStatusModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -34,14 +34,14 @@ exports.getOne = async (id) => {
 
 // Update
 exports.updateOne = async (id, body) => {
-  let result = await categoryProjectStatusModel.findOneAndUpdate(id, body, {new: true});
+  let result = await categoryProjectStatusModel.findOneAndUpdate({_id: id}, body, {new: true});
   console.log(result);
   return result;
 }
 
 // Delete
 exports.deleteOne = async (id) => {
-  let result = await categoryProjectStatusModel.deleteOne(id);
+  let result = await categoryProjectStatusModel.deleteOne({_id: id});
   return result;
 }
 

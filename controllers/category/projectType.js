@@ -1,4 +1,4 @@
-//Import
+// // Import
 const serviceProjectType =  require('../../service/category/projectType')
 
 // // 1. Project type
@@ -55,7 +55,6 @@ exports.updateProjectType = async(req, res) => {
     let id = req.params.id;
     let body = req.body;
     let update = await serviceProjectType.updateOne(id, body);
-    res.json(update);
     res.status(200).json({
       message: 'Update Project Type successful',
       messageCode: 'UPDATE_PROJECT_TYPE_SUCCESSFUL',

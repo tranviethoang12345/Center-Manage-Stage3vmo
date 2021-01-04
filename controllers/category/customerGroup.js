@@ -1,9 +1,12 @@
+// // Import
+const serviceCustomerGroup = require('../../service/category/customerGroup')
+
 // // 4. Customer Group
 // Create
 exports.createCustomerGroup = async(req, res) => {
   try {
     let body = req.body;
-    let create = await categoryModel.customerGroup.create(body);
+    let create = await serviceCustomerGroup.createOne(body);
     console.log(create);
     res.status(200).json({
       message: 'Create Customer Group successful',
@@ -19,7 +22,13 @@ exports.createCustomerGroup = async(req, res) => {
 // Get All
 exports.getAllCustomerGroup = async(req, res) => {
   try {
-    
+    let getAll = await serviceCustomerGroup.getAll();
+    res.status(200).json({
+      message: 'Find All Customer Group successful',
+      messageCode: 'FIND_ALL_CUSTOMER_GROUP_SUCCESSFUL',
+      data: getAll,
+      status: 200
+    });
   } catch (error) {
     res.json(error.message);
   }
@@ -29,10 +38,10 @@ exports.getAllCustomerGroup = async(req, res) => {
 exports.getOneCustomerGroup = async(req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await categoryModel.customerGroup.findOne({_id: id})
+    let getOne = await serviceCustomerGroup.getOne(id);
     res.status(200).json({
-      message: 'Get One Customer Group successful',
-      messageCode: 'GET_ONE_CUSTOMER_GROUP_SUCCESSFUL',
+      message: 'Find Customer Group successful',
+      messageCode: 'FIND_CUSTOMER_GROUP_SUCCESSFUL',
       data: getOne,
       status: 200
     });
@@ -46,7 +55,7 @@ exports.updateCustomerGroup = async(req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await categoryModel.customerGroup.findByIdAndUpdate({_id: id}, body, {new: true});
+    let update = await serviceCustomerGroup.updateOne(id, body)
     res.status(200).json({
       message: 'Update Customer Group successful', 
       messageCode: 'UPDATE_CUSTOMER_GROUP_SUCCESSFUL',
@@ -62,7 +71,7 @@ exports.updateCustomerGroup = async(req, res) => {
 exports.deleteCustomerGroup = async(req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await categoryModel.customerGroup.deleteOne({_id: id});
+    let deleteData = await serviceCustomerGroup.deleteOne(id);
     res.status(200).json({
       message: 'Delete Customer Group successful',
       messageCode: 'DELETE_CUSTOMER_GROUP_SUCCESSFUL',

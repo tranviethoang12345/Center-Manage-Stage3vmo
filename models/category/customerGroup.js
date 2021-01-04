@@ -30,6 +30,6 @@ const customerGroupSchema = new Schema({
   }
 });
 
-const customerGroup = mongoose.model('techStack', customerGroupSchema);
+const customerGroup = mongoose.model('customerGroup', customerGroupSchema);
 
 module.exports = customerGroup;
