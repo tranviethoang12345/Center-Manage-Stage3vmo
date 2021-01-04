@@ -5,7 +5,7 @@ const serviceProjectStatus =  require('../../service/category/projectStatus')
 // Create
 exports.createProjectStatus = async(req, res) => {
   try {
-    let body = req.body;
+    var body = req.body;
     let create = await serviceProjectStatus.createOne(body);
     res.status(200).json({
       message: 'Create Status Project successful',
@@ -14,7 +14,10 @@ exports.createProjectStatus = async(req, res) => {
       status: 200
     })
   } catch (error) {
-    res.json(error.message);
+    if(error.code == 11000)
+    {
+    res.json(body.name + ' name has been create');
+    }
   }
 };
 

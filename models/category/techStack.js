@@ -1,3 +1,4 @@
+// // Import
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -24,6 +25,7 @@ const techStackSchema = new Schema({
   }
 });
 
-const techStack = mongoose.model('techStack', techStackSchema);
+// // Export
+const techStack = mongoose.model('tech-stack', techStackSchema);
 
 module.exports = techStack;

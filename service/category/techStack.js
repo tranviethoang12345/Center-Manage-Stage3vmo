@@ -5,7 +5,7 @@ const categoryTechStackModel = require("../../models/category/techStack");
 // Create One
 exports.createOne = async (data) => {
   try {
-    let result = await categoryTechStackModel.create(body);
+    let result = await categoryTechStackModel.create(data);
     return result;
   } catch (error) {
     throw error;

@@ -1,3 +1,4 @@
+// // Import
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -6,7 +7,7 @@ const { Schema } = mongoose;
 const projectTypeSchema = new Schema({
   name: {
     type: String,
-    // unique: true,
+    unique: true,
     trim: true,
     required: true
   },
@@ -30,6 +31,7 @@ const projectTypeSchema = new Schema({
   }
 });
 
-const projectType = mongoose.model('projectType', projectTypeSchema);
+// // Export
+const projectType = mongoose.model('project-type', projectTypeSchema);
 
 module.exports = projectType;

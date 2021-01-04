@@ -25,5 +25,5 @@ app.use('/', routes);
 
 // Port
 app.listen(3000, () => {
-    console.log('Success!');
+  console.log('Success!');
 });

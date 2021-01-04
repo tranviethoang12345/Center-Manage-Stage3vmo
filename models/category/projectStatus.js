@@ -1,12 +1,13 @@
+// // Import
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 //States Project
-const statusProjectSchema = new Schema({
+const projectStatusSchema = new Schema({
   name: {
     type: String,
-    // unique: true,
+    unique: true,
     trim: true,
     required: true
   },
@@ -24,6 +25,8 @@ const statusProjectSchema = new Schema({
   }
 });
 
-const statusProject = mongoose.model('statesProject', statusProjectSchema);
+// // Create Table
+const projectStatus = mongoose.model('project-status', projectStatusSchema);
 
-module.exports = statusProject;
+// // Export
+module.exports = projectStatus;

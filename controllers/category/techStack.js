@@ -6,7 +6,7 @@ const serviceTechStack = require('../../service/category/techStack');
 exports.createTechStack = async(req, res) => {
   try {
     let body = req.body;
-    let create = await serviceTechStack.create(body);
+    let create = await serviceTechStack.createOne(body);
     res.status(200).json({
       message: 'Create Tech Stack successful',
       messageCode: 'CREATE_TECH_STACK_SUCCESSFUL',

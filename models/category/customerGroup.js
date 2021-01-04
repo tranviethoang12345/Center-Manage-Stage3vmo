@@ -1,3 +1,4 @@
+// // Import
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -30,6 +31,7 @@ const customerGroupSchema = new Schema({
   }
 });
 
-const customerGroup = mongoose.model('customerGroup', customerGroupSchema);
+// // Export
+const customerGroup = mongoose.model('customer-group', customerGroupSchema);
 
 module.exports = customerGroup;
