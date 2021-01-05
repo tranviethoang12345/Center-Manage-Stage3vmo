@@ -1,12 +1,12 @@
 // // Import
-const serviceProjectType =  require('../../service/category/projectType')
+const projectTypeService =  require('../../service/category/projectType')
 
 // // 1. Project type
 // Create
-exports.createProjectType = async(req, res) => {
+exports.createProjectType = async (req, res) => {
   try {
     let body = req.body;
-    let create = await serviceProjectType.createOne(body);
+    let create = await projectTypeService.createOne(body);
     res.status(200).json({
       message: 'Create Project Type successful',
       messageCode: 'CREATE_PROJECT_TYPE_SUCCESSFUL',
@@ -19,9 +19,9 @@ exports.createProjectType = async(req, res) => {
 };
 
 // Get All
-exports.getAllProjectType = async(req, res) => {
+exports.getAllProjectType = async (req, res) => {
   try {
-    let getAll = await serviceProjectType.getAll();
+    let getAll = await projectTypeService.getAll();
     res.status(200).json({
       message: 'Find All Project Type successful',
       messageCode: 'FIND_ALL_PROJECT_TYPE_SUCCESSFUL',
@@ -34,10 +34,10 @@ exports.getAllProjectType = async(req, res) => {
 };
 
 // Get 1
-exports.getOneProjectType = async(req, res) => {
+exports.getOneProjectType = async (req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await serviceProjectType.getOne(id);
+    let getOne = await projectTypeService.getOne(id);
     res.status(200).json({
       message: 'Find Project Type successful',
       messageCode: 'FIND_PROJECT_TYPE_SUCCESSFUL',
@@ -50,11 +50,11 @@ exports.getOneProjectType = async(req, res) => {
 };
 
 // Update
-exports.updateProjectType = async(req, res) => {
+exports.updateProjectType = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await serviceProjectType.updateOne(id, body);
+    let update = await projectTypeService.updateOne(id, body);
     res.status(200).json({
       message: 'Update Project Type successful',
       messageCode: 'UPDATE_PROJECT_TYPE_SUCCESSFUL',
@@ -67,10 +67,10 @@ exports.updateProjectType = async(req, res) => {
 };
 
 // Delete
-exports.deleteProjectType = async(req, res) => {
+exports.deleteProjectType = async (req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await serviceProjectType.deleteOne(id);
+    let deleteData = await projectTypeService.deleteOne(id);
     res.status(200).json({
       message: 'Delete Project Type successful',
       messageCode: 'DELETE_PROJECT_TYPE_SUCCESSFUL',

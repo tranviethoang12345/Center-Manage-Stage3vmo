@@ -1,12 +1,12 @@
 // // Import
-const serviceCustomerGroup = require('../../service/category/customerGroup')
+const customerGroupService = require('../../service/category/customerGroup')
 
 // // 4. Customer Group
 // Create
-exports.createCustomerGroup = async(req, res) => {
+exports.createCustomerGroup = async (req, res) => {
   try {
     let body = req.body;
-    let create = await serviceCustomerGroup.createOne(body);
+    let create = await customerGroupService.createOne(body);
     console.log(create);
     res.status(200).json({
       message: 'Create Customer Group successful',
@@ -20,9 +20,9 @@ exports.createCustomerGroup = async(req, res) => {
 }
 
 // Get All
-exports.getAllCustomerGroup = async(req, res) => {
+exports.getAllCustomerGroup = async (req, res) => {
   try {
-    let getAll = await serviceCustomerGroup.getAll();
+    let getAll = await customerGroupService.getAll();
     res.status(200).json({
       message: 'Find All Customer Group successful',
       messageCode: 'FIND_ALL_CUSTOMER_GROUP_SUCCESSFUL',
@@ -35,10 +35,10 @@ exports.getAllCustomerGroup = async(req, res) => {
 }
 
 // Get 1
-exports.getOneCustomerGroup = async(req, res) => {
+exports.getOneCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await serviceCustomerGroup.getOne(id);
+    let getOne = await customerGroupService.getOne(id);
     res.status(200).json({
       message: 'Find Customer Group successful',
       messageCode: 'FIND_CUSTOMER_GROUP_SUCCESSFUL',
@@ -51,11 +51,11 @@ exports.getOneCustomerGroup = async(req, res) => {
 }
 
 // Update
-exports.updateCustomerGroup = async(req, res) => {
+exports.updateCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await serviceCustomerGroup.updateOne(id, body)
+    let update = await customerGroupService.updateOne(id, body)
     res.status(200).json({
       message: 'Update Customer Group successful', 
       messageCode: 'UPDATE_CUSTOMER_GROUP_SUCCESSFUL',
@@ -68,10 +68,10 @@ exports.updateCustomerGroup = async(req, res) => {
 }
 
 // Delete
-exports.deleteCustomerGroup = async(req, res) => {
+exports.deleteCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await serviceCustomerGroup.deleteOne(id);
+    let deleteData = await customerGroupService.deleteOne(id);
     res.status(200).json({
       message: 'Delete Customer Group successful',
       messageCode: 'DELETE_CUSTOMER_GROUP_SUCCESSFUL',

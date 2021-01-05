@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 //States Project
-const projectStatusSchema = new Schema({
+const projectStatusSchema = new Schema ({
   name: {
     type: String,
     unique: true,

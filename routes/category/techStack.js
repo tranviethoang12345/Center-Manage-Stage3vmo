@@ -1,22 +1,22 @@
 const express = require('express');
 
-const categoryTechStackController = require('../../controllers/category/techStack');
+const techStackControllers = require('../../controllers/category/techStack');
 const router = express.Router();
 
 // // 3. Tech Stack
 //Post => Create
-router.post('/techStack', categoryTechStackController.createTechStack);
+router.post('/techStack', techStackControllers.createTechStack);
 
 //Get => Get All
-router.get('/techStack', categoryTechStackController.getAllTechStack);
+router.get('/techStack', techStackControllers.getAllTechStack);
 
 //Get => Get 1
-router.get('/techStack/:id', categoryTechStackController.getOneTechStack);
+router.get('/techStack/:id', techStackControllers.getOneTechStack);
 
 //Update => Put
-router.put('/techStack/:id', categoryTechStackController.updateTechStack);
+router.put('/techStack/:id', techStackControllers.updateTechStack);
 
 //Delete => Delete
-router.delete('/techStack/:id', categoryTechStackController.deleteTechStack);
+router.delete('/techStack/:id', techStackControllers.deleteTechStack);
 
 module.exports = router;

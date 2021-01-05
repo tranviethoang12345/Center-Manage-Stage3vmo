@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-//Customer Group
-const customerGroupSchema = new Schema({
+// Customer Group
+const customerGroupSchema = new Schema ({
   name: {
     type: String,
     unique: true,
@@ -31,7 +31,8 @@ const customerGroupSchema = new Schema({
   }
 });
 
-// // Export
+// // Create Table
 const customerGroup = mongoose.model('customer-group', customerGroupSchema);
 
+// // Export
 module.exports = customerGroup;

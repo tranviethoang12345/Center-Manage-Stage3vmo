@@ -1,11 +1,11 @@
 // // Connect Database
-const categoryTechStackModel = require("../../models/category/techStack");
+const techStackModel = require("../../models/category/techStack");
 
 // // Tech Stack
 // Create One
 exports.createOne = async (data) => {
   try {
-    let result = await categoryTechStackModel.create(data);
+    let result = await techStackModel.create(data);
     return result;
   } catch (error) {
     throw error;
@@ -15,7 +15,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await categoryTechStackModel.find();
+    let result = await techStackModel.find();
     return result;
   } catch (error) {
     throw error;
@@ -25,7 +25,7 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await categoryTechStackModel.findOne({_id: id});
+    let result = await techStackModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +35,7 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await categoryTechStackModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await techStackModel.findOneAndUpdate({_id: id}, body, {new: true});
     return result;
   } catch (error) {
     throw error;
@@ -45,7 +45,7 @@ exports.updateOne = async (id, body) => {
 // Delete
 exports.deleteOne = async (id) => {
   try {
-    let result = await categoryTechStackModel.deleteOne({_id: id});
+    let result = await techStackModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

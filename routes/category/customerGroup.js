@@ -1,22 +1,22 @@
 const express = require('express');
 
-const categoryCustomerGroupController = require('../../controllers/category/customerGroup');
+const customerGroupControllers = require('../../controllers/category/customerGroup');
 const router = express.Router();
 
 // // 4. Customer Group
 //Post => Create
-router.post('/customerGroup', categoryCustomerGroupController.createCustomerGroup);
+router.post('/customerGroup', customerGroupControllers.createCustomerGroup);
 
 //Get => Get All
-router.get('/customerGroup', categoryCustomerGroupController.getAllCustomerGroup);
+router.get('/customerGroup', customerGroupControllers.getAllCustomerGroup);
 
 //Get => Get 1
-router.get('/customerGroup/:id', categoryCustomerGroupController.getOneCustomerGroup);
+router.get('/customerGroup/:id', customerGroupControllers.getOneCustomerGroup);
 
 //Update => Put
-router.put('/customerGroup/:id', categoryCustomerGroupController.updateCustomerGroup);
+router.put('/customerGroup/:id', customerGroupControllers.updateCustomerGroup);
 
 //Delete => Delete
-router.delete('/customerGroup/:id', categoryCustomerGroupController.deleteCustomerGroup);
+router.delete('/customerGroup/:id', customerGroupControllers.deleteCustomerGroup);
 
 module.exports = router;

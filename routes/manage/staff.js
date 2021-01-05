@@ -4,9 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 
-// // 2. Human resources – HR
+// // 2. Staff – HR
 //Post => Create
-router.post('/humanResources', async(req, res) => {
+router.post('/staff', async(req, res) => {
   try {
     
   } catch (error) {
@@ -15,7 +15,7 @@ router.post('/humanResources', async(req, res) => {
 });
 
 //Get => Get All
-router.post('/humanResources', async(req, res) => {
+router.post('/staff', async(req, res) => {
   try {
     
   } catch (error) {
@@ -24,7 +24,7 @@ router.post('/humanResources', async(req, res) => {
 });
 
 //Get => Get 1
-router.get('/humanResources', async(req, res) => {
+router.get('/staff', async(req, res) => {
   try {
     
   } catch (error) {
@@ -33,7 +33,7 @@ router.get('/humanResources', async(req, res) => {
 });
 
 //Update => Put
-router.put('/humanResources/:id', async(req, res) => {
+router.put('/staff/:id', async(req, res) => {
   try {
     
   } catch (error) {
@@ -42,7 +42,7 @@ router.put('/humanResources/:id', async(req, res) => {
 });
 
 //Delete => Delete
-router.delete('/humanResources/:id', async(req, res) => {
+router.delete('/staff/:id', async(req, res) => {
   try {
     
   } catch (error) {

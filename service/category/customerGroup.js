@@ -1,11 +1,11 @@
 // // Connect Database
-const categoryCustomerGroup = require('../../models/category/customerGroup');
+const customerGroupModel = require('../../models/category/customerGroup');
 
 // // Project Type
 // Create One  
 exports.createOne = async (data) => {
   try {
-    let result = await categoryCustomerGroup.create(data);
+    let result = await customerGroupModel.create(data);
     return result;
   } catch (error) {
     throw error;
@@ -15,7 +15,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await categoryCustomerGroup.find();
+    let result = await customerGroupModel.find();
     return result;
   } catch (error) {
     throw error;
@@ -25,7 +25,7 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await categoryCustomerGroup.findOne({_id: id});
+    let result = await customerGroupModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +35,7 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await categoryCustomerGroup.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await customerGroupModel.findOneAndUpdate({_id: id}, body, {new: true});
     console.log(result);
     return result;
   } catch (error) {
@@ -46,7 +46,7 @@ exports.updateOne = async (id, body) => {
 // Delete
 exports.deleteOne = async (id) => {
   try {
-    let result = await categoryCustomerGroup.deleteOne({_id: id});
+    let result = await customerGroupModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

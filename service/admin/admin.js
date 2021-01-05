@@ -1,7 +1,7 @@
 // // Import
-const centerModel = require('../../models/manage/center');
+const adminModel = require('../../models/manage/admin');
 
-// // Center
+// // Admin
 // Create One
 
 // Get All

@@ -1,22 +1,22 @@
 const express = require('express');
 
-const categoryProjectStatusController = require('../../controllers/category/projectStatus');
+const projectStatusControllers = require('../../controllers/category/projectStatus');
 const router = express.Router();
 
 // // 2. States Project
 //Post => Create
-router.post('/projectStatus', categoryProjectStatusController.createProjectStatus);
+router.post('/projectStatus', projectStatusControllers.createProjectStatus);
 
 //Get => Get All
-router.get('/projectStatus', categoryProjectStatusController.getAllProjectStatus);
+router.get('/projectStatus', projectStatusControllers.getAllProjectStatus);
 
 //Get => Get 1
-router.get('/projectStatus/:id', categoryProjectStatusController.getOneProjectStatus);
+router.get('/projectStatus/:id', projectStatusControllers.getOneProjectStatus);
 
 //Update => Put
-router.put('/projectStatus/:id', categoryProjectStatusController.updateProjectStatus);
+router.put('/projectStatus/:id', projectStatusControllers.updateProjectStatus);
 
 //Delete => Delete
-router.delete('/projectStatus/:id', categoryProjectStatusController.deleteProjectStatus);
+router.delete('/projectStatus/:id', projectStatusControllers.deleteProjectStatus);
 
 module.exports = router;

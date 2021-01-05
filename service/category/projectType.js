@@ -1,11 +1,11 @@
 // // Connect Database
-const categoryProjectTypeModel = require('../../models/category/projectType');
+const projectTypeModel = require('../../models/category/projectType');
 
 // // Project Type
 // Create One  
 exports.createOne = async (data) => {
   try {
-    let result = await categoryProjectTypeModel.create(data);
+    let result = await projectTypeModel.create(data);
     return result;
   } catch (error) {
     throw error;
@@ -15,7 +15,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await categoryProjectTypeModel.find();
+    let result = await projectTypeModel.find();
     return result;
   } catch (error) {
     throw error;
@@ -25,7 +25,7 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await categoryProjectTypeModel.findOne({_id: id});
+    let result = await projectTypeModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +35,7 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await categoryProjectTypeModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await projectTypeModel.findOneAndUpdate({_id: id}, body, {new: true});
     console.log(result);
     return result;
   } catch (error) {
@@ -46,7 +46,7 @@ exports.updateOne = async (id, body) => {
 // Delete
 exports.deleteOne = async (id) => {
   try {
-    let result = await categoryProjectTypeModel.deleteOne({_id: id});
+    let result = await projectTypeModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

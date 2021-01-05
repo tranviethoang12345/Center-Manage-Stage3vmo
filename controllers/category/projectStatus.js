@@ -1,12 +1,12 @@
 //Import
-const serviceProjectStatus =  require('../../service/category/projectStatus')
+const projectStatusService =  require('../../service/category/projectStatus')
 
 // // 2. States Project
 // Create
-exports.createProjectStatus = async(req, res) => {
+exports.createProjectStatus = async (req, res) => {
   try {
     var body = req.body;
-    let create = await serviceProjectStatus.createOne(body);
+    let create = await projectStatusService.createOne(body);
     res.status(200).json({
       message: 'Create Status Project successful',
       messageCode: 'CREATE_STATUS_PROJECT_SUCCESSFUL',
@@ -22,9 +22,9 @@ exports.createProjectStatus = async(req, res) => {
 };
 
 // Get All
-exports.getAllProjectStatus = async(req, res) => {
+exports.getAllProjectStatus = async (req, res) => {
   try {
-    let getAll = await serviceProjectStatus.getAll();
+    let getAll = await projectStatusService.getAll();
     res.status(200).json({
       message: 'Find All Status Project successful',
       messageCode: 'FIND_ALL_STATUS_PROJECT_SUCCESSFUL',
@@ -37,10 +37,10 @@ exports.getAllProjectStatus = async(req, res) => {
 }
 
 // Get 1
-exports.getOneProjectStatus = async(req, res) => {
+exports.getOneProjectStatus = async (req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await serviceProjectStatus.getOne(id);
+    let getOne = await projectStatusService.getOne(id);
     res.status(200).json({
       message: 'Find Status Project successful',
       messageCode: 'FIND_STATUS_PROJECT_SUCCESSFUL',
@@ -53,11 +53,11 @@ exports.getOneProjectStatus = async(req, res) => {
 };
 
 // Update
-exports.updateProjectStatus = async(req, res) => {
+exports.updateProjectStatus = async (req, res) => {
   try {
     let id = req.params.id;
     let body =  req.body;
-    let update = await serviceProjectStatus.updateOne(id, body);
+    let update = await projectStatusService.updateOne(id, body);
     res.status(200).json({
       message: 'Update Status Project successful',
       messageCode: 'UPDATE_STATUS_PROJECT_SUCCESSFUL',
@@ -70,10 +70,10 @@ exports.updateProjectStatus = async(req, res) => {
 };
 
 // Delete
-exports.deleteProjectStatus = async(req, res) => {
+exports.deleteProjectStatus = async (req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await serviceProjectStatus.deleteOne(id);
+    let deleteData = await projectStatusService.deleteOne(id);
     res.status(200).json({
       message: 'Delete Status Project successful',
       messageCode: 'DELETE_STATUS_PROJECT_SUCCESSFUL',

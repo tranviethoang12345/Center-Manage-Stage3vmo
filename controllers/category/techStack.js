@@ -1,12 +1,12 @@
 // // Import
-const serviceTechStack = require('../../service/category/techStack');
+const techStackService = require('../../service/category/techStack');
 
 // // 3. Tech Stack
 // Create
-exports.createTechStack = async(req, res) => {
+exports.createTechStack = async (req, res) => {
   try {
     let body = req.body;
-    let create = await serviceTechStack.createOne(body);
+    let create = await techStackService.createOne(body);
     res.status(200).json({
       message: 'Create Tech Stack successful',
       messageCode: 'CREATE_TECH_STACK_SUCCESSFUL',
@@ -19,9 +19,9 @@ exports.createTechStack = async(req, res) => {
 };
 
 // Get All
-exports.getAllTechStack = async(req, res) => {
+exports.getAllTechStack = async (req, res) => {
   try {
-    let getAll = await serviceTechStack.getAll();
+    let getAll = await techStackService.getAll();
     res.status(200).json({
       message: 'Find All Tech Stack successful',
       messageCode: 'FIND_ALL_TECH_STACK_SUCCESSFUL',
@@ -34,10 +34,10 @@ exports.getAllTechStack = async(req, res) => {
 }
 
 // Get 1
-exports.getOneTechStack = async(req, res) => {
+exports.getOneTechStack = async (req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await serviceTechStack.getOne(id);
+    let getOne = await techStackService.getOne(id);
     res.status(200).json({
       message: 'Find Tech Stack successful',
       messageCode: 'FIND_TECH_STACK_SUCCESSFUL',
@@ -50,11 +50,11 @@ exports.getOneTechStack = async(req, res) => {
 }
 
 // Update
-exports.updateTechStack = async(req, res) => {
+exports.updateTechStack = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await serviceTechStack.updateOne(id, body);
+    let update = await techStackService.updateOne(id, body);
     res.status(200).json({
       message: 'Update Tech Stack successful',
       messageCode: 'UPDATE_TECH_STACK_SUCCESSFUL',
@@ -67,7 +67,7 @@ exports.updateTechStack = async(req, res) => {
 }
 
 // Delete
-exports.deleteTechStack = async(req, res) => {
+exports.deleteTechStack = async (req, res) => {
   try {
     let id = req.params.id;
     let deleteData = await categoryModel.techStack.deleteOne(id);

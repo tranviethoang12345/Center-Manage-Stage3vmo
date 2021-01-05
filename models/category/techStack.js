@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 // Tech stack
-const techStackSchema = new Schema({
+const techStackSchema = new Schema ({
   name: {
     type: String,
     unique: true,
@@ -25,7 +25,8 @@ const techStackSchema = new Schema({
   }
 });
 
-// // Export
+// // Create Table
 const techStack = mongoose.model('tech-stack', techStackSchema);
 
+// // Export
 module.exports = techStack;

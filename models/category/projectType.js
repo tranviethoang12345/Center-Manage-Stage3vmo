@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 //Project Type
-const projectTypeSchema = new Schema({
+const projectTypeSchema = new Schema ({
   name: {
     type: String,
     unique: true,
@@ -31,7 +31,8 @@ const projectTypeSchema = new Schema({
   }
 });
 
-// // Export
+// // Create Table
 const projectType = mongoose.model('project-type', projectTypeSchema);
 
+// // Export
 module.exports = projectType;
