@@ -1,6 +1,10 @@
+// // Import npm
 const express = require('express');
 
+// // Import Controllers
 const customerGroupControllers = require('../../controllers/category/customerGroup');
+
+// Create Router
 const router = express.Router();
 
 // // 4. Customer Group
@@ -19,4 +23,5 @@ router.put('/customerGroup/:id', customerGroupControllers.updateCustomerGroup);
 //Delete => Delete
 router.delete('/customerGroup/:id', customerGroupControllers.deleteCustomerGroup);
 
+// Export
 module.exports = router;

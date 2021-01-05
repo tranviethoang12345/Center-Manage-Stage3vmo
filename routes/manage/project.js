@@ -1,7 +1,10 @@
-// // Import
+// // Import npm
 const express = require('express');
+
+// // Import Controllers
 const centerControllers = require('../../controllers/manage/center')
 
+// Create Router
 const router = express.Router();
 
 // // 1. Project
@@ -20,4 +23,5 @@ router.put('/centers/:id', centerControllers.updateCenter);
 //Delete => Delete
 router.delete('/centers/:id', centerControllers.deleteCenter);
 
+// Export
 module.exports = router;

@@ -1,6 +1,10 @@
+// // Import npm
 const express = require('express');
 
+// // Import Controllers
 const projectStatusControllers = require('../../controllers/category/projectStatus');
+
+// Create Router
 const router = express.Router();
 
 // // 2. States Project
@@ -19,4 +23,5 @@ router.put('/projectStatus/:id', projectStatusControllers.updateProjectStatus);
 //Delete => Delete
 router.delete('/projectStatus/:id', projectStatusControllers.deleteProjectStatus);
 
+// Export
 module.exports = router;

@@ -1,6 +1,10 @@
+// // Import npm
 const express = require('express');
 
+// // Import Controllers
 const techStackControllers = require('../../controllers/category/techStack');
+
+// Create Router
 const router = express.Router();
 
 // // 3. Tech Stack
@@ -19,4 +23,5 @@ router.put('/techStack/:id', techStackControllers.updateTechStack);
 //Delete => Delete
 router.delete('/techStack/:id', techStackControllers.deleteTechStack);
 
+// Export
 module.exports = router;

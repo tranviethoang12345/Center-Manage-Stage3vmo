@@ -1,5 +1,8 @@
 // // Import
 const techStackService = require('../../service/category/techStack');
+const statusService = require('../../service/message/status')
+
+const n = 'Tech Stack';
 
 // // 3. Tech Stack
 // Create
@@ -7,12 +10,7 @@ exports.createTechStack = async (req, res) => {
   try {
     let body = req.body;
     let create = await techStackService.createOne(body);
-    res.status(200).json({
-      message: 'Create Tech Stack successful',
-      messageCode: 'CREATE_TECH_STACK_SUCCESSFUL',
-      data: create,
-      status: 200
-    })
+    res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
     res.json(error.message);
   }
@@ -22,12 +20,7 @@ exports.createTechStack = async (req, res) => {
 exports.getAllTechStack = async (req, res) => {
   try {
     let getAll = await techStackService.getAll();
-    res.status(200).json({
-      message: 'Find All Tech Stack successful',
-      messageCode: 'FIND_ALL_TECH_STACK_SUCCESSFUL',
-      data: getAll,
-      status: 200
-    })
+    res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.json(error.message);
   }
@@ -38,12 +31,7 @@ exports.getOneTechStack = async (req, res) => {
   try {
     let id = req.params.id;
     let getOne = await techStackService.getOne(id);
-    res.status(200).json({
-      message: 'Find Tech Stack successful',
-      messageCode: 'FIND_TECH_STACK_SUCCESSFUL',
-      data: getOne,
-      status: 200
-    })
+    res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {    
     res.json(error.message);
   }
@@ -55,12 +43,7 @@ exports.updateTechStack = async (req, res) => {
     let id = req.params.id;
     let body = req.body;
     let update = await techStackService.updateOne(id, body);
-    res.status(200).json({
-      message: 'Update Tech Stack successful',
-      messageCode: 'UPDATE_TECH_STACK_SUCCESSFUL',
-      data: update,
-      status: 200
-    })
+    res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
     res.json(error.message);
   }
@@ -70,13 +53,8 @@ exports.updateTechStack = async (req, res) => {
 exports.deleteTechStack = async (req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await categoryModel.techStack.deleteOne(id);
-    res.status(200).json({
-      message: 'Delete Tech Stack successful',
-      messageCode: 'DELETE_TECH_STACK_SUCCESSFUL',
-      data: deleteData,
-      status: 200
-    })
+    let deleteData = await techStackService.deleteOne(id);
+    res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
     res.json(error.message);
   }

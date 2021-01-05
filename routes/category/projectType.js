@@ -1,6 +1,10 @@
+// // Import npm
 const express = require('express');
 
+// // Import Controllers
 const projectTypeControllers = require('../../controllers/category/projectType');
+
+// Create Router
 const router = express.Router();
 
 // // 1. Project type
@@ -20,4 +24,5 @@ router.put('/projectType/:id', projectTypeControllers.updateProjectType);
 //Delete => Delete
 router.delete('/projectType/:id', projectTypeControllers.deleteProjectType);
 
+// Export
 module.exports = router;
