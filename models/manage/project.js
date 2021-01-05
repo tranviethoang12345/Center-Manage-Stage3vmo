@@ -8,7 +8,7 @@ const projectSchema = new Schema ({
 
 });
 
-// // Create Table
+// // Compile the model from the schema
 const project = mongoose.model('project', projectSchema);
 
 // // Export

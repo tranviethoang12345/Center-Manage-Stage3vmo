@@ -8,7 +8,7 @@ const staffSchema = new Schema ({
 
 });
 
-// // Create Table
+// // Compile the model from the schema
 const staff = mongoose.model('human-resources', staffSchema);
 
 // //  Export

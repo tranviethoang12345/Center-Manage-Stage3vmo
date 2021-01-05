@@ -25,7 +25,7 @@ const projectStatusSchema = new Schema ({
   }
 });
 
-// // Create Table
+// // Compile the model from the schema
 const projectStatus = mongoose.model('project-status', projectStatusSchema);
 
 // // Export

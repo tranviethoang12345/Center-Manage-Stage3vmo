@@ -31,7 +31,7 @@ const customerGroupSchema = new Schema ({
   }
 });
 
-// // Create Table
+// // Compile the model from the schema
 const customerGroup = mongoose.model('customer-group', customerGroupSchema);
 
 // // Export

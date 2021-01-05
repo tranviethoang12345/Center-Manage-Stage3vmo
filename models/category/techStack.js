@@ -25,7 +25,7 @@ const techStackSchema = new Schema ({
   }
 });
 
-// // Create Table
+// // Compile the model from the schema
 const techStack = mongoose.model('tech-stack', techStackSchema);
 
 // // Export

@@ -31,7 +31,7 @@ const projectTypeSchema = new Schema ({
   }
 });
 
-// // Create Table
+// // Compile the model from the schema
 const projectType = mongoose.model('project-type', projectTypeSchema);
 
 // // Export

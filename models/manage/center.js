@@ -8,7 +8,7 @@ const centerSchema = new Schema ({
 
 });
 
-// // Create Table
+// // Compile the model from the schema
 const center = mongoose.model('center', centerSchema);
 
 // // Export

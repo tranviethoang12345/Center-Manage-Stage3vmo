@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser =  require('body-parser');
 const mongoose = require('mongoose');
 
-// // Import 
+// // Import Routers
 const routes = require('./config/routes'); 
 // const test = require('./test/service/test')
 
@@ -14,16 +14,17 @@ mongoose.connect('mongodb://localhost/stage3vmo-centerManage', {useNewUrlParser:
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('We are connect! - Database');
+  console.log('Successfully connected to The Database');
 });
 
+// Setting
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Use
+// Routes
 app.use('/', routes);
 
 // Port
 app.listen(3000, () => {
-  console.log('Success!');
+  console.log('Successfully run Server!');
 });
