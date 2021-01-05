@@ -1,7 +1,8 @@
-// // Import
+// // Import Service
 const techStackService = require('../../service/category/techStack');
-const statusService = require('../../service/message/status')
+const statusService = require('../../service/message/status');
 
+// Name
 const n = 'Tech Stack';
 
 // // 3. Tech Stack

@@ -1,5 +1,9 @@
 // // Import
-const customerGroupService = require('../../service/category/customerGroup')
+const customerGroupService = require('../../service/category/customerGroup');
+const statusService = require('../../service/message/status');
+
+// Name
+const n = 'Customer Group';
 
 // // 4. Customer Group
 // Create
@@ -7,13 +11,7 @@ exports.createCustomerGroup = async (req, res) => {
   try {
     let body = req.body;
     let create = await customerGroupService.createOne(body);
-    console.log(create);
-    res.status(200).json({
-      message: 'Create Customer Group successful',
-      messageCode: 'CREATE_CUSTOMER_GROUP_SUCCESSFUL',
-      data: create,
-      status: 200
-    })
+    res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
     res.json(error.message);
   }
@@ -23,12 +21,7 @@ exports.createCustomerGroup = async (req, res) => {
 exports.getAllCustomerGroup = async (req, res) => {
   try {
     let getAll = await customerGroupService.getAll();
-    res.status(200).json({
-      message: 'Find All Customer Group successful',
-      messageCode: 'FIND_ALL_CUSTOMER_GROUP_SUCCESSFUL',
-      data: getAll,
-      status: 200
-    });
+    res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.json(error.message);
   }
@@ -39,12 +32,7 @@ exports.getOneCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
     let getOne = await customerGroupService.getOne(id);
-    res.status(200).json({
-      message: 'Find Customer Group successful',
-      messageCode: 'FIND_CUSTOMER_GROUP_SUCCESSFUL',
-      data: getOne,
-      status: 200
-    });
+    res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
     res.json(error.message);
   }
@@ -56,12 +44,7 @@ exports.updateCustomerGroup = async (req, res) => {
     let id = req.params.id;
     let body = req.body;
     let update = await customerGroupService.updateOne(id, body)
-    res.status(200).json({
-      message: 'Update Customer Group successful', 
-      messageCode: 'UPDATE_CUSTOMER_GROUP_SUCCESSFUL',
-      data: update,
-      status: 200 
-      });
+    res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
     res.json(error.message);
   }
@@ -72,12 +55,7 @@ exports.deleteCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
     let deleteData = await customerGroupService.deleteOne(id);
-    res.status(200).json({
-      message: 'Delete Customer Group successful',
-      messageCode: 'DELETE_CUSTOMER_GROUP_SUCCESSFUL',
-      data: deleteData,
-      status: 200
-    });
+    res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
     res.json(error.message);
   }
