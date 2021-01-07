@@ -9,63 +9,52 @@ const staffSchema = new Schema ({
     firstName: {
       type: String,
       default: '',
-      unique: true,
       trim: true
     },
     middleName: {
       type: String,
       default: '',
-      unique: true,
       trim: true
     },
     lastName: {
       type: String,
       default: '',
-      unique: true,
       trim: true
     }
   },
   birthday: {
     type: Date,
-    default: '',
     trim: true
   },
   identificationNumber: {
     type: Number,
-    default: '',
-    unique: true,
     trim: true,
     min: 1
   },
   phoneNumber: {
     type: Number,
-    default: '',
-    unique: true,
     trim: true,
     min: 1
   },
   address: {
     type: String,
     default: '',
-    unique: true,
     trim: true
   },
   foreignLanguage: {
     type: String,
     default: '',
-    unique: true,
     trim: true
   },
   certificate: {
     type: String,
     default: '',
-    unique: true,
     trim: true
   }
 });
 
 // // Compile the model from the schema
-const staff = mongoose.model('human-resources', staffSchema);
+const staff = mongoose.model('staff', staffSchema);
 
 // // Virtual
 staffSchema.virtual('fullName').

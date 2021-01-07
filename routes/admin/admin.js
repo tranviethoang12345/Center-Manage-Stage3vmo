@@ -48,3 +48,5 @@ router.delete('/admin/:id', async(req, res) => {
     console.log(error);
   }
 });
+
+module.exports = router;
