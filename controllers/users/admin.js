@@ -1,62 +1,62 @@
-// // Import
-const staffService = require('../../service/manage/staff');
+// // Import Service
+const adminService = require('../../service/users/admin');
 const statusService = require('../../service/message/status');
 
 // Name
-const n = 'Staff';
+const n = 'Admin';
 
-// // 2. Staff - HR
+// // 3. Tech Stack
 // Create
-exports.createStaff = async (req, res) => {
+exports.createAdmin = async (req, res) => {
   try {
     let body = req.body;
-    let create = await staffService.createOne(body);
+    let create = await adminService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Get All
-exports.getAllStaff = async (req, res) => {
+exports.getAllAdmin = async (req, res) => {
   try {
-    let getAll = await staffService.getAll();
+    let getAll = await adminService.getAll();
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }
-}
+};
 
-// Get One
-exports.getOneStaff = async (req, res) => {
+// Get 1
+exports.getOneAdmin = async (req, res) => {
   try {
     let id = req.params.id;
-    let getOne = await staffService.getOne(id);
+    let getOne = await adminService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
-  } catch (error) {
+  } catch (error) {    
     res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Update
-exports.updateStaff = async (req, res) => {
+exports.updateAdmin = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
-    let update = await staffService.updateOne(id, body);
-    res.status(200).json(statusService.success(n, 3, update))
+    let update = await adminService.updateOne(id, body);
+    res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Delete
-exports.deleteStaff = async (req, res) => {
+exports.deleteAdmin = async (req, res) => {
   try {
     let id = req.params.id;
-    let deleteData = await staffService.deleteOne(id);
+    let deleteData = await adminService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }
-}
+};

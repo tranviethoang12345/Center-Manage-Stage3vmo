@@ -1,7 +1,7 @@
 // // Connect Database
 const techStackModel = require("../../models/category/techStack");
 
-// // Tech Stack
+// // 3. Tech Stack
 // Create One
 exports.createOne = async (data) => {
   try {

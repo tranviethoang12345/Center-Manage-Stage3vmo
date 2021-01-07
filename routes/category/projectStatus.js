@@ -8,19 +8,19 @@ const projectStatusControllers = require('../../controllers/category/projectStat
 const router = express.Router();
 
 // // 2. States Project
-//Post => Create
+// Post => Create
 router.post('/projectStatus', projectStatusControllers.createProjectStatus);
 
-//Get => Get All
+// Get => Get All
 router.get('/projectStatus', projectStatusControllers.getAllProjectStatus);
 
-//Get => Get 1
+// Get => Get 1
 router.get('/projectStatus/:id', projectStatusControllers.getOneProjectStatus);
 
-//Update => Put
+// Update => Put
 router.put('/projectStatus/:id', projectStatusControllers.updateProjectStatus);
 
-//Delete => Delete
+// Delete => Delete
 router.delete('/projectStatus/:id', projectStatusControllers.deleteProjectStatus);
 
 // Export

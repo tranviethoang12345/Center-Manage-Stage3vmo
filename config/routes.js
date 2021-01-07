@@ -6,10 +6,10 @@ const router = express.Router();
 
 const categoryRoutes = require('../routes/categoryRoutes');
 const manageRoutes = require('../routes/manageRoutes');
-const adminRoutes = require('../routes/adminRoutes');
+const usersRoutes = require('../routes/usersRoutes');
 
 router.use('/category', categoryRoutes);
 router.use('/manage', manageRoutes);
-router.use('/admin', adminRoutes);
+router.use('/users', usersRoutes);
 
 module.exports = router;

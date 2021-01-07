@@ -7,3 +7,13 @@ exports.success = (message, i, data) => {
     status: 200
   }
 }
+
+exports.error = (error) => {
+  // if (error.code == 11000)
+  // {
+  //   res.json(body.name + ' name has been create');
+  // }
+  return {
+    error: error.message,
+  }
+}

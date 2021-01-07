@@ -13,9 +13,9 @@ exports.createCustomerGroup = async (req, res) => {
     let create = await customerGroupService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Get All
 exports.getAllCustomerGroup = async (req, res) => {
@@ -23,9 +23,9 @@ exports.getAllCustomerGroup = async (req, res) => {
     let getAll = await customerGroupService.getAll();
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Get 1
 exports.getOneCustomerGroup = async (req, res) => {
@@ -34,9 +34,9 @@ exports.getOneCustomerGroup = async (req, res) => {
     let getOne = await customerGroupService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Update
 exports.updateCustomerGroup = async (req, res) => {
@@ -46,9 +46,9 @@ exports.updateCustomerGroup = async (req, res) => {
     let update = await customerGroupService.updateOne(id, body)
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Delete
 exports.deleteCustomerGroup = async (req, res) => {
@@ -57,6 +57,6 @@ exports.deleteCustomerGroup = async (req, res) => {
     let deleteData = await customerGroupService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};

@@ -1,7 +1,7 @@
 // // Connect Database
 const customerGroupModel = require('../../models/category/customerGroup');
 
-// // Project Type
+// // 4. Customer Group
 // Create One  
 exports.createOne = async (data) => {
   try {

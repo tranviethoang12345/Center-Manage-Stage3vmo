@@ -8,19 +8,19 @@ const customerGroupControllers = require('../../controllers/category/customerGro
 const router = express.Router();
 
 // // 4. Customer Group
-//Post => Create
+// Post => Create
 router.post('/customerGroup', customerGroupControllers.createCustomerGroup);
 
-//Get => Get All
+// Get => Get All
 router.get('/customerGroup', customerGroupControllers.getAllCustomerGroup);
 
-//Get => Get 1
+// Get => Get 1
 router.get('/customerGroup/:id', customerGroupControllers.getOneCustomerGroup);
 
-//Update => Put
+// Update => Put
 router.put('/customerGroup/:id', customerGroupControllers.updateCustomerGroup);
 
-//Delete => Delete
+// Delete => Delete
 router.delete('/customerGroup/:id', customerGroupControllers.deleteCustomerGroup);
 
 // Export

@@ -1,7 +1,7 @@
 // // Connect Database
 const projectTypeModel = require('../../models/category/projectType');
 
-// // Project Type
+// // 1. Project Type
 // Create One  
 exports.createOne = async (data) => {
   try {

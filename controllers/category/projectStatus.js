@@ -13,10 +13,7 @@ exports.createProjectStatus = async (req, res) => {
     let create = await projectStatusService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
-    if(error.code == 11000)
-    {
-    res.json(body.name + ' name has been create');
-    }
+    res.status(500).json(statusService.error(error));
   }
 };
 
@@ -26,7 +23,7 @@ exports.getAllProjectStatus = async (req, res) => {
     let getAll = await projectStatusService.getAll();
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
 }
 
@@ -37,7 +34,7 @@ exports.getOneProjectStatus = async (req, res) => {
     let getOne = await projectStatusService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
 };
 
@@ -49,7 +46,7 @@ exports.updateProjectStatus = async (req, res) => {
     let update = await projectStatusService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
-    console.log(error);
+    res.status(500).json(statusService.error(error));
   }
 };
 
@@ -60,6 +57,6 @@ exports.deleteProjectStatus = async (req, res) => {
     let deleteData = await projectStatusService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
-    console.log(error);
+    res.status(500).json(statusService.error(error));
   }
 };

@@ -13,7 +13,7 @@ exports.createTechStack = async (req, res) => {
     let create = await techStackService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
 };
 
@@ -23,7 +23,7 @@ exports.getAllTechStack = async (req, res) => {
     let getAll = await techStackService.getAll();
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
 }
 
@@ -34,9 +34,9 @@ exports.getOneTechStack = async (req, res) => {
     let getOne = await techStackService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {    
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Update
 exports.updateTechStack = async (req, res) => {
@@ -46,9 +46,9 @@ exports.updateTechStack = async (req, res) => {
     let update = await techStackService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};
 
 // Delete
 exports.deleteTechStack = async (req, res) => {
@@ -57,6 +57,6 @@ exports.deleteTechStack = async (req, res) => {
     let deleteData = await techStackService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {
-    res.json(error.message);
+    res.status(500).json(statusService.error(error));
   }
-}
+};

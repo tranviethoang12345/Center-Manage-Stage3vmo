@@ -1,11 +1,11 @@
-// // Import
-const projectModel = require('../../models/manage/project');
+// // Connect Database
+const adminModel = require('../../models/users/admin');
 
-// // 3. Project
+// // Admin
 // Create One
 exports.createOne = async (data) => {
   try {
-    let result = await projectModel.create(data);
+    let result = await adminModel.create(data);
     return result;
   } catch (error) {
     throw error;
@@ -15,7 +15,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await projectModel.find();
+    let result = await adminModel.find();
     return result;
   } catch (error) {
     throw error;
@@ -25,7 +25,7 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await projectModel.findOne({_id: id});
+    let result = await adminModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +35,7 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await projectModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await adminModel.findOneAndUpdate({_id: id}, body, {new: true});
     return result;
   } catch (error) {
     throw error;
@@ -45,7 +45,7 @@ exports.updateOne = async (id, body) => {
 // Delete
 exports.deleteOne = async (id) => {
   try {
-    let result = await projectModel.deleteOne({_id: id});
+    let result = await adminModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

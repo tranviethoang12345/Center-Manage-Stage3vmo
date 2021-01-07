@@ -2,26 +2,26 @@
 const express = require('express');
 
 // // Import Controllers
-const centerControllers = require('../../controllers/manage/center')
+const projectControllers = require('../../controllers/manage/project')
 
 // Create Router
 const router = express.Router();
 
-// // 1. Project
-//Post => Create
-router.post('/centers', centerControllers.createCenter);
+// // 3. Project
+// Post => Create
+router.post('/projects', projectControllers.createProject);
 
-//Get => Get All
-router.get('/centers', centerControllers.getAllCenter);
+// Get => Get All
+router.get('/projects', projectControllers.getAllProject);
 
-//Get => Get 1
-router.get('/centers', centerControllers.getOneCenter);
+// Get => Get 1
+router.get('/projects', projectControllers.getOneProject);
 
-//Update => Put
-router.put('/centers/:id', centerControllers.updateCenter);
+// Update => Put
+router.put('/projects/:id', projectControllers.updateProject);
 
-//Delete => Delete
-router.delete('/centers/:id', centerControllers.deleteCenter);
+// Delete => Delete
+router.delete('/projects/:id', projectControllers.deleteProject);
 
 // Export
 module.exports = router;

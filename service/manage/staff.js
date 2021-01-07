@@ -1,7 +1,7 @@
 // // Import
 const staffModel = require('../../models/manage/staff');
 
-// // Human Resources
+// // 2. Staff || Human Resources
 // Create One
 exports.createOne = async (data) => {
   try {
@@ -15,7 +15,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await v.find();
+    let result = await staffModel.find();
     return result;
   } catch (error) {
     throw error;
