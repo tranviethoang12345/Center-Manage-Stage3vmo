@@ -37,10 +37,13 @@ const centerSchema = new Schema ({
   techStack: [techStackSchema],
   participatingProject: [participatingProjectSchema],
   staffList: [staffListSchema]
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const center = mongoose.model('center', centerSchema);
+const centerModel = mongoose.model('center', centerSchema);
 
 // // Export
-module.exports = center;
+module.exports = centerModel;

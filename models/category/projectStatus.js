@@ -23,10 +23,13 @@ const projectStatusSchema = new Schema ({
     enum: ['Active', 'Inactive'],
     required: true
   }
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const projectStatus = mongoose.model('project-status', projectStatusSchema);
+const projectStatusModel = mongoose.model('project-status', projectStatusSchema);
 
 // // Export
-module.exports = projectStatus;
+module.exports = projectStatusModel;

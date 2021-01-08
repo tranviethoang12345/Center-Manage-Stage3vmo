@@ -23,10 +23,13 @@ const techStackSchema = new Schema ({
     enum: ['Active', 'Inactive'],
     required: true
   }
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const techStack = mongoose.model('tech-stack', techStackSchema);
+const techStackModel = mongoose.model('tech-stack', techStackSchema);
 
 // // Export
-module.exports = techStack;
+module.exports = techStackModel;

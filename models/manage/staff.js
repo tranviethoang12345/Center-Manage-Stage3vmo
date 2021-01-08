@@ -67,16 +67,13 @@ const staffSchema = new Schema ({
   staffInformation: staffInformationSchema,
   techStack: [techStackSchema],
   projectList: [{ type: Schema.Types.ObjectId, ref: 'project'}]
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
 const staff = mongoose.model('staff', staffSchema);
-
-// // Virtual
-// staffSchema.virtual('fullName').
-//   get(function () {
-//     return this.name.firstName + ' ' + this.name.middleName + ' ' + this.name.lastName;
-//   })
 
 // //  Export
 module.exports = staff;

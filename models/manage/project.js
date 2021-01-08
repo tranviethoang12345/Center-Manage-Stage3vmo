@@ -18,10 +18,13 @@ const projectSchema = new Schema ({
   techStack: { type: Schema.Types.ObjectId, ref: 'tech-stack' },
   center: { type: Schema.Types.ObjectId, ref: 'center' },
   staff: { type: Schema.Types.ObjectId, ref: 'staff' }
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const project = mongoose.model('project', projectSchema);
+const projectModel = mongoose.model('project', projectSchema);
 
 // // Export
-module.exports = project;
+module.exports = projectModel;

@@ -18,9 +18,11 @@ const customerGroupSchema = new Schema ({
   },
   priorityWeight: {
     type: Number,
-    default: 10,
     trim: true,
-    min: 1
+    unique: true,
+    min: 1,
+    max: 20,
+    require: true
   },
   status: {
     type: String, 
@@ -29,10 +31,13 @@ const customerGroupSchema = new Schema ({
     enum: ['Active', 'Inactive'],
     required: true
   }
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const customerGroup = mongoose.model('customer-group', customerGroupSchema);
+const customerGroupModel = mongoose.model('customer-group', customerGroupSchema);
 
 // // Export
-module.exports = customerGroup;
+module.exports = customerGroupModel;

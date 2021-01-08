@@ -29,10 +29,13 @@ const projectTypeSchema = new Schema ({
     enum: ['Active', 'Inactive'],
     required: true
   }
+},
+{
+  timestamps: true,
 });
 
 // // Compile the model from the schema
-const projectType = mongoose.model('project-type', projectTypeSchema);
+const projectTypeModel = mongoose.model('project-type', projectTypeSchema);
 
 // // Export
-module.exports = projectType;
+module.exports = projectTypeModel;

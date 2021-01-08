@@ -15,7 +15,12 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await techStackModel.find();
+    let result = await techStackModel
+      .find()
+      .populate([{
+        path: 'projectList',
+        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+      }]);;
     return result;
   } catch (error) {
     throw error;
@@ -25,7 +30,12 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await techStackModel.findOne({_id: id});
+    let result = await techStackModel
+      .findOne({_id: id})
+      .populate([{
+        path: 'projectList',
+        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+      }]);
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +45,12 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await techStackModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await techStackModel
+      .findOneAndUpdate(
+        {_id: id},
+        body,
+        {new: true}
+      );
     return result;
   } catch (error) {
     throw error;

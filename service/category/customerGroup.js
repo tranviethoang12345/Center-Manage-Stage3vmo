@@ -32,7 +32,7 @@ exports.getOne = async (id) => {
   }
 }
 
-// Update
+// Update One
 exports.updateOne = async (id, body) => {
   try {
     let result = await customerGroupModel.findOneAndUpdate({_id: id}, body, {new: true});
