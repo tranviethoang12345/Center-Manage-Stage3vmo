@@ -6,8 +6,13 @@ const { Schema } = mongoose;
 // Center Information
 const centerInformationSchema = new Schema ({
   name: {
-    type: Object,
-    default: 'Demo',
+    type: String,
+    trim: true,
+    required: true
+  },
+  description: {
+    type: String,
+    default: '',
     trim: true
   }
 });
@@ -23,20 +28,20 @@ const techStackSchema = new Schema ({
 });
 
 // Project
-const participatingProjectSchema = new Schema ({
-  participatingProject:  [{ type: Schema.Types.ObjectId, ref: 'project' }]
+const projectSchema = new Schema ({
+  project:  [{ type: Schema.Types.ObjectId, ref: 'project' }]
 });
 
 const staffListSchema = new Schema ({
-  participatingStaff: [{ type: Schema.Types.ObjectId, ref: 'staff' }]
+  staffList: [{ type: Schema.Types.ObjectId, ref: 'staff' }]
 });
 
 // // 1. Centers || Department
 const centerSchema = new Schema ({
-  centerInformation: [centerInformationSchema],
+  centerInformation: centerInformationSchema,
   techStack: [techStackSchema],
-  participatingProject: [participatingProjectSchema],
-  staffList: [staffListSchema]
+  project: [projectSchema],
+  staff: [staffListSchema]
 },
 {
   timestamps: true,

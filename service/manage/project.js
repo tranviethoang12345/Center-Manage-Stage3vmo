@@ -17,10 +17,9 @@ exports.getAll = async () => {
   try {
     let result = await projectModel
       .find()
-      .populate([{
-        path: 'projectList',
-        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-      }]);
+      .populate(
+        ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+      );
     return result;
   } catch (error) {
     throw error;
@@ -30,8 +29,10 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await projectModel.findOne({_id: id}).populate([{
-      path: 'projectList',
+    let result = await projectModel
+    .findOne({_id: id})
+    .populate([{
+      path: 'project',
       populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
     }]);
     return result;

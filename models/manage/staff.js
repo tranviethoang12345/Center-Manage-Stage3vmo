@@ -8,27 +8,30 @@ const { Schema } = mongoose;
 const staffInformationSchema = new Schema ({
   firstName: {
     type: String,
-    default: '',
-    trim: true
+    trim: true,
+    require: true
   },
   middleName: {
     type: String,
-    default: '',
-    trim: true
+    trim: true,
+    require: true
   },
   lastName: {
     type: String,
-    default: '',
-    trim: true
+    trim: true,
+    require: true
   },
   birthday: {
     type: Date,
+    default: '1990-01-01T12:12:12.704+00:00',
     trim: true
   },
   identificationNumber: {
     type: String,
     trim: true,
-    min: 1
+    min: 1,
+    max: 12, 
+    required: true
   },
   phoneNumber: {
     type: String,
@@ -47,7 +50,7 @@ const staffInformationSchema = new Schema ({
   },
   certificate: {
     type: String,
-    default: '',
+    default: 'University',
     trim: true
   }
 });
@@ -58,6 +61,7 @@ const techStackSchema = new Schema ({
   experience: { 
     type: String,
     default: 'Fresher',
+    enum: ['Fresher', 'Junior', 'Senior'],
     trim: true
   }
 });
