@@ -17,31 +17,12 @@ const centerInformationSchema = new Schema ({
   }
 });
 
-// Tech Stack
-const techStackSchema = new Schema ({
-  techStack: { type: Schema.Types.ObjectId, ref: 'tech-stack'},
-  experience: { 
-    type: String,
-    default: 'Fresher',
-    trim: true
-  }
-});
-
-// Project
-const projectSchema = new Schema ({
-  project:  [{ type: Schema.Types.ObjectId, ref: 'project' }]
-});
-
-const staffListSchema = new Schema ({
-  staffList: [{ type: Schema.Types.ObjectId, ref: 'staff' }]
-});
-
 // // 1. Centers || Department
 const centerSchema = new Schema ({
   centerInformation: centerInformationSchema,
-  techStack: [techStackSchema],
-  project: [projectSchema],
-  staff: [staffListSchema]
+  techStack: [{ type: Schema.Types.ObjectId, ref: 'tech-stack' }],
+  project:  [{ type: Schema.Types.ObjectId, ref: 'project' }],
+  staffList: [{ type: Schema.Types.ObjectId, ref: 'staff' }]
 },
 {
   timestamps: true,

@@ -15,12 +15,19 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
+    let result = await centerModel.find();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Get All (populate)
+exports.getAllPopulate = async () => {
+  try {
     let result = await centerModel
       .find()
-      .populate([{
-        path: 'projectList',
-        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-      }]);
+      .populate(['techStack', 'project', 'staffList']);
     return result;
   } catch (error) {
     throw error;
@@ -30,12 +37,19 @@ exports.getAll = async () => {
 // Get One
 exports.getOne = async (id) => {
   try {
+    let result = await centerModel.findOne({_id: id});
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Get One (populate)
+exports.getOnePopulate = async (id) => {
+  try {
     let result = await centerModel
       .findOne({_id: id})
-      .populate([{
-        path: 'projectList',
-        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-      }]);
+      .populate(['techStack', 'project', 'staffList']);
     return result;
   } catch (error) {
     throw error;

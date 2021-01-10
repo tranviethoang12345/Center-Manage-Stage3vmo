@@ -15,6 +15,16 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
+    let result = await projectModel.find();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get All Populate
+exports.getAllPopulate = async () => {
+  try {
     let result = await projectModel
       .find()
       .populate(
@@ -24,7 +34,7 @@ exports.getAll = async () => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Get One
 exports.getOne = async (id) => {
@@ -39,7 +49,22 @@ exports.getOne = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};
+
+// Get One Populate
+exports.getOnePopulate = async (id) => {
+  try {
+    let result = await projectModel
+    .findOne({_id: id})
+    .populate([{
+      path: 'project',
+      populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+    }]);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Update
 exports.updateOne = async (id, body) => {
@@ -54,7 +79,7 @@ exports.updateOne = async (id, body) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Delete
 exports.deleteOne = async (id) => {
@@ -64,4 +89,4 @@ exports.deleteOne = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};

@@ -27,12 +27,33 @@ exports.getAllStaff = async (req, res) => {
   }
 }
 
+// Get All Populate
+exports.getAllStaffPopulate = async (req, res) => {
+  try {
+    let getAllPopulate = await staffService.getAllPopulate();
+    res.status(200).json(statusService.success(n, 1, getAllPopulate));
+  } catch (error) {
+    res.status(500).json(statusService.error(error));
+  }
+}
+
 // Get One
 exports.getOneStaff = async (req, res) => {
   try {
     let id = req.params.id;
     let getOne = await staffService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
+  } catch (error) {
+    res.status(500).json(statusService.error(error));
+  }
+}
+
+// Get One Populate
+exports.getOneStaffPopulate = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let getOnePopulate = await staffService.getOnePopulate(id);
+    res.status(200).json(statusService.success(n, 2, getOnePopulate));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }

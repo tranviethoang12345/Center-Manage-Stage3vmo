@@ -57,7 +57,7 @@ const staffInformationSchema = new Schema ({
 
 // Tech Stack
 const techStackSchema = new Schema ({
-  techStack: [{ type: Schema.Types.ObjectId, ref: 'tech-stack' }],
+  techStack: { type: Schema.Types.ObjectId, ref: 'tech-stack' },
   experience: { 
     type: String,
     default: 'Fresher',

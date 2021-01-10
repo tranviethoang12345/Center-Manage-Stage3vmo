@@ -14,8 +14,14 @@ router.post('/centers', centerControllers.createCenter);
 // Get => Get All
 router.get('/centers', centerControllers.getAllCenter);
 
+// Get => Get All Populate
+router.get('/centers/populate', centerControllers.getAllCenterPopulate);
+
 // Get => Get 1
 router.get('/centers', centerControllers.getOneCenter);
+
+// Get => Get 1 Populate
+router.get('/centers/populate/:id', centerControllers.getOneCenterPopulate);
 
 // Update => Put
 router.put('/centers/:id', centerControllers.updateCenter);

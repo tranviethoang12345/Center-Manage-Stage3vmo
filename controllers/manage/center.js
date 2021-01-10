@@ -1,5 +1,5 @@
 // // Import
-const centerService = require('../../service/manage/staff');
+const centerService = require('../../service/manage/center');
 const statusService = require('../../service/message/status');
 
 // Name
@@ -27,12 +27,33 @@ exports.getAllCenter = async (req, res) => {
   }
 };
 
+// Get All Populate
+exports.getAllCenterPopulate = async(req, res) => {
+  try {
+    let getAllPopulate = await centerService.getAllPopulate();
+    res.status(200).json(statusService.success(n, 1, getAllPopulate));
+  } catch (error) {
+    res.status(500).json(statusService.error(error));
+  }
+}
+
 // Get One
 exports.getOneCenter = async (req, res) => {
   try {
     let id = req.params.id;
     let getOne = await centerService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
+  } catch (error) {
+    res.status(500).json(statusService.error(error));
+  }
+};
+
+// Get One Populate
+exports.getOneCenterPopulate = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let getOnePopulate = await centerService.getOnePopulate(id);
+    res.status(200).json(statusService.success(n, 2, getOnePopulate));
   } catch (error) {
     res.status(500).json(statusService.error(error));
   }
