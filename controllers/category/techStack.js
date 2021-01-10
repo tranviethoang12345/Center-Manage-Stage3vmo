@@ -20,7 +20,10 @@ exports.createTechStack = async (req, res) => {
 // Get All
 exports.getAllTechStack = async (req, res) => {
   try {
-    let getAll = await techStackService.getAll();
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
+
+    let getAll = await techStackService.getAll(page, limit);
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));

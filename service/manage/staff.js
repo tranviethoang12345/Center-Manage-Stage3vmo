@@ -1,6 +1,7 @@
 // // Import npm
 
 // // Import Database
+const { populate } = require('../../models/manage/staff');
 const staffModel = require('../../models/manage/staff');
 
 // // 2. Staff || Human Resources
@@ -27,7 +28,12 @@ exports.getAll = async () => {
 // Get All Populate
 exports.getAllPopulate = async () => {
   try {
-    let result = await staffModel.find()
+    let result = await staffModel
+      .find()
+      .populate([{
+        path: 'projectList',
+        populate: ['techStack']
+      }])
       .populate([{
         path: 'techStack',
         populate: ['techStack', 'projectList']
@@ -55,7 +61,11 @@ exports.getOnePopulate = async (id) => {
       .findOne({_id: id})
       .populate([{
         path: 'projectList',
-        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+        populate: ['techStack']
+      }])
+      .populate([{
+        path: 'techStack',
+        populate: ['techStack', 'projectList']
       }]);
     return result;
   } catch (error) {

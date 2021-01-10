@@ -13,10 +13,12 @@ exports.createOne = async (data) => {
 };
 
 // Get All
-exports.getAll = async () => {
+exports.getAll = async (page, limit) => {
   try {
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
     let result = await techStackModel
-      .find()
+      .find().limit(endIndex).skip(startIndex)
       .populate([{
         path: 'projectList',
         populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']

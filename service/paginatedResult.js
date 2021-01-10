@@ -1,37 +1,38 @@
-exports.paginatedResult = async (model) => {
-  try {
-    return (req, res, next) => {
-      const page = parseInt(req.query.page)
-      const limit = parseInt(req.query.limit)
+// // Import Service
+const statusService = require('../../service/message/status');
 
-      const startIndex = (page - 1) * limit
-      const endIndex = page * limit
+function paginatedResult(model) {
+  return async (req, res, next) => {
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
 
-      const results = {}
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
 
-      if (endIndex < model.length) {
-        results.next = {
-          page: page + 1,
-          limit: limit
-        }
+    const results = {}
+
+    if (endIndex < model.length) {
+      results.next = {
+        page: page + 1,
+        limit: limit
       }
-
-      if (startIndex > 0) {
-        results.previous = {
-          page: page - 1,
-          limit: limit
-        }
-      }
-
-      results.results = model.slice(startIndex, endIndex);
-      res.paginatedResult = results;
-      next();
     }
-  } catch (error) {
-    throw error;
-  }
-}
 
-app.get('/', paginatedResult(posts), (req, res) => {
-  res.json(res.paginatedResult)
-})
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit
+      }
+    }
+
+    try {
+      results.results = await model.find().limit(limit).skip(startIndex).exec();
+      next();
+    } catch (error) {
+      res.status(500).json(statusService.error(error));
+    }
+    res.paginatedResult = results;
+  }
+};
+
+router.get('/techStack', paginatedResult(techStackModel), techStackControllers.getAllTechStack);
