@@ -4,7 +4,7 @@ const adminModel = require('../../models/users/user');
 // // Connect Service
 const paginationService = require("../collections/pagination") 
 
-// // Admin
+// // Admin - Login
 // Create One
 exports.createOne = async (data) => {
   try {
