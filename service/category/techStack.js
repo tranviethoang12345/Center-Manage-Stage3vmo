@@ -1,6 +1,9 @@
 // // Connect Database
 const techStackModel = require("../../models/category/techStack");
 
+// // Connect Service
+const paginationService = require("../pagination") 
+
 // // 3. Tech Stack
 // Create One
 exports.createOne = async (data) => {
@@ -15,14 +18,10 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async (page, limit) => {
   try {
-    const startIndex = (page - 1) * limit
-    const endIndex = page * limit
-    let result = await techStackModel
-      .find().limit(endIndex).skip(startIndex)
-      .populate([{
-        path: 'projectList',
-        populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-      }]);;
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit, 
+      techStackModel.find());
     return result;
   } catch (error) {
     throw error;

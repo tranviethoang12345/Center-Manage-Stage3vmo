@@ -10,6 +10,7 @@ const n = 'Staff';
 exports.createStaff = async (req, res) => {
   try {
     let body = req.body;
+
     let create = await staffService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
@@ -41,6 +42,7 @@ exports.getAllStaffPopulate = async (req, res) => {
 exports.getOneStaff = async (req, res) => {
   try {
     let id = req.params.id;
+
     let getOne = await staffService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
@@ -52,6 +54,7 @@ exports.getOneStaff = async (req, res) => {
 exports.getOneStaffPopulate = async (req, res) => {
   try {
     let id = req.params.id;
+
     let getOnePopulate = await staffService.getOnePopulate(id);
     res.status(200).json(statusService.success(n, 2, getOnePopulate));
   } catch (error) {
@@ -64,6 +67,7 @@ exports.updateStaff = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
+
     let update = await staffService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update))
   } catch (error) {
@@ -75,6 +79,7 @@ exports.updateStaff = async (req, res) => {
 exports.deleteStaff = async (req, res) => {
   try {
     let id = req.params.id;
+    
     let deleteData = await staffService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {

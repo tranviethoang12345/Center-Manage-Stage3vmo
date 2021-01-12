@@ -10,6 +10,7 @@ const n = 'Tech Stack';
 exports.createTechStack = async (req, res) => {
   try {
     let body = req.body;
+
     let create = await techStackService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
@@ -20,10 +21,10 @@ exports.createTechStack = async (req, res) => {
 // Get All
 exports.getAllTechStack = async (req, res) => {
   try {
-    const page = parseInt(req.query.page)
-    const limit = parseInt(req.query.limit)
+    let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
 
-    let getAll = await techStackService.getAll(page, limit);
+    let getAll = await techStackService.getAll( page, limit );
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));
@@ -34,6 +35,7 @@ exports.getAllTechStack = async (req, res) => {
 exports.getOneTechStack = async (req, res) => {
   try {
     let id = req.params.id;
+
     let getOne = await techStackService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {    
@@ -46,6 +48,7 @@ exports.updateTechStack = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
+
     let update = await techStackService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
@@ -57,6 +60,7 @@ exports.updateTechStack = async (req, res) => {
 exports.deleteTechStack = async (req, res) => {
   try {
     let id = req.params.id;
+    
     let deleteData = await techStackService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {

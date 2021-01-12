@@ -1,6 +1,9 @@
 // // Import
 const projectModel = require('../../models/manage/project');
 
+// // Connect Service
+const paginationService = require('../pagination');
+
 // // 3. Project
 // Create One
 exports.createOne = async (data) => {
@@ -15,7 +18,11 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await projectModel.find();
+    let result = await paginationService.paginatedResult(
+      page,
+      limit,
+      projectModel
+    );
     return result;
   } catch (error) {
     throw error;
@@ -25,11 +32,15 @@ exports.getAll = async () => {
 // Get All Populate
 exports.getAllPopulate = async () => {
   try {
-    let result = await projectModel
-      .find()
-      .populate(
-        ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-      );
+    let result = await paginationService.paginatedResult(
+      page,
+      limit,
+      projectModel
+        .find()
+        .populate(
+          ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+        ) 
+    );
     return result;
   } catch (error) {
     throw error;

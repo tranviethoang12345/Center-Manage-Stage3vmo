@@ -7,7 +7,6 @@ const { Schema } = mongoose;
 const adminSchema = new Schema ({
   username: {
     type: String,
-    default: 'admin',
     unique: true,
     trim: true,
     required: true
@@ -15,22 +14,21 @@ const adminSchema = new Schema ({
   
   password: {
     type: String,
-    default: '123456',
     trim: true,
     required: true
   },
 
   email: {
     type: String,
-    default: 'admin@admin.com',
     trim: true,
     required: true
   },
 
   role: {
     type: String,
-    default: 'admin',
+    default: 'Basic',
     trim: true,
+    enum: ['Admin', 'Basic'],
     required: true
   },
 });

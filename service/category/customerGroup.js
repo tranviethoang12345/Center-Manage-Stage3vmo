@@ -1,6 +1,9 @@
 // // Connect Database
 const customerGroupModel = require('../../models/category/customerGroup');
 
+// // Connect Service
+const paginationService = require('../pagination');
+
 // // 4. Customer Group
 // Create One  
 exports.createOne = async (data) => {
@@ -15,7 +18,10 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await customerGroupModel.find();
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit, 
+      customerGroupModel.find());
     return result;
   } catch (error) {
     throw error;

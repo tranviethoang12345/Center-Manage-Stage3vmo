@@ -10,6 +10,7 @@ const n = 'Customer Group';
 exports.createCustomerGroup = async (req, res) => {
   try {
     let body = req.body;
+
     let create = await customerGroupService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
@@ -31,6 +32,7 @@ exports.getAllCustomerGroup = async (req, res) => {
 exports.getOneCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
+
     let getOne = await customerGroupService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
@@ -43,6 +45,7 @@ exports.updateCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
+
     let update = await customerGroupService.updateOne(id, body)
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
@@ -54,6 +57,7 @@ exports.updateCustomerGroup = async (req, res) => {
 exports.deleteCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
+    
     let deleteData = await customerGroupService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {

@@ -1,5 +1,5 @@
 // // Connect Database
-const adminModel = require('../../models/users/admin');
+const adminModel = require('../../models/users/user');
 
 // // Admin
 // Create One

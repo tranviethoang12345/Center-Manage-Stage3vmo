@@ -1,8 +1,8 @@
-// // Import npm
-
 // // Import Database
-const { populate } = require('../../models/manage/staff');
 const staffModel = require('../../models/manage/staff');
+
+// // Connect Service
+const paginationService = require('../pagination');
 
 // // 2. Staff || Human Resources
 // Create One
@@ -18,7 +18,11 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await staffModel.find();
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit,
+      staffModel.find()
+    )
     return result;
   } catch (error) {
     throw error;
@@ -28,16 +32,20 @@ exports.getAll = async () => {
 // Get All Populate
 exports.getAllPopulate = async () => {
   try {
-    let result = await staffModel
-      .find()
-      .populate([{
-        path: 'projectList',
-        populate: ['techStack']
-      }])
-      .populate([{
-        path: 'techStack',
-        populate: ['techStack', 'projectList']
-      }]);
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit,
+      staffModel
+        .find()
+        .populate([{
+          path: 'projectList',
+          populate: ['techStack']
+        }])
+        .populate([{
+          path: 'techStack',
+          populate: ['techStack', 'projectList']
+        }])
+      );
     return result;
   } catch (error) {
     throw error;
@@ -47,7 +55,8 @@ exports.getAllPopulate = async () => {
 // Get One 
 exports.getOne = async (id) => {
   try {
-    let result = await staffModel.findOne({_id: id});
+    let result = await staffModel
+      .findOne({_id: id});
     return result;
   } catch (error) {
     throw error;

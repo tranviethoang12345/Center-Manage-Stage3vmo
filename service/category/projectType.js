@@ -1,6 +1,9 @@
 // // Connect Database
 const projectTypeModel = require('../../models/category/projectType');
 
+// // Connect Service
+const paginationService = require('../pagination');
+
 // // 1. Project Type
 // Create One  
 exports.createOne = async (data) => {
@@ -15,7 +18,10 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await projectTypeModel.find();
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit, 
+      projectTypeModel.find());
     return result;
   } catch (error) {
     throw error;

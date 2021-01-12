@@ -1,15 +1,16 @@
 // // Import Service
-const adminService = require('../../service/users/admin');
+const adminService = require('../../service/users/user');
 const statusService = require('../../service/message/status');
 
 // Name
-const n = 'Admin';
+const n = 'User';
 
 // // 3. Tech Stack
 // Create
 exports.createAdmin = async (req, res) => {
   try {
     let body = req.body;
+
     let create = await adminService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
@@ -31,6 +32,7 @@ exports.getAllAdmin = async (req, res) => {
 exports.getOneAdmin = async (req, res) => {
   try {
     let id = req.params.id;
+
     let getOne = await adminService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {    
@@ -43,6 +45,7 @@ exports.updateAdmin = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
+
     let update = await adminService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
@@ -54,6 +57,7 @@ exports.updateAdmin = async (req, res) => {
 exports.deleteAdmin = async (req, res) => {
   try {
     let id = req.params.id;
+    
     let deleteData = await adminService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {

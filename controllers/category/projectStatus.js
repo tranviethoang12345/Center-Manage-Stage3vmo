@@ -9,7 +9,8 @@ const n = 'States Project';
 // Create
 exports.createProjectStatus = async (req, res) => {
   try {
-    var body = req.body;
+    let body = rep.body;
+
     let create = await projectStatusService.createOne(body);
     res.status(200).json(statusService.success(n, 0, create));
   } catch (error) {
@@ -30,7 +31,8 @@ exports.getAllProjectStatus = async (req, res) => {
 // Get 1
 exports.getOneProjectStatus = async (req, res) => {
   try {
-    let id = req.params.id;
+    let id = req.params.id
+
     let getOne = await projectStatusService.getOne(id);
     res.status(200).json(statusService.success(n, 2, getOne));
   } catch (error) {
@@ -42,7 +44,8 @@ exports.getOneProjectStatus = async (req, res) => {
 exports.updateProjectStatus = async (req, res) => {
   try {
     let id = req.params.id;
-    let body =  req.body;
+    let body = req.body;
+
     let update = await projectStatusService.updateOne(id, body);
     res.status(200).json(statusService.success(n, 3, update));
   } catch (error) {
@@ -54,6 +57,7 @@ exports.updateProjectStatus = async (req, res) => {
 exports.deleteProjectStatus = async (req, res) => {
   try {
     let id = req.params.id;
+
     let deleteData = await projectStatusService.deleteOne(id);
     res.status(200).json(statusService.success(n, 4, deleteData));
   } catch (error) {

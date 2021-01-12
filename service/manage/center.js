@@ -1,6 +1,9 @@
 // // Import
 const centerModel = require('../../models/manage/center');
 
+// // Connect Service
+const paginationService = require('../pagination');
+
 // // 1. Center || Departments
 // Create One
 exports.createOne = async (data) => {
@@ -15,7 +18,11 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async () => {
   try {
-    let result = await centerModel.find();
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit, 
+      centerModel.find()
+    );
     return result;
   } catch (error) {
     throw error;
@@ -25,9 +32,13 @@ exports.getAll = async () => {
 // Get All (populate)
 exports.getAllPopulate = async () => {
   try {
-    let result = await centerModel
-      .find()
-      .populate(['techStack', 'project', 'staffList']);
+    let result = await paginationService.paginatedResult(
+      page, 
+      limit, 
+      centerModel
+        .find()
+        .populate(['techStack', 'project', 'staffList'])
+    );
     return result;
   } catch (error) {
     throw error;
