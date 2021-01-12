@@ -16,11 +16,10 @@ exports.createOne = async (data) => {
 };
 
 // Get All
-exports.getAll = async () => {
+exports.getAll = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page, 
-      limit, 
+      paginatedRequest, 
       centerModel.find()
     );
     return result;
@@ -30,11 +29,10 @@ exports.getAll = async () => {
 }
 
 // Get All (populate)
-exports.getAllPopulate = async () => {
+exports.getAllPopulate = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page, 
-      limit, 
+      paginatedRequest, 
       centerModel
         .find()
         .populate(['techStack', 'project', 'staffList'])

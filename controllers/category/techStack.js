@@ -23,8 +23,9 @@ exports.getAllTechStack = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
+    let paginatedRequest = { page, limit };
 
-    let getAll = await techStackService.getAll( page, limit );
+    let getAll = await techStackService.getAll( paginatedRequest );
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));

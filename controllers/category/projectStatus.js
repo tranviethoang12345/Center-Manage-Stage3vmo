@@ -21,7 +21,11 @@ exports.createProjectStatus = async (req, res) => {
 // Get All
 exports.getAllProjectStatus = async (req, res) => {
   try {
-    let getAll = await projectStatusService.getAll();
+    let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
+    let paginatedRequest = { page, limit };
+
+    let getAll = await projectStatusService.getAll( paginatedRequest );
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));

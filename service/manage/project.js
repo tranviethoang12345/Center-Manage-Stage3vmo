@@ -16,11 +16,10 @@ exports.createOne = async (data) => {
 };
 
 // Get All
-exports.getAll = async () => {
+exports.getAll = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page,
-      limit,
+      paginatedRequest,
       projectModel
     );
     return result;
@@ -30,11 +29,10 @@ exports.getAll = async () => {
 };
 
 // Get All Populate
-exports.getAllPopulate = async () => {
+exports.getAllPopulate = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page,
-      limit,
+      paginatedRequest,
       projectModel
         .find()
         .populate(

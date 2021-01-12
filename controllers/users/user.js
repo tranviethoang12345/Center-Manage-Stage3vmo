@@ -21,7 +21,11 @@ exports.createAdmin = async (req, res) => {
 // Get All
 exports.getAllAdmin = async (req, res) => {
   try {
-    let getAll = await adminService.getAll();
+    let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
+    let paginatedRequest = { page, limit };
+
+    let getAll = await adminService.getAll( paginatedRequest );
     res.status(200).json(statusService.success(n, 1, getAll));
   } catch (error) {
     res.status(500).json(statusService.error(error));

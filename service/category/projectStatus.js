@@ -16,12 +16,12 @@ exports.createOne = async (data) => {
 }
 
 // Get All
-exports.getAll = async () => {
+exports.getAll = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page, 
-      limit, 
-      projectStatusModel.find());
+      paginatedRequest, 
+      projectStatusModel.find()
+    );
     return result;
   } catch (error) {
     throw error;

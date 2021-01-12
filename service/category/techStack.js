@@ -16,12 +16,12 @@ exports.createOne = async (data) => {
 };
 
 // Get All
-exports.getAll = async (page, limit) => {
+exports.getAll = async (paginatedRequest) => {
   try {
     let result = await paginationService.paginatedResult(
-      page, 
-      limit, 
-      techStackModel.find());
+      paginatedRequest, 
+      techStackModel.find()
+    );
     return result;
   } catch (error) {
     throw error;

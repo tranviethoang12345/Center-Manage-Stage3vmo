@@ -1,6 +1,9 @@
 // // Connect Database
 const adminModel = require('../../models/users/user');
 
+// // Connect Service
+const paginationService = require("../pagination") 
+
 // // Admin
 // Create One
 exports.createOne = async (data) => {
@@ -13,9 +16,12 @@ exports.createOne = async (data) => {
 };
 
 // Get All
-exports.getAll = async () => {
+exports.getAll = async (paginatedRequest) => {
   try {
-    let result = await adminModel.find();
+    let result = await paginationService.paginatedResult(
+      paginatedRequest,
+      adminModel.find()
+    );
     return result;
   } catch (error) {
     throw error;

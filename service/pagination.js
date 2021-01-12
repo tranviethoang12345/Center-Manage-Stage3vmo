@@ -1,4 +1,6 @@
-exports.paginatedResult = async (page, limit, model) => {
+exports.paginatedResult = async (paginatedRequest, model) => {
+  const {page, limit} = paginatedRequest;
+
   const startIndex = (page - 1) * limit
   const endIndex = page * limit
   const results = {}
