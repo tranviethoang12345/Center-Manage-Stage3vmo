@@ -2,7 +2,7 @@
 const staffModel = require('../../models/manage/staff');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 2. Staff || Human Resources
 // Create One

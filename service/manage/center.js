@@ -2,7 +2,7 @@
 const centerModel = require('../../models/manage/center');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 1. Center || Departments
 // Create One

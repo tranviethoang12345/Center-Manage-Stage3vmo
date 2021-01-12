@@ -2,7 +2,7 @@
 const projectStatusModel = require('../../models/category/projectStatus');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 2. Project Status
 // Create One  

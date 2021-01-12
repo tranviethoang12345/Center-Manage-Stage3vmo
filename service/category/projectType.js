@@ -2,7 +2,7 @@
 const projectTypeModel = require('../../models/category/projectType');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 1. Project Type
 // Create One  

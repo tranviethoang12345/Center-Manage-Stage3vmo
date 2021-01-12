@@ -2,7 +2,7 @@
 const adminModel = require('../../models/users/user');
 
 // // Connect Service
-const paginationService = require("../pagination") 
+const paginationService = require("../collections/pagination") 
 
 // // Admin
 // Create One

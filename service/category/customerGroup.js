@@ -2,7 +2,7 @@
 const customerGroupModel = require('../../models/category/customerGroup');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 4. Customer Group
 // Create One  

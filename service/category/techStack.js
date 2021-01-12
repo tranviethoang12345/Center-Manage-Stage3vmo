@@ -2,7 +2,7 @@
 const techStackModel = require("../../models/category/techStack");
 
 // // Connect Service
-const paginationService = require("../pagination") 
+const paginationService = require("../collections/pagination") 
 
 // // 3. Tech Stack
 // Create One

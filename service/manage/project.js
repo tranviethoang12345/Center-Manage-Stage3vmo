@@ -2,7 +2,7 @@
 const projectModel = require('../../models/manage/project');
 
 // // Connect Service
-const paginationService = require('../pagination');
+const paginationService = require('../collections/pagination');
 
 // // 3. Project
 // Create One
