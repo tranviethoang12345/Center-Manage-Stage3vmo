@@ -1,3 +1,6 @@
+// // Import Service
+const findLength = require('../service/collections/commonQuery.service')
+
 exports.paginatedResult = async (paginatedRequest, model) => {
   const { page, limit } = paginatedRequest;
 
@@ -17,6 +20,7 @@ exports.paginatedResult = async (paginatedRequest, model) => {
       limit: limit
     }
   }
+ 
   try {
     results.results = await model
       .limit(limit)

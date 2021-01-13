@@ -1,6 +1,3 @@
-// // Connect npm
-const bcrypt = require('bcrypt');
-
 // // Connect Database
 const userModel = require('../../models/users/user');
 
@@ -11,8 +8,6 @@ const paginationUtil = require("../../utils/pagination.util")
 // Create One
 exports.create = async (data) => {
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-  
     let result = await userModel.create(data);
     return result;
   } catch (error) {

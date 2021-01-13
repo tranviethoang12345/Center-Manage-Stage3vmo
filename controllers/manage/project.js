@@ -2,7 +2,7 @@
 const projectService = require('../../service/manage/project.service');
 
 // // Import Helper
-const statusHelper = require('../../helpers/status.helper');
+const responseHelper = require('../../helpers/response.helper');
 
 // Name
 const n = 'Project';
@@ -14,9 +14,9 @@ exports.createProject = async (req, res) => {
     let body = req.body;
 
     let create = await projectService.createOne(body);
-    res.status(200).json(statusHelper.success(n, 0, create));
+    res.status(200).json(responseHelper.success(n, 0, create));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -28,9 +28,9 @@ exports.getAllProject = async (req, res) => {
     let paginatedRequest = { page, limit };
     
     let getAll = await projectService.getAll( paginatedRequest );
-    res.status(200).json(statusHelper.success(n, 1, getAll));
+    res.status(200).json(responseHelper.success(n, 1, getAll));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -38,9 +38,9 @@ exports.getAllProject = async (req, res) => {
 exports.getAllProjectPopulate = async (req, res) => {
   try {
     let getAllPopulate = await projectService.getAllPopulate();
-    res.status(200).json(statusHelper.success(n, 1, getAllPopulate));
+    res.status(200).json(responseHelper.success(n, 1, getAllPopulate));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -50,9 +50,9 @@ exports.getOneProject = async (req, res) => {
     let id = req.params.id;
 
     let getOne = await projectService.getOne(id);
-    res.status(200).json(statusHelper.success(n, 2, getOne));
+    res.status(200).json(responseHelper.success(n, 2, getOne));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -62,9 +62,9 @@ exports.getOneProjectPopulate = async (req, res) => {
     let id = req.params.id;
 
     let getOnePopulate = await projectService.getOnePopulate(id);
-    res.status(200).json(statusHelper.success(n, 2, getOnePopulate));
+    res.status(200).json(responseHelper.success(n, 2, getOnePopulate));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -75,9 +75,9 @@ exports.updateProject = async (req, res) => {
     let body = req.body;
 
     let update = await projectService.updateOne(id, body);
-    res.status(200).json(statusHelper.success(n, 3, update))
+    res.status(200).json(responseHelper.success(n, 3, update))
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
 
@@ -87,8 +87,8 @@ exports.deleteProject = async (req, res) => {
     let id = req.params.id;
     
     let deleteData = await projectService.deleteOne(id);
-    res.status(200).json(statusHelper.success(n, 4, deleteData));
+    res.status(200).json(responseHelper.success(n, 4, deleteData));
   } catch (error) {
-    res.status(500).json(statusHelper.error(error));
+    res.status(500).json(responseHelper.error(error));
   }
 }
