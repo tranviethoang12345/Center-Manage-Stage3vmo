@@ -6,9 +6,15 @@ exports.create = async (model, data) => {
   }
 }
 
+exports.getOne = async (model, filter, projection = '', populate) => {
+  try {
+    return await model.findOne(filter, projection).populate(populate);
+  } catch (error) {
+    throw error;
+  }
+}
 
-
-exports.findLength = async (model, filter) => {
+exports.getLength = async (model, filter) => {
   try {
     return await model.find(filter).countDocuments();
   } catch (error) {

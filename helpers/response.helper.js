@@ -1,33 +1,38 @@
-exports.success = (i, res, n, status, data = null) => {
-  const arr = ['Create', 'Find All', 'Find', 'update', 'delete'];
-  const result = ['successful', 'fail', 'page not found']
+exports.success = (i, n, status, data = null) => {
+  const arr = ['Create', 'Find All', 'Find', 'Update', 'Delete'];
+
   return {
-    message: arr[i] + ' ' + n + ' ' + result[res],
-    messageCode: arr[i].toUpperCase() + '_' + n.replace(' ','_').toUpperCase() + '_' + result[res].replace(' ','_').toUpperCase(),
+    message: arr[i] + ' ' + n + ' ' + 'successful',
+    messageCode: arr[i].toUpperCase() + '_' + n.replace(' ','_').toUpperCase() + '_' + 'SUCCESSFUL',
     data: data,
     status: status
   }
 }
 
-class ErrorHandler extends Error {
-  constructor(status, message, messageCode) {
-    super(); // this = {status, message, code = undefined}
-    this.status = status;
-    this.message = message;
-    this.messageCode = messageCode;
-  }
-}
+// class ErrorHandler extends Error {
+//   constructor(status, message, messageCode) {
+//     super(); // this = {status, message, code = undefined}
+//     this.status = status;
+//     this.message = message;
+//     this.messageCode = messageCode;
+//   }
+// }
 
-exports.ErrorHandler = (status, message, messageCode) => {
+exports.errorHandler = (n, i, mc, status) => {
+  const arr = ['not exists', 'already exists', 'Page not found'];
+  const result = ['invalid'];
+
   return {
-    message: message,
-    messageCode: messageCode,
+    message: n + ' ' + arr[i],
+    messageCode: result[mc].toUpperCase(),
     status: status
   }
 }
 
 exports.error = (error) => {
   return {
-    error: error.message,
+    message: error.message,
+    messageCode: error.messageCode,
+    status: error.status
   }
 }

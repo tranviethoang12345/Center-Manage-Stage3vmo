@@ -18,12 +18,12 @@ const n = 'Tech Stack';
 exports.createOne = async (data) => {
   try {
     const { name } = data;
-    const lenRecord = await commonQueryService.findLength(techStackModel, { name });
+    const lenRecord = await commonQueryService.getLength(techStackModel, { name });
     if (lenRecord) {
-      throw responseHelper.ErrorHandler(404, n + ' already exists', 'INVALID');
+      throw responseHelper.errorHandler(n, 0, 0, 404);
     }
     let result = await commonQueryService.create(techStackModel, data);
-    return responseHelper.success(0, 0, n, 200, result._id);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
