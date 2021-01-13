@@ -1,8 +1,8 @@
 // // Connect Database
 const techStackModel = require("../../models/category/techStack");
 
-// // Connect Service
-const paginationService = require("../collections/pagination") 
+// // Connect Util
+const paginationUtil = require("../../utils/pagination.util") 
 
 // // 3. Tech Stack
 // Create One
@@ -18,7 +18,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
       techStackModel.find()
     );

@@ -1,8 +1,8 @@
 // // Import Database
 const staffModel = require('../../models/manage/staff');
 
-// // Connect Service
-const paginationService = require('../collections/pagination');
+// // Connect Util
+const paginationUtil = require('../../utils/pagination.util');
 
 // // 2. Staff || Human Resources
 // Create One
@@ -18,7 +18,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest,
       staffModel.find()
     )
@@ -31,7 +31,7 @@ exports.getAll = async (paginatedRequest) => {
 // Get All Populate
 exports.getAllPopulate = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest,
       staffModel
         .find()

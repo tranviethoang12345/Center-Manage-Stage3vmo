@@ -1,8 +1,8 @@
 // // Import
 const projectModel = require('../../models/manage/project');
 
-// // Connect Service
-const paginationService = require('../collections/pagination');
+// // Connect Util
+const paginationUtil = require('../../utils/pagination.util');
 
 // // 3. Project
 // Create One
@@ -18,7 +18,7 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest,
       projectModel
     );
@@ -31,7 +31,7 @@ exports.getAll = async (paginatedRequest) => {
 // Get All Populate
 exports.getAllPopulate = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest,
       projectModel
         .find()

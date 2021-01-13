@@ -9,7 +9,7 @@ const router = express.Router();
 
 // // 4. Admin
 // Post => Create
-router.post('/signup', adminControllers.createAdmin);
+router.post('/signup', adminControllers.createAccount);
 
 // Get => Get All
 router.get('/signup',  adminControllers.getAllAdmin);

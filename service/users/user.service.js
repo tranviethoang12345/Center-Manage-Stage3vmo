@@ -1,14 +1,19 @@
-// // Connect Database
-const adminModel = require('../../models/users/user');
+// // Connect npm
+const bcrypt = require('bcrypt');
 
-// // Connect Service
-const paginationService = require("../collections/pagination") 
+// // Connect Database
+const userModel = require('../../models/users/user');
+
+// // Connect Util
+const paginationUtil = require("../../utils/pagination.util") 
 
 // // Admin - Login
 // Create One
-exports.createOne = async (data) => {
+exports.create = async (data) => {
   try {
-    let result = await adminModel.create(data);
+    const hashedPassword = await bcrypt.hash(password, 10);
+  
+    let result = await userModel.create(data);
     return result;
   } catch (error) {
     throw error;
@@ -18,9 +23,9 @@ exports.createOne = async (data) => {
 // Get All
 exports.getAll = async (paginatedRequest) => {
   try {
-    let result = await paginationService.paginatedResult(
+    let result = await paginationUtil.paginatedResult(
       paginatedRequest,
-      adminModel.find()
+      userModel.find()
     );
     return result;
   } catch (error) {
@@ -31,7 +36,7 @@ exports.getAll = async (paginatedRequest) => {
 // Get One
 exports.getOne = async (id) => {
   try {
-    let result = await adminModel.findOne({_id: id});
+    let result = await userModel.findOne({_id: id});
     return result;
   } catch (error) {
     throw error;
@@ -41,7 +46,7 @@ exports.getOne = async (id) => {
 // Update
 exports.updateOne = async (id, body) => {
   try {
-    let result = await adminModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await userModel.findOneAndUpdate({_id: id}, body, {new: true});
     return result;
   } catch (error) {
     throw error;
@@ -51,7 +56,7 @@ exports.updateOne = async (id, body) => {
 // Delete
 exports.deleteOne = async (id) => {
   try {
-    let result = await adminModel.deleteOne({_id: id});
+    let result = await userModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

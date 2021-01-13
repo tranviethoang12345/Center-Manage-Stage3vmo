@@ -1,6 +1,8 @@
 // // Import Service
-const projectTypeService =  require('../../service/category/projectType');
-const statusService = require('../../service/message/status');
+const projectTypeService =  require('../../service/category/projectType.service');
+
+// // Import Helper
+const statusHelper = require('../../helpers/status.helper');
 
 // Name
 const n = 'Project Type';
@@ -12,9 +14,9 @@ exports.createProjectType = async (req, res) => {
     let body = req.body;
 
     let create = await projectTypeService.createOne(body);
-    res.status(200).json(statusService.success(n, 0, create));
+    res.status(200).json(statusHelper.success(n, 0, create));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -26,9 +28,9 @@ exports.getAllProjectType = async (req, res) => {
     let paginatedRequest = { page, limit };
 
     let getAll = await projectTypeService.getAll( paginatedRequest );
-    res.status(200).json(statusService.success(n, 1, getAll));
+    res.status(200).json(statusHelper.success(n, 1, getAll));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -38,9 +40,9 @@ exports.getOneProjectType = async (req, res) => {
     let id = req.params.id;
 
     let getOne = await projectTypeService.getOne(id);
-    res.status(200).json(statusService.success(n, 2, getOne));
+    res.status(200).json(statusHelper.success(n, 2, getOne));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -51,9 +53,9 @@ exports.updateProjectType = async (req, res) => {
     let body = req.body;
 
     let update = await projectTypeService.updateOne(id, body);
-    res.status(200).json(statusService.success(n, 3, update));
+    res.status(200).json(statusHelper.success(n, 3, update));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -63,7 +65,7 @@ exports.deleteProjectType = async (req, res) => {
     let id = req.params.id;
     
     let deleteData = await projectTypeService.deleteOne(id);
-    res.status(200).json(statusService.success(n, 4, deleteData));
+    res.status(200).json(statusHelper.success(n, 4, deleteData));
   } catch (error) {
     res.json(error.message);
   }

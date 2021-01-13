@@ -1,20 +1,22 @@
 // // Import Service
-const adminService = require('../../service/users/user');
-const statusService = require('../../service/message/status');
+const adminService = require('../../service/users/user.service');
+
+// // Import Helper
+const statusHelper = require('../../helpers/status.helper');
 
 // Name
 const n = 'User';
 
-// // 3. Tech Stack
+// // 4. Account - User
 // Create
-exports.createAdmin = async (req, res) => {
+exports.createAccount = async (req, res) => {
   try {
     let body = req.body;
 
     let create = await adminService.createOne(body);
-    res.status(200).json(statusService.success(n, 0, create));
+    res.status(200).json(statusHelper.success(n, 0, create));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -26,9 +28,9 @@ exports.getAllAdmin = async (req, res) => {
     let paginatedRequest = { page, limit };
 
     let getAll = await adminService.getAll( paginatedRequest );
-    res.status(200).json(statusService.success(n, 1, getAll));
+    res.status(200).json(statusHelper.success(n, 1, getAll));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -38,9 +40,9 @@ exports.getOneAdmin = async (req, res) => {
     let id = req.params.id;
 
     let getOne = await adminService.getOne(id);
-    res.status(200).json(statusService.success(n, 2, getOne));
+    res.status(200).json(statusHelper.success(n, 2, getOne));
   } catch (error) {    
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -51,9 +53,9 @@ exports.updateAdmin = async (req, res) => {
     let body = req.body;
 
     let update = await adminService.updateOne(id, body);
-    res.status(200).json(statusService.success(n, 3, update));
+    res.status(200).json(statusHelper.success(n, 3, update));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
 
@@ -63,8 +65,8 @@ exports.deleteAdmin = async (req, res) => {
     let id = req.params.id;
     
     let deleteData = await adminService.deleteOne(id);
-    res.status(200).json(statusService.success(n, 4, deleteData));
+    res.status(200).json(statusHelper.success(n, 4, deleteData));
   } catch (error) {
-    res.status(500).json(statusService.error(error));
+    res.status(500).json(statusHelper.error(error));
   }
 };
