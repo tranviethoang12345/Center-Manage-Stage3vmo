@@ -4,12 +4,26 @@ const projectStatusModel = require('../../models/category/projectStatus');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // 2. Project Status
+// // Connect Service
+const commonQueryService = require('../collections/commonQuery.service');
+
+// // Connect Helper
+const responseHelper = require('../../helpers/response.helper');
+
+// Name
+const n = 'Project Status'
+
+// // Project Status
 // Create One  
 exports.createOne = async (data) => {
   try {
-    let result = await projectStatusModel.create(data);
-    return result;
+    let { name } = data;
+    let checkLenRecord = await commonQueryService.getLength(projectStatusModel, { name });
+    if (checkLenRecord) {
+      throw responseHelper.errorHandler(0, n, 0, 404);
+    }
+    let result = await commonQueryService.create(projectStatusModel, data);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }

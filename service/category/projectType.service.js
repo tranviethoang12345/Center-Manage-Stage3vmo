@@ -4,12 +4,26 @@ const projectTypeModel = require('../../models/category/projectType');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // 1. Project Type
+// // Connect Service
+const commonQueryService = require('../collections/commonQuery.service');
+
+// // Connect Helpers
+const responseHelper = require('../../helpers/response.helper');
+
+// Name 
+const n = 'Project Type';
+
+// // Project Type
 // Create One  
 exports.createOne = async (data) => {
   try {
-    let result = await projectTypeModel.create(data);
-    return result;
+    let { name } = data;
+    let checkLenRecord = await commonQueryService.getLength(projectTypeModel, { name });
+    if (checkLenRecord) {
+      throw responseHelper.errorHandler(0, n, 0, 404);
+    }
+    let result = await commonQueryService.create(projectTypeModel, data);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }

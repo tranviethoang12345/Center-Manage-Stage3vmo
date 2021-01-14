@@ -7,12 +7,12 @@ const responseHelper = require('../../helpers/response.helper');
 // Name 
 const n = 'States Project';
 
-// // 2. States Project
+// // States Project
 // Create
 exports.createProjectStatus = async (req, res) => {
   try {
-    let create = await projectStatusService.createOne(rep.body);
-    return res.status(200).json(responseHelper.success(n, 0, create));
+    let result = await projectStatusService.createOne(rep.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

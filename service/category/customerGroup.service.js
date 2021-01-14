@@ -4,12 +4,26 @@ const customerGroupModel = require('../../models/category/customerGroup');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // 4. Customer Group
+// // Connect Service
+const commonQueryService = require('../collections/commonQuery.service');
+
+// // Connect Helpers
+const responseHelper = require('../../helpers/response.helper');
+
+// Name
+const n = 'Customer Group'
+
+// // Customer Group
 // Create One  
 exports.createOne = async (data) => {
   try {
-    let result = await customerGroupModel.create(data);
-    return result;
+    let { name } = data;
+    let checkLenRecord = await commonQueryService.getLength(customerGroupModel, { name });
+    if (checkLenRecord) {
+      throw responseHelper.errorHandler(0, n, 0, 404);
+    }
+    let result = await commonQueryService.create(customerGroupModel, data);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }

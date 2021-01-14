@@ -7,7 +7,7 @@ const responseHelper = require('../../helpers/response.helper');
 // Name
 const n = 'Tech Stack';
 
-// // 3. Tech Stack
+// // Tech Stack
 // Create
 exports.createTechStack = async (req, res) => {
   try {

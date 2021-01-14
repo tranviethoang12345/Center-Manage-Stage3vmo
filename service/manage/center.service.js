@@ -4,12 +4,23 @@ const centerModel = require('../../models/manage/center');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // 1. Center || Departments
+// // Connect Service
+const commonQueryService = require('../collections/commonQuery.service');
+
+// // Connect Helper
+const responseHelper = require('../../helpers/response.helper')
+
+// // Center || Departments
 // Create One
 exports.createOne = async (data) => {
   try {
-    let result = await centerModel.create(data);
-    return result;
+    let { name } = data;
+    let checkLenRecord = await commonQueryService.getLength(centerModel, { name });
+    if (checkLenRecord) {
+      return responseHelper.errorHandler(0, n, 0, 404);
+    }
+    let result = await commonQueryService.create(centerModel, data);
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }

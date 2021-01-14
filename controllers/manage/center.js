@@ -7,12 +7,12 @@ const responseHelper = require('../../helpers/response.helper');
 // Name
 const n = 'Center';
 
-// // 1. Centers || Departments
+// // Centers || Departments
 // Create
 exports.createCenter = async (req, res) => {
   try {
-    let create = await centerService.createOne(req.body);
-    return res.status(200).json(responseHelper.success(n, 0, create));
+    let result = await centerService.createOne(req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

@@ -18,8 +18,8 @@ exports.success = (i, n, status, data = null) => {
 //   }
 // }
 
-exports.errorHandler = (n, i, mc, status) => {
-  const arr = ['not exists', 'already exists', 'Page not found'];
+exports.errorHandler = (i, n, mc, status) => {
+  const arr = [ 'already exists', 'not exists', 'Page not found'];
   const result = ['invalid'];
 
   return {

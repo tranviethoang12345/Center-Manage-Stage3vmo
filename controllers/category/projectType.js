@@ -1,5 +1,5 @@
 // // Import Service
-const projectTypeService =  require('../../service/category/projectType.service');
+const projectTypeService = require('../../service/category/projectType.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
@@ -7,12 +7,12 @@ const responseHelper = require('../../helpers/response.helper');
 // Name
 const n = 'Project Type';
 
-// // 1. Project Type
+// // Project Type
 // Create
 exports.createProjectType = async (req, res) => {
   try {
-    let create = await projectTypeService.createOne(req.body);
-    return res.status(200).json(responseHelper.success(n, 0, create));
+    let result = await projectTypeService.createOne(req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

@@ -7,12 +7,12 @@ const responseHelper = require('../../helpers/response.helper');
 // Name
 const n = 'Customer Group';
 
-// // 4. Customer Group
+// // Customer Group
 // Create
 exports.createCustomerGroup = async (req, res) => {
   try {
-    let create = await customerGroupService.createOne(req.body);
-    return res.status(200).json(responseHelper.success(n, 0, create));
+    let result = await customerGroupService.createOne(req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

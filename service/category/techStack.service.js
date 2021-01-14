@@ -1,5 +1,4 @@
 // // Connect Database
-const ErrorHandler = require("../../helpers/response.helper");
 const techStackModel = require("../../models/category/techStack");
 
 // // Connect Util
@@ -11,16 +10,17 @@ const commonQueryService = require("../collections/commonQuery.service")
 // // Connect Helpers
 const responseHelper = require("../../helpers/response.helper");
 
+// Name
 const n = 'Tech Stack';
 
 // // Tech Stack
 // Create One
 exports.createOne = async (data) => {
   try {
-    const { name } = data;
-    const lenRecord = await commonQueryService.getLength(techStackModel, { name });
-    if (lenRecord) {
-      throw responseHelper.errorHandler(n, 0, 0, 404);
+    let { name } = data;
+    let checkLenRecord = await commonQueryService.getLength(techStackModel, { name });
+    if (checkLenRecord) {
+      throw responseHelper.errorHandler(0, n, 0, 404);
     }
     let result = await commonQueryService.create(techStackModel, data);
     return responseHelper.success(0, n, 200, result._id);

@@ -4,7 +4,7 @@ const staffModel = require('../../models/manage/staff');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // 2. Staff || Human Resources
+// // Staff || Human Resources
 // Create One
 exports.createOne = async (data) => {
   try {
