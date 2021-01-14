@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-// Customer Group
+// // Customer Group
 const customerGroupSchema = new Schema ({
   name: {
     type: String,

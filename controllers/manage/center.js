@@ -26,7 +26,7 @@ exports.getAllCenter = async (req, res) => {
     let paginatedRequest = { page, limit };
     
     let getAll = await centerService.getAll( paginatedRequest );
-    return res.status(200).json(responseHelper.success(n, 1, getAll));
+    return res.status(200).json(responseHelper.success(1, n, 200, getAll));
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

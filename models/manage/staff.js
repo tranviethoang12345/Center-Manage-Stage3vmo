@@ -6,17 +6,7 @@ const { Schema } = mongoose;
 // // Human Resources
 // Staff Information
 const staffInformationSchema = new Schema ({
-  firstName: {
-    type: String,
-    trim: true,
-    require: true
-  },
-  middleName: {
-    type: String,
-    trim: true,
-    require: true
-  },
-  lastName: {
+  name: {
     type: String,
     trim: true,
     require: true
@@ -66,7 +56,7 @@ const techStackSchema = new Schema ({
   }
 });
 
-// // 2. Staff
+// // Staff
 const staffSchema = new Schema ({
   staffInformation: staffInformationSchema,
   techStack: [techStackSchema],

@@ -17,10 +17,10 @@ const n = 'Project'
 // Create One
 exports.createOne = async (data) => {
   try {
-    let { name } = data;
-    let checkLenRecord = commonQueryService.getLength(projectModel, { name });
+    let { name } = data.projectInformation.name;
+    let checkLenRecord = await commonQueryService.getLength(projectModel, { 'projectInformation.name': name });
     if (checkLenRecord) {
-      throw responseHelper.errorHandler(0, n, 0, 404);
+      return responseHelper.errorHandler(0, n, 0, 404);
     }
     let result = await commonQueryService.create(projectModel, data);
     return responseHelper.success(0, n, 200, result._id);

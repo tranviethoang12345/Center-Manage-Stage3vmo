@@ -4,15 +4,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const projectInformationSchema = new Schema ({
-  nameProject: {
+  name: {
     type: String,
     trim: true,
-    min: 1,
     required: true
   }
 })
 
-// // 3. Project
+// // Project
 const projectSchema = new Schema ({
   projectInformation: projectInformationSchema,
   projectType: { type: Schema.Types.ObjectId, ref: 'project-type' },

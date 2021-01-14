@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-//States Project
+// // States Project
 const projectStatusSchema = new Schema ({
   name: {
     type: String,

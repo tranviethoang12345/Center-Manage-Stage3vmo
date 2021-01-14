@@ -8,19 +8,23 @@ const paginationUtil = require('../../utils/pagination.util');
 const commonQueryService = require('../collections/commonQuery.service');
 
 // // Connect Helper
-const responseHelper = require('../../helpers/response.helper')
+const responseHelper = require('../../helpers/response.helper');
+
+// Name
+const n = 'Center'
 
 // // Center || Departments
 // Create One
 exports.createOne = async (data) => {
   try {
-    let { name } = data;
-    let checkLenRecord = await commonQueryService.getLength(centerModel, { name });
+    let { name } = data.centerInformation.name;
+    let checkLenRecord = await commonQueryService.getLength(centerModel, { 'centerInformation.name': name });
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }
+
     let result = await commonQueryService.create(centerModel, data);
-    return responseHelper.success(0, n, 200, result);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }

@@ -17,7 +17,7 @@ const centerInformationSchema = new Schema ({
   }
 });
 
-// // 1. Centers || Department
+// // Centers || Department
 const centerSchema = new Schema ({
   centerInformation: centerInformationSchema,
   techStack: [{ type: Schema.Types.ObjectId, ref: 'tech-stack' }],

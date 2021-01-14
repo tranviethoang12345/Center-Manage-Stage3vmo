@@ -4,12 +4,26 @@ const staffModel = require('../../models/manage/staff');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
+// // Connect Service
+const commonQueryService = require('../collections/commonQuery.service');
+
+// // Connect Helper
+const responseHelper = require('../../helpers/response.helper');
+
+// Name
+const n = 'Staff';
+
 // // Staff || Human Resources
 // Create One
 exports.createOne = async (data) => {
   try {
-    let result = await staffModel.create(data);
-    return result;
+    let { name } = data.staffInformation.name;
+    let checkLenRecord = await commonQueryService.getLength(staffModel, { 'staffInformation.name': name });
+    if (checkLenRecord) {
+      return responseHelper.errorHandler(0, n, 0, 404);
+    }
+    let result = await commonQueryService.create(staffModel, data);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-//Project Type
+// // Project Type
 const projectTypeSchema = new Schema ({
   name: {
     type: String,
