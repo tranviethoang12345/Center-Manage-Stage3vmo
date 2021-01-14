@@ -1,11 +1,8 @@
 // // Connect Database
-const customerGroupModel = require('../../models/category/customerGroup');
+const customerGroupModel = require('../../models/category/customerGroup.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
-
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
 
 // // Connect Helpers
 const responseHelper = require('../../helpers/response.helper');
@@ -14,23 +11,23 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Customer Group'
 
 // // Customer Group
-// Create One  
-exports.createOne = async (data) => {
+// Create One Customer Group
+exports.createCustomerGroup = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await commonQueryService.getLength(customerGroupModel, { name });
+    let checkLenRecord = await customerGroupModel.find({ name }).countDocuments();
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(customerGroupModel, data);
+    let result = await customerGroupModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Customer Group
+exports.getListCustomerGroup = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
@@ -42,8 +39,8 @@ exports.getAll = async (paginatedRequest) => {
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 Customer Group
+exports.getCustomerGroup = async (id) => {
   try {
     let result = await customerGroupModel.findOne({_id: id});
     return result;
@@ -52,8 +49,8 @@ exports.getOne = async (id) => {
   }
 }
 
-// Update One
-exports.updateOne = async (id, body) => {
+// Update 1 Customer Group
+exports.updateCustomerGroup = async (id, body) => {
   try {
     let result = await customerGroupModel.findOneAndUpdate({_id: id}, body, {new: true});
     console.log(result);
@@ -63,8 +60,8 @@ exports.updateOne = async (id, body) => {
   }
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 Customer Group
+exports.deleteCustomerGroup = async (id) => {
   try {
     let result = await customerGroupModel.deleteOne({_id: id});
     return result;

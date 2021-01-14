@@ -4,9 +4,6 @@ const projectTypeModel = require('../../models/category/projectType');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
-
 // // Connect Helpers
 const responseHelper = require('../../helpers/response.helper');
 
@@ -14,23 +11,23 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Project Type';
 
 // // Project Type
-// Create One  
-exports.createOne = async (data) => {
+// Create One Project Type
+exports.createProjectType = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await commonQueryService.getLength(projectTypeModel, { name });
+    let checkLenRecord = await projectTypeModel.find({ name }).countDocuments();
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(projectTypeModel, data);
+    let result = await projectTypeModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Project Type
+exports.getListProjectType = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
@@ -42,8 +39,8 @@ exports.getAll = async (paginatedRequest) => {
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 Project Type
+exports.getProjectType = async (id) => {
   try {
     let result = await projectTypeModel.findOne({_id: id});
     return result;
@@ -52,8 +49,8 @@ exports.getOne = async (id) => {
   }
 }
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 Project Type
+exports.updateProjectType = async (id, body) => {
   try {
     let result = await projectTypeModel.findOneAndUpdate({_id: id}, body, {new: true});
     console.log(result);
@@ -63,8 +60,8 @@ exports.updateOne = async (id, body) => {
   }
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 Project Type
+exports.deleteProjectType = async (id) => {
   try {
     let result = await projectTypeModel.deleteOne({_id: id});
     return result;
@@ -72,11 +69,3 @@ exports.deleteOne = async (id) => {
     throw error;
   }
 }
-
-// // Database
-// exports.status = async (callback) => {
-//   var sql = "SELECT * FROM status WHERE projectType = " + mysql.escape(req.body.username);
-//   database.query(sql, function (err, result) {
-//     callback(err, result ? result.length > 0 : false);
-//   });
-// }

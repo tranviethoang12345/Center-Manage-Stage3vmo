@@ -1,6 +1,6 @@
-const centerRouter = require('./manage/center');
-const staffRouter = require('./manage/staff');
-const projectRouter = require('./manage/project');
+const centerRouter = require('./manage/center.route');
+const staffRouter = require('./manage/staff.route');
+const projectRouter = require('./manage/project.route');
 
 const routes = [centerRouter, staffRouter, projectRouter];
 

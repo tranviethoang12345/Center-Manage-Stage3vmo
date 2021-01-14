@@ -1,5 +1,5 @@
 // // Import
-const projectModel = require('../../models/manage/project');
+const projectModel = require('../../models/manage/project.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');

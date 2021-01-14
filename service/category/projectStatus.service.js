@@ -1,11 +1,8 @@
 // // Connect Database
-const projectStatusModel = require('../../models/category/projectStatus');
+const projectStatusModel = require('../../models/category/projectStatus.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
-
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
 
 // // Connect Helper
 const responseHelper = require('../../helpers/response.helper');
@@ -14,23 +11,23 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Project Status'
 
 // // Project Status
-// Create One  
-exports.createOne = async (data) => {
+// Create One ProjectStatus
+exports.createProjectStatus = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await commonQueryService.getLength(projectStatusModel, { name });
+    let checkLenRecord = await projectStatusModel.find({ name }).countDocuments();
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(projectStatusModel, data);
+    let result = await projectStatusModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Project Status
+exports.getListProjectStatus = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
@@ -42,8 +39,8 @@ exports.getAll = async (paginatedRequest) => {
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 Project Status
+exports.getOneProjectType = async (id) => {
   try {
     let result = await projectStatusModel.findOne({_id: id});
     return result;
@@ -52,15 +49,15 @@ exports.getOne = async (id) => {
   }
 }
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 Project Status
+exports.updateOneProjectStatus = async (id, body) => {
   let result = await projectStatusModel.findOneAndUpdate({_id: id}, body, {new: true});
   console.log(result);
   return result;
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 Project Status
+exports.deleteOneProjectStatus = async (id) => {
   let result = await projectStatusModel.deleteOne({_id: id});
   return result;
 }

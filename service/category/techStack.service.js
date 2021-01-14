@@ -1,11 +1,8 @@
 // // Connect Database
-const techStackModel = require("../../models/category/techStack");
+const techStackModel = require("../../models/category/techStack.model");
 
 // // Connect Util
-const paginationUtil = require("../../utils/pagination.util") 
-
-// // Connect Service
-const commonQueryService = require("../collections/commonQuery.service")
+const paginationUtil = require("../../utils/pagination.util");
 
 // // Connect Helpers
 const responseHelper = require("../../helpers/response.helper");
@@ -14,23 +11,23 @@ const responseHelper = require("../../helpers/response.helper");
 const n = 'Tech Stack';
 
 // // Tech Stack
-// Create One
-exports.createOne = async (data) => {
+// Create Tech Stack
+exports.createTechStack = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await commonQueryService.getLength(techStackModel, { name });
+    let checkLenRecord = await techStackModel.find({ name }).countDocument();
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(techStackModel, data);
+    let result = await techStackModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 };
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List TechStack
+exports.getListTechStack = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
@@ -42,8 +39,8 @@ exports.getAll = async (paginatedRequest) => {
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 TechStack
+exports.getTechStack = async (id) => {
   try {
     let result = await techStackModel
       .findOne({_id: id})
@@ -57,8 +54,8 @@ exports.getOne = async (id) => {
   }
 }
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 TechStack
+exports.updateTechStack = async (id, body) => {
   try {
     let result = await techStackModel
       .findOneAndUpdate(
@@ -72,8 +69,8 @@ exports.updateOne = async (id, body) => {
   }
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1TechStack
+exports.deleteTechStack = async (id) => {
   try {
     let result = await techStackModel.deleteOne({_id: id});
     return result;
