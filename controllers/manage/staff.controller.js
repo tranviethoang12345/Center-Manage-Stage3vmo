@@ -1,5 +1,5 @@
 // // Import Service
-const staffService = require('../../service/manage/staff.service');
+const staffService = require('../../services/manage/staff.service');
 
 // // Import Helpers
 const responseHelper = require('../../helpers/response.helper');

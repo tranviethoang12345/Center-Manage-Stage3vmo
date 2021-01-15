@@ -1,5 +1,5 @@
 // // Import Service
-const projectStatusService =  require('../../service/category/projectStatus.service');
+const projectStatusService =  require('../../services/category/projectStatus.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');

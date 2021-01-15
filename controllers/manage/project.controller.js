@@ -1,5 +1,5 @@
 // // Import Service
-const projectService = require('../../service/manage/project.service');
+const projectService = require('../../services/manage/project.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');

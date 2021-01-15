@@ -1,5 +1,5 @@
 // // Import Service
-const customerGroupService = require('../../service/category/customerGroup.service');
+const customerGroupService = require('../../services/category/customerGroup.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');

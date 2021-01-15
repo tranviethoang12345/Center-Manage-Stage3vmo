@@ -1,5 +1,5 @@
 // // Import Service
-const techStackService = require('../../service/category/techStack.service');
+const techStackService = require('../../services/category/techStack.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');

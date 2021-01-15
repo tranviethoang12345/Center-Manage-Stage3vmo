@@ -1,7 +1,7 @@
-const projectTypeRouter = require('../routes/category/projectType.route');
-const projectStatusRouter = require('../routes/category/projectStatus.route');
-const techStackRouter = require('../routes/category/techStack.route');
-const customerGroupRouter = require('../routes/category/customerGroup.route');
+const projectTypeRouter = require('../routes/category/projectType.routes');
+const projectStatusRouter = require('../routes/category/projectStatus.routes');
+const techStackRouter = require('../routes/category/techStack.routes');
+const customerGroupRouter = require('../routes/category/customerGroup.routes');
 
 const routes = [projectTypeRouter, projectStatusRouter, techStackRouter, customerGroupRouter];
 
