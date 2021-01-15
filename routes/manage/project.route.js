@@ -2,26 +2,26 @@
 const express = require('express');
 
 // // Import Controllers
-const projectControllers = require('../../controllers/manage/project')
+const projectControllers = require('../../controllers/manage/project.controller')
 
 // Create Router
 const router = express.Router();
 
-// // 3. Project
+// // Project
 // Post => Create
 router.post('/projects', projectControllers.createProject);
 
 // Get => Get All
-router.get('/projects', projectControllers.getAllProject);
+router.get('/projects', projectControllers.getListProject);
 
 // Get => Get All Populate
-router.get('/projects/populate', projectControllers.getAllProjectPopulate);
+router.get('/projects/populate', projectControllers.getListProjectPopulate);
 
 // Get => Get 1
-router.get('/projects/:id', projectControllers.getOneProject);
+router.get('/projects/:id', projectControllers.getProject);
 
 // Get => Get 1 Populate
-router.get('/projects/populate/:id', projectControllers.getAllProjectPopulate);
+router.get('/projects/populate/:id', projectControllers.getProjectPopulate);
 
 // Update => Put
 router.put('/projects/:id', projectControllers.updateProject);

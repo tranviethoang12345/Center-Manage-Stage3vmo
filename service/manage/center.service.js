@@ -1,11 +1,8 @@
 // // Import
-const centerModel = require('../../models/manage/center');
+const centerModel = require('../../models/manage/center.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
-
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
 
 // // Connect Helper
 const responseHelper = require('../../helpers/response.helper');
@@ -14,37 +11,36 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Center'
 
 // // Center || Departments
-// Create One
-exports.createOne = async (data) => {
+// Create Center
+exports.createCenter = async (data) => {
   try {
     let { name } = data.centerInformation.name;
-    let checkLenRecord = await commonQueryService.getLength(centerModel, { 'centerInformation.name': name });
+    let checkLenRecord = await centerModel.find({ 'centerInformation.name': name }).countDocument();
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }
-
-    let result = await commonQueryService.create(centerModel, data);
+    let result = await centerModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 };
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Center
+exports.getListCenter = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
       centerModel.find()
     );
-    return result;
+    return responseHelper.success(1, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get All (populate)
-exports.getAllPopulate = async (paginatedRequest) => {
+// Get All List Center - Populate
+exports.getListCenterPopulate = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest, 
@@ -52,36 +48,36 @@ exports.getAllPopulate = async (paginatedRequest) => {
         .find()
         .populate(['techStack', 'project', 'staffList'])
     );
-    return result;
+    return responseHelper.success(1, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 Center
+exports.getCenter = async (id) => {
   try {
     let result = await centerModel.findOne({_id: id});
-    return result;
+    return responseHelper.success(2, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 }
 
-// Get One (populate)
-exports.getOnePopulate = async (id) => {
+// Get 1 Center - Populate
+exports.getCenterPopulate = async (id) => {
   try {
     let result = await centerModel
       .findOne({_id: id})
       .populate(['techStack', 'project', 'staffList']);
-    return result;
-  } catch (error) {
+      return responseHelper.success(2, n, 200, result._id);
+    } catch (error) {
     throw error;
   }
 }
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 Center
+exports.updateCenter = async (id, body) => {
   try {
     let result = await centerModel
       .findOneAndUpdate(
@@ -89,17 +85,17 @@ exports.updateOne = async (id, body) => {
         body,
         {new: true}
       );
-    return result;
-  } catch (error) {
+      return responseHelper.success(3, n, 200, result._id);
+    } catch (error) {
     throw error;
   }
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 Center
+exports.deleteCenter = async (id) => {
   try {
     let result = await centerModel.deleteOne({_id: id});
-    return result;
+    return responseHelper.success(4, n, 200, result._id);
   } catch (error) {
     throw error;
   }

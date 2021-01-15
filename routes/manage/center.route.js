@@ -2,28 +2,28 @@
 const express = require('express');
 
 // // Import Controllers
-const centerControllers = require('../../controllers/manage/center')
+const centerControllers = require('../../controllers/manage/center.controller')
 
 // Create Router
 const router = express.Router();
 
-// // 1. Centers, departments, divisions
+// // Centers, departments
 // Post => Create
 router.post('/centers', centerControllers.createCenter);
 
-// Get => Get All
-router.get('/centers', centerControllers.getAllCenter);
+// Get => Get All 
+router.get('/centers', centerControllers.getListCenter);
 
 // Get => Get All Populate
-router.get('/centers/populate', centerControllers.getAllCenterPopulate);
+router.get('/centers/populate', centerControllers.getListCenterPopulate);
 
-// Get => Get 1
-router.get('/centers', centerControllers.getOneCenter);
+// Get => Get 1 
+router.get('/centers', centerControllers.getCenter);
 
 // Get => Get 1 Populate
-router.get('/centers/populate/:id', centerControllers.getOneCenterPopulate);
+router.get('/centers/populate/:id', centerControllers.getCenterPopulate);
 
-// Update => Put
+// Update => Put 
 router.put('/centers/:id', centerControllers.updateCenter);
 
 // Delete => Delete

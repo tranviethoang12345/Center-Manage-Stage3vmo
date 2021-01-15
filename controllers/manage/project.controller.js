@@ -8,84 +8,86 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Project';
 
 // // Project
-// Create
+// Create Project
 exports.createProject = async (req, res) => {
   try {
-    let result = await projectService.createOne(req.body);
+    let result = await projectService.createProject(req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get All
-exports.getAllProject = async (req, res) => {
+// Get All List Project
+exports.getListProject = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
     
-    let getAll = await projectService.getAll( paginatedRequest );
-    res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await projectService.getListProject( paginatedRequest );
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get All Populate
-exports.getAllProjectPopulate = async (req, res) => {
+// Get All List Project - Populate
+exports.getListProjectPopulate = async (req, res) => {
   try {
-    let getAllPopulate = await projectService.getAllPopulate();
-    res.status(200).json(responseHelper.success(n, 1, getAllPopulate));
+    let result = await projectService.getListProjectPopulate();
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get One
-exports.getOneProject = async (req, res) => {
-  try {
-    let id = req.params.id;
+// // :id -> req
 
-    let getOne = await projectService.getOne(id);
-    res.status(200).json(responseHelper.success(n, 2, getOne));
-  } catch (error) {
-    res.status(500).json(responseHelper.error(error));
-  }
-}
-
-// Get One Populate
-exports.getOneProjectPopulate = async (req, res) => {
+// Get 1 Project
+exports.getProject = async (req, res) => {
   try {
     let id = req.params.id;
 
-    let getOnePopulate = await projectService.getOnePopulate(id);
-    res.status(200).json(responseHelper.success(n, 2, getOnePopulate));
+    let result = await projectService.getProject(id);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Update
+// Get 1 Project - Populate
+exports.getProjectPopulate = async (req, res) => {
+  try {
+    let id = req.params.id;
+
+    let result = await projectService.getProjectPopulate(id);
+    res.status(result.status).json(result);
+  } catch (error) {
+    res.status(500).json(responseHelper.error(error));
+  }
+}
+
+// Update 1 Project
 exports.updateProject = async (req, res) => {
   try {
     let id = req.params.id;
     let body = req.body;
 
-    let update = await projectService.updateOne(id, body);
-    res.status(200).json(responseHelper.success(n, 3, update))
+    let result = await projectService.updateProject(id, body);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Delete
+// Delete 1 Project
 exports.deleteProject = async (req, res) => {
   try {
     let id = req.params.id;
     
-    let deleteData = await projectService.deleteOne(id);
-    res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let deleteData = await projectService.deleteProject(id);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }

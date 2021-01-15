@@ -2,25 +2,25 @@
 const express = require('express');
 
 // // Import Controllers
-const adminControllers = require('../../controllers/users/user')
+const userControllers = require('../../controllers/users/user.controller')
 
 // Create Router
 const router = express.Router();
 
-// // 4. Admin
+// // User
 // Post => Create
-router.post('/signup', adminControllers.createAccount);
+router.post('/signup', userControllers.createUser);
 
 // Get => Get All
-router.get('/signup',  adminControllers.getAllAdmin);
+router.get('/signup',  userControllers.getListUser);
 
 // Get => Get 1
-router.get('/signup',  adminControllers.getOneAdmin);
+router.get('/signup',  userControllers.getUser);
 
 // Update => Put
-router.put('/signup/:id',  adminControllers.updateAdmin);
+router.put('/signup/:id',  userControllers.updateUser);
 
 // Delete => Delete
-router.delete('/signup/:id',  adminControllers.deleteAdmin);
+router.delete('/signup/:id',  userControllers.deleteUser);
 
 module.exports = router;

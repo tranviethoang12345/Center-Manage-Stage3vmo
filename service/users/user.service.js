@@ -1,58 +1,64 @@
 // // Connect Database
-const userModel = require('../../models/users/user');
+const userModel = require('../../models/users/user.model');
 
 // // Connect Util
-const paginationUtil = require("../../utils/pagination.util") 
+const paginationUtil = require("../../utils/pagination.util");
 
-// // Admin - Login
+// // Connect Helper
+const responseHelper = require("../../helpers/response.helper");
+
+// Name
+const n = 'User';
+
+// // User
 // Create One
-exports.create = async (data) => {
+exports.createUser = async (data) => {
   try {
     let result = await userModel.create(data);
-    return result;
+    return responseHelper.success(0, n, 1, result);
   } catch (error) {
     throw error;
   }
 };
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List User
+exports.getListUser = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest,
       userModel.find()
     );
-    return result;
+    return responseHelper.success(0, n, 1, result);
   } catch (error) {
     throw error;
   }
 }
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 User
+exports.getUser = async (id) => {
   try {
     let result = await userModel.findOne({_id: id});
-    return result;
+    return responseHelper.success(0, n, 1, result);
   } catch (error) {
     throw error;
   }
 }
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 User
+exports.updateUser = async (id, body) => {
   try {
     let result = await userModel.findOneAndUpdate({_id: id}, body, {new: true});
-    return result;
+    return responseHelper.success(0, n, 1, result);
   } catch (error) {
     throw error;
   }
 }
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 User
+exports.deleteUser = async (id) => {
   try {
     let result = await userModel.deleteOne({_id: id});
-    return result;
+    return responseHelper.success(0, n, 1, result);
   } catch (error) {
     throw error;
   }

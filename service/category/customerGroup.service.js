@@ -33,7 +33,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
       paginatedRequest, 
       customerGroupModel.find()
     );
-    return result;
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -43,7 +43,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
 exports.getCustomerGroup = async (id) => {
   try {
     let result = await customerGroupModel.findOne({_id: id});
-    return result;
+    return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -53,8 +53,7 @@ exports.getCustomerGroup = async (id) => {
 exports.updateCustomerGroup = async (id, body) => {
   try {
     let result = await customerGroupModel.findOneAndUpdate({_id: id}, body, {new: true});
-    console.log(result);
-    return result;
+    return responseHelper.success(3, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -64,7 +63,7 @@ exports.updateCustomerGroup = async (id, body) => {
 exports.deleteCustomerGroup = async (id) => {
   try {
     let result = await customerGroupModel.deleteOne({_id: id});
-    return result;
+    return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
   }

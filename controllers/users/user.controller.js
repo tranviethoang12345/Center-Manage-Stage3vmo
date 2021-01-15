@@ -1,64 +1,59 @@
 // // Import Service
-const adminService = require('../../service/users/user.service');
+const userService = require('../../service/users/user.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
 
-// Name
-const n = 'User';
-
-// // 4. Account - User
-// Create
-exports.createAccount = async (req, res) => {
+// // User
+// Create User
+exports.createUser = async (req, res) => {
   try {
-    let create = await adminService.createOne(req.body);
-    return res.status(200).json(responseHelper.success(n, 0, create));
+    let result = await userService.createUser(req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Get All
-exports.getAllAdmin = async (req, res) => {
+// Get All List User
+exports.getListUser = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
 
-    let getAll = await adminService.getAll( paginatedRequest );
-    return res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await userService.getListUser( paginatedRequest );
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Get 1
-exports.getOneAdmin = async (req, res) => {
+// Get 1 User
+exports.getUser = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let getOne = await adminService.getOne(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await userService.getUser(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {    
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Update
-exports.updateAdmin = async (req, res) => {
+// Update 1 User
+exports.updateUser = async (req, res) => {
   try {
-    let update = await adminService.updateOne(req.params.id, req.body);
-    return res.status(200).json(responseHelper.success(n, 3, update));
+    let result = await userService.updateUser(req.params.id, req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Delete
-exports.deleteAdmin = async (req, res) => {
+// Delete 1 User
+exports.deleteUser = async (req, res) => {
   try {
-    let deleteData = await adminService.deleteOne(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await userService.deleteUser(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

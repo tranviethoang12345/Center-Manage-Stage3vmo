@@ -25,8 +25,8 @@ exports.getListTechStack = async (req, res) => {
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
 
-    let getAll = await techStackService.getAllTechStack( paginatedRequest );
-    return res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await techStackService.getAllTechStack( paginatedRequest );
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -37,8 +37,8 @@ exports.getListTechStack = async (req, res) => {
 // Get 1 TechStack
 exports.getTechStack = async (req, res) => {
   try {
-    let getOne = await techStackService.getTechStack(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await techStackService.getTechStack(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -47,8 +47,8 @@ exports.getTechStack = async (req, res) => {
 // Update 1 TechStack
 exports.updateTechStack = async (req, res) => {
   try {
-    let update = await techStackService.updateTechStack(req.params.id, req.body);
-    return res.status(200).json(responseHelper.success(n, 3, update));
+    let result = await techStackService.updateTechStack(req.params.id, req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -57,8 +57,8 @@ exports.updateTechStack = async (req, res) => {
 // Delete 1 TechStack
 exports.deleteTechStack = async (req, res) => {
   try {
-    let deleteData = await techStackService.deleteTechStack(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await techStackService.deleteTechStack(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

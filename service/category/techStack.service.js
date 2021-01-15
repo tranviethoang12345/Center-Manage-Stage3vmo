@@ -20,7 +20,7 @@ exports.createTechStack = async (data) => {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
     let result = await techStackModel.create(data);
-    return responseHelper.success(0, n, 200, result._id);
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -33,7 +33,7 @@ exports.getListTechStack = async (paginatedRequest) => {
       paginatedRequest, 
       techStackModel.find()
     );
-    return result;
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -48,8 +48,8 @@ exports.getTechStack = async (id) => {
         path: 'projectList',
         populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
       }]);
-    return result;
-  } catch (error) {
+      return responseHelper.success(0, n, 200, result);
+    } catch (error) {
     throw error;
   }
 }
@@ -63,8 +63,8 @@ exports.updateTechStack = async (id, body) => {
         body,
         {new: true}
       );
-    return result;
-  } catch (error) {
+      return responseHelper.success(0, n, 200, result);
+    } catch (error) {
     throw error;
   }
 }
@@ -73,7 +73,7 @@ exports.updateTechStack = async (id, body) => {
 exports.deleteTechStack = async (id) => {
   try {
     let result = await techStackModel.deleteOne({_id: id});
-    return result;
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }

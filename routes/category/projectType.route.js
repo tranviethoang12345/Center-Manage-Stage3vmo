@@ -9,19 +9,19 @@ const router = express.Router();
 
 // // Project type
 // Post => Create
-router.post('/projectType', projectTypeControllers.createProjectType);
+router.post('/projectTypes', projectTypeControllers.createProjectType);
 
 // Get => Get All
-router.get('/projectType', projectTypeControllers.getListProjectType);
+router.get('/projectTypes', projectTypeControllers.getListProjectType);
 
 // Get => Get 1
-router.get('/projectType/:id', projectTypeControllers.getProjectType);
+router.get('/projectTypes/:id', projectTypeControllers.getProjectType);
 
 // Update => Put
-router.put('/projectType/:id', projectTypeControllers.updateProjectType);
+router.put('/projectTypes/:id', projectTypeControllers.updateProjectType);
 
 // Delete => Delete
-router.delete('/projectType/:id', projectTypeControllers.deleteProjectType);
+router.delete('/projectTypes/:id', projectTypeControllers.deleteProjectType);
 
 // Export
 module.exports = router;

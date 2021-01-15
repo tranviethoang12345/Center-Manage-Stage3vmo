@@ -1,5 +1,5 @@
 // // Connect Database
-const projectTypeModel = require('../../models/category/projectType');
+const projectTypeModel = require('../../models/category/projectType.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
@@ -33,7 +33,7 @@ exports.getListProjectType = async (paginatedRequest) => {
       paginatedRequest, 
       projectTypeModel.find()
     );
-    return result;
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -43,7 +43,7 @@ exports.getListProjectType = async (paginatedRequest) => {
 exports.getProjectType = async (id) => {
   try {
     let result = await projectTypeModel.findOne({_id: id});
-    return result;
+    return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -53,7 +53,7 @@ exports.getProjectType = async (id) => {
 exports.updateProjectType = async (id, body) => {
   try {
     let result = await projectTypeModel.findOneAndUpdate({_id: id}, body, {new: true});
-    console.log(result);
+    return responseHelper.success(3, n, 200, result);
     return result;
   } catch (error) {
     throw error;
@@ -64,7 +64,7 @@ exports.updateProjectType = async (id, body) => {
 exports.deleteProjectType = async (id) => {
   try {
     let result = await projectTypeModel.deleteOne({_id: id});
-    return result;
+    return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
   }

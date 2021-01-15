@@ -9,19 +9,19 @@ const router = express.Router();
 
 // // Tech Stack
 // Post => Create
-router.post('/techStack', techStackControllers.createTechStack);
+router.post('/techStacks', techStackControllers.createTechStack);
 
 // Get => Get All
-router.get('/techStack', techStackControllers.getListTechStack);
+router.get('/techStacks', techStackControllers.getListTechStack);
 
 // Get => Get 1
-router.get('/techStack/:id', techStackControllers.getTechStack);
+router.get('/techStacks/:id', techStackControllers.getTechStack);
 
 // Update => Put
-router.put('/techStack/:id', techStackControllers.updateTechStack);
+router.put('/techStacks/:id', techStackControllers.updateTechStack);
 
 // Delete => Delete
-router.delete('/techStack/:id', techStackControllers.deleteTechStack);
+router.delete('/techStacks/:id', techStackControllers.deleteTechStack);
 
 // Export
 module.exports = router;

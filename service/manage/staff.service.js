@@ -1,11 +1,8 @@
 // // Import Database
-const staffModel = require('../../models/manage/staff');
+const staffModel = require('../../models/manage/staff.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
-
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
 
 // // Connect Helper
 const responseHelper = require('../../helpers/response.helper');
@@ -14,23 +11,23 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Staff';
 
 // // Staff || Human Resources
-// Create One
-exports.createOne = async (data) => {
+// Create Staff
+exports.createStaff = async (data) => {
   try {
     let { name } = data.staffInformation.name;
-    let checkLenRecord = await commonQueryService.getLength(staffModel, { 'staffInformation.name': name });
+    let checkLenRecord = await staffModel.find({ name }).countDocument();
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(staffModel, data);
+    let result = await staffModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 };
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Staff
+exports.getListStaff = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest,
@@ -43,7 +40,7 @@ exports.getAll = async (paginatedRequest) => {
 };
 
 // Get All Populate
-exports.getAllPopulate = async (paginatedRequest) => {
+exports.getListStaffPopulate = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest,
@@ -64,8 +61,8 @@ exports.getAllPopulate = async (paginatedRequest) => {
   }
 };
 
-// Get One 
-exports.getOne = async (id) => {
+// Get 1 Staff
+exports.getStaff = async (id) => {
   try {
     let result = await staffModel
       .findOne({_id: id});
@@ -75,7 +72,7 @@ exports.getOne = async (id) => {
   }
 };
 
-// Get One Populate
+// Get 1 Staff - Populate
 exports.getOnePopulate = async (id) => {
   try {
     let result = await staffModel
@@ -94,8 +91,8 @@ exports.getOnePopulate = async (id) => {
   }
 };
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update 1 Staff
+exports.updateStaff = async (id, body) => {
   try {
     let result = await staffModel
       .findOneAndUpdate(
@@ -109,8 +106,8 @@ exports.updateOne = async (id, body) => {
   }
 };
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete 1 Staff
+exports.deleteStaff = async (id) => {
   try {
     let result = await staffModel.deleteOne({_id: id});
     return result;

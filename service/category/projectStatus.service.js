@@ -33,7 +33,7 @@ exports.getListProjectStatus = async (paginatedRequest) => {
       paginatedRequest, 
       projectStatusModel.find()
     );
-    return result;
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -43,7 +43,7 @@ exports.getListProjectStatus = async (paginatedRequest) => {
 exports.getOneProjectType = async (id) => {
   try {
     let result = await projectStatusModel.findOne({_id: id});
-    return result;
+    return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -52,13 +52,13 @@ exports.getOneProjectType = async (id) => {
 // Update 1 Project Status
 exports.updateOneProjectStatus = async (id, body) => {
   let result = await projectStatusModel.findOneAndUpdate({_id: id}, body, {new: true});
-  console.log(result);
-  return result;
+  return responseHelper.success(3, n, 200, result);
+
 }
 
 // Delete 1 Project Status
 exports.deleteOneProjectStatus = async (id) => {
   let result = await projectStatusModel.deleteOne({_id: id});
-  return result;
+  return responseHelper.success(4, n, 200, result);
 }
 

@@ -25,8 +25,8 @@ exports.getListCustomerGroup = async (req, res) => {
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
     
-    let getAll = await customerGroupService.getListCustomerGroup( paginatedRequest );
-    return res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await customerGroupService.getListCustomerGroup( paginatedRequest );
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -39,8 +39,8 @@ exports.getCustomerGroup = async (req, res) => {
   try {
     let id = req.params.id;
 
-    let getOne = await customerGroupService.getCustomerGroup(id);
-    return res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await customerGroupService.getCustomerGroup(id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -49,8 +49,8 @@ exports.getCustomerGroup = async (req, res) => {
 // Update 1 Customer Group
 exports.updateCustomerGroup = async (req, res) => {
   try {
-    let update = await customerGroupService.updateCustomerGroup(req.params.id, req.body)
-    return res.status(200).json(responseHelper.success(n, 3, update));
+    let result = await customerGroupService.updateCustomerGroup(req.params.id, req.body)
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -59,8 +59,8 @@ exports.updateCustomerGroup = async (req, res) => {
 // Delete 1 Customer Group
 exports.deleteCustomerGroup = async (req, res) => {
   try {
-    let deleteData = await customerGroupService.deleteCustomerGroup(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await customerGroupService.deleteCustomerGroup(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

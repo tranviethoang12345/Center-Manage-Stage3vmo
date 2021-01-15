@@ -4,9 +4,6 @@ const projectModel = require('../../models/manage/project.model');
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');
 
-// // Connect Service
-const commonQueryService = require('../collections/commonQuery.service');
-
 // // Connect Helper
 const responseHelper = require('../../helpers/response.helper');
 
@@ -14,23 +11,23 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Project'
 
 // // Project
-// Create One
-exports.createOne = async (data) => {
+// Create Project
+exports.createProject = async (data) => {
   try {
     let { name } = data.projectInformation.name;
-    let checkLenRecord = await commonQueryService.getLength(projectModel, { 'projectInformation.name': name });
+    let checkLenRecord = await projectModel.find({ name }).countDocument();
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await commonQueryService.create(projectModel, data);
+    let result = await projectModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
 };
 
-// Get All
-exports.getAll = async (paginatedRequest) => {
+// Get All List Project
+exports.getListProject = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest,
@@ -42,8 +39,8 @@ exports.getAll = async (paginatedRequest) => {
   }
 };
 
-// Get All Populate
-exports.getAllPopulate = async (paginatedRequest) => {
+// Get All Project - Populate
+exports.getListProjectPopulate = async (paginatedRequest) => {
   try {
     let result = await paginationUtil.paginatedResult(
       paginatedRequest,
@@ -59,8 +56,8 @@ exports.getAllPopulate = async (paginatedRequest) => {
   }
 };
 
-// Get One
-exports.getOne = async (id) => {
+// Get 1 Project
+exports.getProject = async (id) => {
   try {
     let result = await projectModel
     .findOne({_id: id})
@@ -74,8 +71,8 @@ exports.getOne = async (id) => {
   }
 };
 
-// Get One Populate
-exports.getOnePopulate = async (id) => {
+// Get 1 Project - Populate
+exports.getProjectPopulate = async (id) => {
   try {
     let result = await projectModel
     .findOne({_id: id})
@@ -89,8 +86,8 @@ exports.getOnePopulate = async (id) => {
   }
 };
 
-// Update
-exports.updateOne = async (id, body) => {
+// Update Project
+exports.updateProject = async (id, body) => {
   try {
     let result = await projectModel
       .findOneAndUpdate(
@@ -104,8 +101,8 @@ exports.updateOne = async (id, body) => {
   }
 };
 
-// Delete
-exports.deleteOne = async (id) => {
+// Delete Project
+exports.deleteProject = async (id) => {
   try {
     let result = await projectModel.deleteOne({_id: id});
     return result;

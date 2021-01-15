@@ -11,86 +11,78 @@ const n = 'Staff';
 // Create
 exports.createStaff = async (req, res) => {
   try {
-    let result = await staffService.createOne(req.body);
+    let result = await staffService.createStaff(req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get All
-exports.getAllStaff = async (req, res) => {
+// Get All List Staff
+exports.getListStaff = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
     
-    let getAll = await staffService.getAll( paginatedRequest );
-    res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await staffService.getListStaff( paginatedRequest );
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get All Populate
-exports.getAllStaffPopulate = async (req, res) => {
+// Get All List Staff - Populate
+exports.getListStaffPopulate = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
-
     let paginatedRequest = { page, limit };
 
-    let getAllPopulate = await staffService.getAllPopulate( paginatedRequest );
-    res.status(200).json(responseHelper.success(n, 1, getAllPopulate));
+    let result = await staffService.getListStaffPopulate( paginatedRequest );
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get One
-exports.getOneStaff = async (req, res) => {
+// // :id -> req
+
+// Get 1 Staff
+exports.getStaff = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let getOne = await staffService.getOne(id);
-    res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await staffService.getStaff(req.params.id);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get One Populate
-exports.getOneStaffPopulate = async (req, res) => {
+// Get 1 Staff -  Populate
+exports.getStaffPopulate = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let getOnePopulate = await staffService.getOnePopulate(id);
-    res.status(200).json(responseHelper.success(n, 2, getOnePopulate));
+    let result = await staffService.getStaffPopulate(req.params.id);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Update
+// Update 1 Staff
 exports.updateStaff = async (req, res) => {
   try {
-    let id = req.params.id;
-    let body = req.body;
-
-    let update = await staffService.updateOne(id, body);
-    res.status(200).json(responseHelper.success(n, 3, update))
+    let result = await staffService.updateStaff(req.params.id, req.body);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Delete
+// Delete 1 Staff
 exports.deleteStaff = async (req, res) => {
   try {
-    let id = req.params.id;
-    
-    let deleteData = await staffService.deleteOne(id);
-    res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await staffService.deleteStaff(req.params.id);
+    res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
   }

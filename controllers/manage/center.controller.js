@@ -8,75 +8,77 @@ const responseHelper = require('../../helpers/response.helper');
 const n = 'Center';
 
 // // Centers || Departments
-// Create
+// Create Center
 exports.createCenter = async (req, res) => {
   try {
-    let result = await centerService.createOne(req.body);
+    let result = await centerService.createCenter(req.body);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Get All
-exports.getAllCenter = async (req, res) => {
+// Get All List Center
+exports.getListCenter = async (req, res) => {
   try {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
     
-    let getAll = await centerService.getAll( paginatedRequest );
-    return res.status(200).json(responseHelper.success(1, n, 200, getAll));
+    let result = await centerService.getListCenter( paginatedRequest );
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Get All Populate
-exports.getAllCenterPopulate = async(req, res) => {
+// Get All List Center - Populate
+exports.getListCenterPopulate = async(req, res) => {
   try {
-    let getAllPopulate = await centerService.getAllPopulate();
-    return res.status(200).json(responseHelper.success(n, 1, getAllPopulate));
+    let result = await centerService.getListCenterPopulate();
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 }
 
-// Get One
-exports.getOneCenter = async (req, res) => {
+// // :id -> req
+
+// Get 1 Center
+exports.getCenter = async (req, res) => {
   try {
-    let getOne = await centerService.getOne(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await centerService.getCenter(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Get One Populate
-exports.getOneCenterPopulate = async (req, res) => {
+// Get 1 Center - Populate
+exports.getCenterPopulate = async (req, res) => {
   try {
-    let getOnePopulate = await centerService.getOnePopulate(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 2, getOnePopulate));
+    let result = await centerService.getCenterPopulate(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Update
+// Update 1 Center
 exports.updateCenter = async (req, res) => {
   try {
-    let update = await centerService.updateOne(req.params.id, req.body);
-    return res.status(200).json(responseHelper.success(n, 3, update))
+    let result = await centerService.updateCenter(req.params.id, req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
-// Delete
+// Delete 1 Centers
 exports.deleteCenter = async (req, res) => {
   try {
-    let deleteData = await centerService.deleteOne(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await centerService.deleteCenter(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }

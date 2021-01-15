@@ -2,26 +2,26 @@
 const express = require('express');
 
 // // Import Controllers
-const staffControllers = require('../../controllers/manage/staff');
+const staffControllers = require('../../controllers/manage/staff.controller');
 
 // Create Router
 const router = express.Router();
 
-// // 2. Staff – HR
+// // Staff – HR
 // Post => Create
 router.post('/staff', staffControllers.createStaff);
 
 // Get => Get All
-router.get('/staff', staffControllers.getAllStaff);
+router.get('/staff', staffControllers.getListStaff);
 
 // Get  => Get All Populate
-router.get('/staff/populate', staffControllers.getAllStaffPopulate);
+router.get('/staff/populate', staffControllers.getListStaffPopulate);
 
 // Get => Get 1
-router.get('/staff/:id', staffControllers.getOneStaff);
+router.get('/staff/:id', staffControllers.getStaff);
 
 // Get => Get 1 Populate
-router.get('/staff/populate/:id', staffControllers.getOneStaffPopulate);
+router.get('/staff/populate/:id', staffControllers.getStaffPopulate);
 
 // Update => Put
 router.put('/staff/:id', staffControllers.updateStaff);

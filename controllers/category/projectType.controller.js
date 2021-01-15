@@ -25,8 +25,8 @@ exports.getListProjectType = async (req, res) => {
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
 
-    let getAll = await projectTypeService.getListProjectType( paginatedRequest );
-    return res.status(200).json(responseHelper.success(n, 1, getAll));
+    let result = await projectTypeService.getListProjectType( paginatedRequest );
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -37,8 +37,8 @@ exports.getListProjectType = async (req, res) => {
 // Get 1 Project Type
 exports.getProjectType = async (req, res) => {
   try {
-    let getOne = await projectTypeService.getProjectType(params.id);
-    return res.status(200).json(responseHelper.success(n, 2, getOne));
+    let result = await projectTypeService.getProjectType(params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -47,8 +47,8 @@ exports.getProjectType = async (req, res) => {
 // Update 1 Project Type
 exports.updateProjectType = async (req, res) => {
   try {
-    let update = await projectTypeService.updateProjectType(req.params.id, req.body);
-    return res.status(200).json(responseHelper.success(n, 3, update));
+    let result = await projectTypeService.updateProjectType(req.params.id, req.body);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
@@ -57,8 +57,8 @@ exports.updateProjectType = async (req, res) => {
 // Delete 1 ProjectType
 exports.deleteProjectType = async (req, res) => {
   try {
-    let deleteData = await projectTypeService.deleteProjectType(req.params.id);
-    return res.status(200).json(responseHelper.success(n, 4, deleteData));
+    let result = await projectTypeService.deleteProjectType(req.params.id);
+    return res.status(result.status).json(result);
   } catch (error) {
     return res.json(error.message);
   }
