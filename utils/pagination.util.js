@@ -16,6 +16,6 @@ exports.paginatedResult = (page, limit, model) => {
       page: page - 1,
       limit: limit
     }
-  }
+  }  
   return result;
 }
