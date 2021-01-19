@@ -30,16 +30,18 @@ exports.createCustomerGroup = async (data) => {
 exports.getListCustomerGroup = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
-    let totalDoc = await customerGroupModel.find({}).countDocuments();
+    // Check total Page
+    let totalDoc = await customerGroupModel.find().countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, customerGroupModel);
+    
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, customerGroupModel);
     let result = await customerGroupModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };

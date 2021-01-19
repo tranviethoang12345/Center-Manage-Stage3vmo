@@ -30,16 +30,18 @@ exports.createProject = async (data) => {
 exports.getListProject = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await projectModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectModel);
+    
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
     let result = await projectModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };
@@ -53,16 +55,18 @@ exports.getListProject = async (paginatedRequest) => {
 exports.getListProjectPopulate = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await projectModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectModel);
+
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
     let result = await projectModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
       .populate(
         ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
       )

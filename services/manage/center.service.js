@@ -30,16 +30,18 @@ exports.createCenter = async (data) => {
 exports.getListCenter = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await centerModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, centerModel);
+    
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, centerModel);
     let result = await centerModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };
@@ -53,11 +55,13 @@ exports.getListCenter = async (paginatedRequest) => {
 exports.getListCenterPopulate = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await centerModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
+    
     let { startIndex } = paginationUtil.paginatedResult(page, limit, centerModel);
     let result = await centerModel
       .find({}, '-createdAt -updatedAt -__v')

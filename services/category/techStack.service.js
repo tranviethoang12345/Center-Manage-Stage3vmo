@@ -30,16 +30,18 @@ exports.createTechStack = async (data) => {
 exports.getListTechStack = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await techStackModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, techStackModel);
+    
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, techStackModel);
     let result = await techStackModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };

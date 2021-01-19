@@ -30,16 +30,18 @@ exports.createProjectStatus = async (data) => {
 exports.getListProjectStatus = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total Page
     let totalDoc = await projectStatusModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectStatusModel);
+
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectStatusModel);
     let result = await projectStatusModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     }

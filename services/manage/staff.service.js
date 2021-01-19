@@ -30,16 +30,18 @@ exports.createStaff = async (data) => {
 exports.getListStaff = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await staffModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, staffModel);
+
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, staffModel);
     let result = await staffModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };
@@ -53,16 +55,17 @@ exports.getListStaff = async (paginatedRequest) => {
 exports.getListStaffPopulate = async (paginatedRequest) => {
   try {
     let { page, limit } = paginatedRequest;
+    // Check total page
     let totalDoc = await staffModel.find({}).countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
-    let { startIndex } = paginationUtil.paginatedResult(page, limit, staffModel);
+    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, staffModel);
     let result = await staffModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
-      .limit(limit)
+      .limit(perPage)
       .populate([{
         path: 'projectList',
         populate: ['techStack']
