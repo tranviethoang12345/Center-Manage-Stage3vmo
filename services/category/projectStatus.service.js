@@ -40,7 +40,7 @@ exports.getListProjectStatus = async (paginatedRequest) => {
 }
 
 // Get 1 Project Status
-exports.getOneProjectType = async (id) => {
+exports.getProjectType = async (id) => {
   try {
     let result = await projectStatusModel.findOne({_id: id});
     return responseHelper.success(2, n, 200, result);
@@ -50,14 +50,14 @@ exports.getOneProjectType = async (id) => {
 }
 
 // Update 1 Project Status
-exports.updateOneProjectStatus = async (id, body) => {
+exports.updateProjectStatus = async (id, body) => {
   let result = await projectStatusModel.findOneAndUpdate({_id: id}, body, {new: true});
   return responseHelper.success(3, n, 200, result);
 
 }
 
 // Delete 1 Project Status
-exports.deleteOneProjectStatus = async (id) => {
+exports.deleteProjectStatus = async (id) => {
   let result = await projectStatusModel.deleteOne({_id: id});
   return responseHelper.success(4, n, 200, result);
 }

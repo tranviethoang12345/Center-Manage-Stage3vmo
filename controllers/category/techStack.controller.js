@@ -21,11 +21,7 @@ exports.createTechStack = async (req, res) => {
 // Get All List TechStack
 exports.getListTechStack = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-
-    let result = await techStackService.getAllTechStack( paginatedRequest );
+    let result = await techStackService.getListTechStack( req.params );
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));

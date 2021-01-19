@@ -29,10 +29,24 @@ exports.createCustomerGroup = async (data) => {
 // Get All List Customer Group
 exports.getListCustomerGroup = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest, 
-      customerGroupModel.find()
-    );
+    const { page, limit } = paginatedRequest;
+    let totalDoc = await customerGroupModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, n, 0, 404)
+    }
+   
+    const { startIndex } = paginationUtil.paginatedResult(page, limit, customerGroupModel);
+
+    let result = await customerGroupModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    }
+
     return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
@@ -40,7 +54,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
 }
 
 // Get 1 Customer Group
-exports.getCustomerGroup = async (id) => {
+exports.getCustomerGroup = async (data) => {
   try {
     let result = await customerGroupModel.findOne({_id: id});
     return responseHelper.success(2, n, 200, result);

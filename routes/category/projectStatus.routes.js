@@ -15,13 +15,13 @@ router.post('/projectStatus', projectStatusControllers.createProjectStatus);
 router.get('/projectStatus', projectStatusControllers.getListProjectStatus);
 
 // Get => Get 1
-router.get('/projectStatus/:id', projectStatusControllers.getOneProjectStatus);
+router.get('/projectStatus/:id', projectStatusControllers.getProjectStatus);
 
 // Update => Put
-router.put('/projectStatus/:id', projectStatusControllers.updateOneProjectStatus);
+router.put('/projectStatus/:id', projectStatusControllers.updateProjectStatus);
 
 // Delete => Delete
-router.delete('/projectStatus/:id', projectStatusControllers.deleteOneProjectStatus);
+router.delete('/projectStatus/:id', projectStatusControllers.deleteProjectStatus);
 
 // Export
 module.exports = router;

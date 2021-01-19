@@ -11,7 +11,7 @@ const n = 'States Project';
 // Create Project Status
 exports.createProjectStatus = async (req, res) => {
   try {
-    let result = await projectStatusService.createProjectStatus(rep.body);
+    let result = await projectStatusService.createProjectStatus(req.body);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -24,7 +24,7 @@ exports.getListProjectStatus = async (req, res) => {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     let paginatedRequest = { page, limit };
-
+    let result = await projectStatusService.getListProjectStatus( paginatedRequest );
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -34,9 +34,9 @@ exports.getListProjectStatus = async (req, res) => {
 // // :id -> req
 
 // Get 1 Project Status
-exports.getOneProjectStatus = async (req, res) => {
+exports.getProjectStatus = async (req, res) => {
   try {
-    let result = await projectStatusService.getOneProjectType(req.params.id);
+    let result = await projectStatusService.getProjectType(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -44,9 +44,9 @@ exports.getOneProjectStatus = async (req, res) => {
 };
 
 // Update 1 Project Status
-exports.updateOneProjectStatus = async (req, res) => {
+exports.updateProjectStatus = async (req, res) => {
   try {
-    let result = await projectStatusService.updateOneProjectStatus(req.params.id, req.body);
+    let result = await projectStatusService.updateProjectStatus(req.params.id, req.body);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -54,9 +54,9 @@ exports.updateOneProjectStatus = async (req, res) => {
 };
 
 // Delete 1 Project Status
-exports.deleteOneProjectStatus = async (req, res) => {
+exports.deleteProjectStatus = async (req, res) => {
   try {
-    let result = await projectStatusService.deleteOneProjectStatus(req.params.id);
+    let result = await projectStatusService.deleteProjectStatus(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));

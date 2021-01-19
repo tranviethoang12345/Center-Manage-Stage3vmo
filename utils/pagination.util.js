@@ -1,28 +1,21 @@
-exports.paginatedResult = async (paginatedRequest, model) => {
-  const { page, limit } = paginatedRequest;
-
-  const startIndex = (page - 1) * limit
-  const endIndex = page * limit
-  const results = {}
+exports.paginatedResult = (page, limit, model) => {
+  page = parseInt(page);
+  limit = parseInt(limit);
+  let startIndex = (page - 1) * limit
+  let endIndex = page * limit
+  let result = {}
 
   if (endIndex < model.length) {
-    results.next = {
+    result.next = {
       page: page + 1,
       limit: limit
     }
   }
   if (startIndex > 0) {
-    results.previous = {
+    result.previous = {
       page: page - 1,
       limit: limit
     }
   }
-    try {
-      results.results = await model
-        .limit(limit)
-        .skip(startIndex);
-      return results;
-    } catch (error) {
-      throw error;
-    }
+  return result;
 }

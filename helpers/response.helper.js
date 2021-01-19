@@ -3,7 +3,7 @@ exports.success = (i, n, status, data = null) => {
 
   return {
     message: arr[i] + ' ' + n + ' ' + 'successful',
-    messageCode: arr[i].toUpperCase() + '_' + n.replace(' ','_').toUpperCase() + '_' + 'SUCCESSFUL',
+    messageCode: arr[i].replace(' ','_').toUpperCase() + '_' + n.replace(' ','_').toUpperCase() + '_' + 'SUCCESSFUL',
     data: data,
     status: status
   }
@@ -19,12 +19,12 @@ exports.success = (i, n, status, data = null) => {
 // }
 
 exports.errorHandler = (i, n, mc, status) => {
-  const arr = [ 'already exists', 'not exists', 'Page not found'];
+  const arr = [ 'Already Exists', 'Not Exists', 'Page Not Found' ];
   const result = ['invalid'];
 
   return {
     message: n + ' ' + arr[i],
-    messageCode: result[mc].toUpperCase(),
+    messageCode: result[mc].replace(' ','_').toUpperCase(),
     status: status
   }
 }
