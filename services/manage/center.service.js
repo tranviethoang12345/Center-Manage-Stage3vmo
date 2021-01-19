@@ -29,10 +29,20 @@ exports.createCenter = async (data) => {
 // Get All List Center
 exports.getListCenter = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest, 
-      centerModel.find()
-    );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await centerModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, centerModel);
+    let result = await centerModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return responseHelper.success(1, n, 200, result._id);
   } catch (error) {
     throw error;
@@ -42,13 +52,22 @@ exports.getListCenter = async (paginatedRequest) => {
 // Get All List Center - Populate
 exports.getListCenterPopulate = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest, 
-      centerModel
-        .find()
-        .populate(['techStack', 'project', 'staffList'])
-    );
-    return responseHelper.success(1, n, 200, result._id);
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await centerModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, centerModel);
+    let result = await centerModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+      .populate(['techStack', 'project', 'staffList'])
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -58,7 +77,7 @@ exports.getListCenterPopulate = async (paginatedRequest) => {
 exports.getCenter = async (id) => {
   try {
     let result = await centerModel.findOne({_id: id});
-    return responseHelper.success(2, n, 200, result._id);
+    return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -70,7 +89,7 @@ exports.getCenterPopulate = async (id) => {
     let result = await centerModel
       .findOne({_id: id})
       .populate(['techStack', 'project', 'staffList']);
-      return responseHelper.success(2, n, 200, result._id);
+      return responseHelper.success(2, n, 200, result);
     } catch (error) {
     throw error;
   }
@@ -85,7 +104,7 @@ exports.updateCenter = async (id, body) => {
         body,
         {new: true}
       );
-      return responseHelper.success(3, n, 200, result._id);
+      return responseHelper.success(3, n, 200, result);
     } catch (error) {
     throw error;
   }
@@ -95,7 +114,7 @@ exports.updateCenter = async (id, body) => {
 exports.deleteCenter = async (id) => {
   try {
     let result = await centerModel.deleteOne({_id: id});
-    return responseHelper.success(4, n, 200, result._id);
+    return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
   }

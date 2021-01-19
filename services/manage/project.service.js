@@ -29,10 +29,20 @@ exports.createProject = async (data) => {
 // Get All List Project
 exports.getListProject = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest,
-      projectModel
-    );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await projectModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectModel);
+    let result = await projectModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return result;
   } catch (error) {
     throw error;
@@ -42,14 +52,23 @@ exports.getListProject = async (paginatedRequest) => {
 // Get All Project - Populate
 exports.getListProjectPopulate = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest,
-      projectModel
-        .find()
-        .populate(
-          ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
-        ) 
-    );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await projectModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectModel);
+    let result = await projectModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+      .populate(
+        ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+      )
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return result;
   } catch (error) {
     throw error;

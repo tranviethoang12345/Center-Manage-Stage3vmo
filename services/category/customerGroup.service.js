@@ -34,7 +34,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
-    }
+    };
     let { startIndex } = paginationUtil.paginatedResult(page, limit, customerGroupModel);
     let result = await customerGroupModel
       .find({}, '-createdAt -updatedAt -__v')
@@ -42,7 +42,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
       .limit(limit)
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
-    }
+    };
     return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;

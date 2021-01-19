@@ -20,7 +20,7 @@ exports.createTechStack = async (data) => {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
     let result = await techStackModel.create(data);
-    return responseHelper.success(0, n, 200, result);
+    return responseHelper.success(0, n, 200, result._id);
   } catch (error) {
     throw error;
   }
@@ -29,10 +29,20 @@ exports.createTechStack = async (data) => {
 // Get All List TechStack
 exports.getListTechStack = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest, 
-      techStackModel.find()
-    );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await techStackModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, techStackModel);
+    let result = await techStackModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;

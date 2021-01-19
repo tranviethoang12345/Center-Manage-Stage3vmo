@@ -29,10 +29,20 @@ exports.createProjectStatus = async (data) => {
 // Get All List Project Status
 exports.getListProjectStatus = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest, 
-      projectStatusModel.find()
-    );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await projectStatusModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, projectStatusModel);
+    let result = await projectStatusModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    }
     return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;

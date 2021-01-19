@@ -29,10 +29,20 @@ exports.createStaff = async (data) => {
 // Get All List Staff
 exports.getListStaff = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest,
-      staffModel.find()
-    )
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await staffModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, staffModel);
+    let result = await staffModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return result;
   } catch (error) {
     throw error;
@@ -42,19 +52,28 @@ exports.getListStaff = async (paginatedRequest) => {
 // Get All Populate
 exports.getListStaffPopulate = async (paginatedRequest) => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest,
-      staffModel
-        .find()
-        .populate([{
-          path: 'projectList',
-          populate: ['techStack']
-        }])
-        .populate([{
-          path: 'techStack',
-          populate: ['techStack', 'projectList']
-        }])
-      );
+    let { page, limit } = paginatedRequest;
+    let totalDoc = await staffModel.find({}).countDocuments();
+    let totalPage = Math.ceil(totalDoc / limit);
+    if (page > totalPage) {
+      throw responseHelper.errorHandler(2, '', 0, 404)
+    };
+    let { startIndex } = paginationUtil.paginatedResult(page, limit, staffModel);
+    let result = await staffModel
+      .find({}, '-createdAt -updatedAt -__v')
+      .skip(startIndex)
+      .limit(limit)
+      .populate([{
+        path: 'projectList',
+        populate: ['techStack']
+      }])
+      .populate([{
+        path: 'techStack',
+        populate: ['techStack', 'projectList']
+      }])
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404)
+    };
     return result;
   } catch (error) {
     throw error;
