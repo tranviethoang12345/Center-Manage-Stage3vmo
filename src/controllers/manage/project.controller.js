@@ -47,9 +47,7 @@ exports.getListProjectPopulate = async (req, res) => {
 // Get 1 Project
 exports.getProject = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let result = await projectService.getProject(id);
+    let result = await projectService.getProject(req.params.id);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));

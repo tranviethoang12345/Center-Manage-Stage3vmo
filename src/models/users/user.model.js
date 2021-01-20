@@ -33,7 +33,7 @@ const accountSchema = new Schema ({
     enum: ['Admin', 'Basic'],
     required: true
   },
-});
+}, {timestamps: true});
 
 accountSchema.pre('save', async (next) => {
   var user = this;

@@ -21,11 +21,7 @@ exports.createCustomerGroup = async (req, res) => {
 // Get All List Customer Group
 exports.getListCustomerGroup = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-    
-    let result = await customerGroupService.getListCustomerGroup( paginatedRequest );
+    let result = await customerGroupService.getListCustomerGroup( req.query );
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -37,9 +33,7 @@ exports.getListCustomerGroup = async (req, res) => {
 // Get 1 Customer Group
 exports.getCustomerGroup = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let result = await customerGroupService.getCustomerGroup(id);
+    let result = await customerGroupService.getCustomerGroup(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));

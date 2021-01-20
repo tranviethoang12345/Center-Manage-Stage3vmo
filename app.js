@@ -1,30 +1,28 @@
 // // Import npm
 const express = require('express');
 const bodyParser =  require('body-parser');
-const mongoose = require('mongoose');
+require('dotenv').config();
+
+// // Connect Database
+require('./src/config/database')
 
 // // Import Routers
-const routes = require('./config/routes'); 
+const routes = require('./src/config/routes'); 
 // const test = require('./test/service/test')
 
 const app = express();
 
-// // Connect Database
-mongoose.connect('mongodb://localhost/stage3vmo-centerManage', {useNewUrlParser: true, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Successfully connected to The Database');
-});
-
-// Setting
-app.use(bodyParser.urlencoded({ extended: false }));
+// Setting for accepting post form data (body-parser)
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
 app.use('/', routes);
 
 // Port
-app.listen(3000, () => {
-  console.log('Successfully run Server!');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running successfully on port ${port}`);
 });

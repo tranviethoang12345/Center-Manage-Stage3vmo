@@ -34,7 +34,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
     let totalDoc = await customerGroupModel.find().countDocuments();
     let totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
-      throw responseHelper.errorHandler(2, '', 0, 404)
+      throw responseHelper.errorHandler(2, '', 0, 404);
     };
     
     let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, customerGroupModel);
@@ -43,7 +43,7 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
       .skip(startIndex)
       .limit(perPage)
     if (!result) {
-      throw responseHelper.errorHandler(1, n, 0, 404)
+      throw responseHelper.errorHandler(1, n, 0, 404);
     };
     return responseHelper.success(1, n, 200, result);
   } catch (error) {
@@ -52,9 +52,12 @@ exports.getListCustomerGroup = async (paginatedRequest) => {
 }
 
 // Get 1 Customer Group
-exports.getCustomerGroup = async (data) => {
+exports.getCustomerGroup = async (id) => {
   try {
-    let result = await customerGroupModel.findOne({_id: id});
+    let result = await customerGroupModel.findOne({_id: id}, '-__v -updatedAt');
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404);
+    }
     return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
@@ -65,6 +68,9 @@ exports.getCustomerGroup = async (data) => {
 exports.updateCustomerGroup = async (id, body) => {
   try {
     let result = await customerGroupModel.findOneAndUpdate({_id: id}, body, {new: true});
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404);
+    }
     return responseHelper.success(3, n, 200, result);
   } catch (error) {
     throw error;
@@ -75,6 +81,9 @@ exports.updateCustomerGroup = async (id, body) => {
 exports.deleteCustomerGroup = async (id) => {
   try {
     let result = await customerGroupModel.deleteOne({_id: id});
+    if (!result) {
+      throw responseHelper.errorHandler(1, n, 0, 404);
+    }
     return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
