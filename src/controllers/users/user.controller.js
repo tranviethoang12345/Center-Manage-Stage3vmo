@@ -1,28 +1,46 @@
 // // Import Service
 const userService = require('../../services/users/user.service');
+const authService = require('../../services/users/auth.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
 
-// // User
-// Create User
-exports.createUser = async (req, res) => {
+const Joi = require('joi')
+
+// // Authenticator
+exports.login = async (req, res) => {
   try {
-    let result = await userService.createUser(req.body);
-    return res.status(result.status).json(result);
+    let result = await authService.loginService(req.body);
+    return res.status(result.status).json(result)
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
   }
 };
 
+// // User
+// Create User
+exports.createUser = async (req, res) => {
+  try {
+    const schema = Joi.object({
+      username: Joi.string().required(),
+      password: Joi.string().min(8).required(),
+      email: Joi.string().email()
+    })
+    await schema.validateAsync(req.body)
+    let result = await userService.createUser(req.body);
+    console.log(result);
+    return res.status(result.status).json(result);
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(responseHelper.error(error));
+  }
+};
+ 
 // Get All List User
 exports.getListUser = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-
-    let result = await userService.getListUser( paginatedRequest );
+    let result = await userService.getListUser(req.query);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));

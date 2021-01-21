@@ -15,7 +15,7 @@ const n = 'Center'
 exports.createCenter = async (data) => {
   try {
     let { name } = data.centerInformation.name;
-    let checkLenRecord = await centerModel.find({ 'centerInformation.name': name }).countDocument();
+    let checkLenRecord = await centerModel.findOne({ 'centerInformation.name': name });
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }

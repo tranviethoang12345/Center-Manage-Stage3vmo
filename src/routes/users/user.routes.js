@@ -7,20 +7,24 @@ const userControllers = require('../../controllers/users/user.controller')
 // Create Router
 const router = express.Router();
 
+// // Authenticator
+// Post => Login
+router.post('/login', userControllers.login);
+
 // // User
 // Post => Create
-router.post('/signup', userControllers.createUser);
+router.post('/register', userControllers.createUser);
 
 // Get => Get All
-router.get('/signup',  userControllers.getListUser);
+router.get('/users',  userControllers.getListUser);
 
 // Get => Get 1
-router.get('/signup',  userControllers.getUser);
+router.get('/users',  userControllers.getUser);
 
 // Update => Put
-router.put('/signup/:id',  userControllers.updateUser);
+router.put('/users/:id',  userControllers.updateUser);
 
 // Delete => Delete
-router.delete('/signup/:id',  userControllers.deleteUser);
+router.delete('/users/:id',  userControllers.deleteUser);
 
 module.exports = router;

@@ -15,7 +15,7 @@ const n = 'Customer Group'
 exports.createCustomerGroup = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await customerGroupModel.find({ name }).countDocuments();
+    let checkLenRecord = await customerGroupModel.findOne({ name });
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }

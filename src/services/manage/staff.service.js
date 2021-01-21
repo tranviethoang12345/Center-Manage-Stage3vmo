@@ -14,11 +14,6 @@ const n = 'Staff';
 // Create Staff
 exports.createStaff = async (data) => {
   try {
-    let { name } = data.staffInformation.name;
-    let checkLenRecord = await staffModel.find({ name }).countDocument();
-    if (checkLenRecord) {
-      return responseHelper.errorHandler(0, n, 0, 404);
-    }
     let result = await staffModel.create(data);
     return responseHelper.success(0, n, 200, result._id);
   } catch (error) {

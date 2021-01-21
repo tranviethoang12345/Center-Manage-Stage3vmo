@@ -15,7 +15,7 @@ const n = 'Project Type';
 exports.createProjectType = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await projectTypeModel.find({ name }).countDocuments();
+    let checkLenRecord = await projectTypeModel.findOne({ name });
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }

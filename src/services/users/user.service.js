@@ -15,24 +15,21 @@ const n = 'User';
 exports.createUser = async (data) => {
   try {
     let result = await userModel.create(data);
-    return responseHelper.success(0, n, 1, result);
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }
 };
 
 // Get All List User
-exports.getListUser = async (paginatedRequest) => {
+exports.getListUser = async () => {
   try {
-    let result = await paginationUtil.paginatedResult(
-      paginatedRequest,
-      userModel.find()
-    );
-    return responseHelper.success(0, n, 1, result);
+    let result = await userModel.find()
+    return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Get 1 User
 exports.getUser = async (id) => {
@@ -42,7 +39,7 @@ exports.getUser = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Update 1 User
 exports.updateUser = async (id, body) => {
@@ -52,7 +49,7 @@ exports.updateUser = async (id, body) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Delete 1 User
 exports.deleteUser = async (id) => {
@@ -62,4 +59,4 @@ exports.deleteUser = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 // Account
-const accountSchema = new Schema ({
+const userSchema = new Schema ({
   username: {
     type: String,
     unique: true,
@@ -22,31 +22,22 @@ const accountSchema = new Schema ({
   email: {
     type: String,
     trim: true,
-    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+    // match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     required: true
-  },
-
-  role: {
-    type: String,
-    default: 'Basic',
-    trim: true,
-    enum: ['Admin', 'Basic'],
-    required: true
-  },
+  }
 }, {timestamps: true});
 
-accountSchema.pre('save', async (next) => {
+userSchema.pre('save', function (next) {
   var user = this;
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();
 
   // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+  bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
-
     // hash the password using our new salt
-    bcrypt.hash(user.password, salt, (err, hash) => {
+    bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) return next(err);
         // override the cleartext password with the hashed one
         user.password = hash;
@@ -55,17 +46,20 @@ accountSchema.pre('save', async (next) => {
   });
 })
 
-accountSchema.methods.comparePassword = async (password, cb) => {
-  return await bcrypt.compare(password, this.password, 
-    async (err, isMatch) => {
-      if (err) return cb(err);
-      cb(null, isMatch);
-    }
-  );
-};
+userSchema.methods.comparePassword = function(password) {
+  return bcrypt.compare(password, this.password)
+}
+
+// userSchema.methods.comparePassword = function (password, cb) {
+//   bcrypt.compare(password, this.password, function(err, isMatch) {
+//       if (err) return cb(err);
+//       cb(null, isMatch);
+//     }
+//   );
+// };
 
 // // Compile the model from the schema
-const account = mongoose.model('account', accountSchema);
+const account = mongoose.model('account', userSchema);
 
 // // Export
 module.exports = account;

@@ -15,7 +15,7 @@ const n = 'Tech Stack';
 exports.createTechStack = async (data) => {
   try {
     let { name } = data;
-    let checkLenRecord = await techStackModel.find({ name }).countDocument();
+    let checkLenRecord = await techStackModel.findOne({ name });
     if (checkLenRecord) {
       throw responseHelper.errorHandler(0, n, 0, 404);
     }
