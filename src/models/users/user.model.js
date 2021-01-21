@@ -10,6 +10,7 @@ const userSchema = new Schema ({
     type: String,
     unique: true,
     trim: true,
+    unique: true,
     required: true
   },
   
@@ -22,11 +23,13 @@ const userSchema = new Schema ({
   email: {
     type: String,
     trim: true,
+    unique: true,
     // match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     required: true
   }
 }, {timestamps: true});
 
+// Bcrypt password
 userSchema.pre('save', function (next) {
   var user = this;
 
@@ -46,17 +49,10 @@ userSchema.pre('save', function (next) {
   });
 })
 
+// Compare Password (function)
 userSchema.methods.comparePassword = function(password) {
   return bcrypt.compare(password, this.password)
 }
-
-// userSchema.methods.comparePassword = function (password, cb) {
-//   bcrypt.compare(password, this.password, function(err, isMatch) {
-//       if (err) return cb(err);
-//       cb(null, isMatch);
-//     }
-//   );
-// };
 
 // // Compile the model from the schema
 const account = mongoose.model('account', userSchema);

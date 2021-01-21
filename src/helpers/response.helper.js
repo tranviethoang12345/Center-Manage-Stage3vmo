@@ -1,5 +1,5 @@
 exports.success = (i, n, status, data = null) => {
-  const arr = ['Create', 'Get List', 'Get', 'Update', 'Delete'];
+  const arr = ['Create', 'Get List', 'Get', 'Update', 'Delete', 'Login'];
 
   return {
     message: arr[i] + ' ' + n + ' ' + 'successful',

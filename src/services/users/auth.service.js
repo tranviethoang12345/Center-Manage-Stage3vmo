@@ -6,6 +6,7 @@ const userModel = require('../../models/users/user.model');
 
 // // Connect Helper
 const responseHelper = require("../../helpers/response.helper");
+const tokenHelper = require('../../helpers/token.helper');
 
 // Name
 const n = 'Authenticator';
@@ -22,9 +23,9 @@ exports.loginService = async (data) => {
     if (!isMatch) {
       return responseHelper.errorHandler(3, `${password}`, 0, 404);
     }
-    
-    let accessToken = jwt.sign({ sub: data.id }, 'abc', { expiresIn: '7d' });
-    return responseHelper.success(0, n, 200, 
+    let accessToken = tokenHelper.signToken( {_id: personal._id} , 'max', '1h');
+
+    return responseHelper.success(5, n, 200, 
       {
         email: email,
         password: password,
