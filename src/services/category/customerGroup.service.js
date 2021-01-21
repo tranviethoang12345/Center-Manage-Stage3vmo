@@ -17,7 +17,7 @@ exports.createCustomerGroup = async (data) => {
     let { name } = data;
     let checkLenRecord = await customerGroupModel.findOne({ name });
     if (checkLenRecord) {
-      throw responseHelper.errorHandler(0, n, 0, 404);
+      throw responseHelper.errorHandler(0, n, 0, 400);
     }
     let result = await customerGroupModel.create(data);
     return responseHelper.success(0, n, 200, result._id);

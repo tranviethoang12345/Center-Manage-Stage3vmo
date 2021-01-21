@@ -4,6 +4,9 @@ const express = require('express');
 // // Import Controllers
 const userControllers = require('../../controllers/users/user.controller')
 
+// // Import
+const verifyToken = require('../../middleware/tokenHandler.middleware')
+
 // Create Router
 const router = express.Router();
 
@@ -13,10 +16,13 @@ router.post('/login', userControllers.login);
 
 // // User
 // Post => Create
-router.post('/register', userControllers.createUser);
+router.post('/register',  userControllers.createUser);
+
+// Verify
+router.use(verifyToken.verifyToken)
 
 // Get => Get All
-router.get('/users',  userControllers.getListUser);
+router.get('/users', userControllers.getListUser);
 
 // Get => Get 1
 router.get('/users',  userControllers.getUser);

@@ -10,6 +10,6 @@ exports.decodeToken = (token, secretKey) => {
   return decode(token, secretKey)
 };
 
-exports.decodeToken = () => {
+exports.verifyToken = (token, secretKey) => {
   return verify(token, secretKey)
 };

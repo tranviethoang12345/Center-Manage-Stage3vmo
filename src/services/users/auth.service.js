@@ -1,6 +1,3 @@
-// // Import npm
-const jwt = require('jsonwebtoken');
-
 // // Connect Database
 const userModel = require('../../models/users/user.model');
 
@@ -23,16 +20,32 @@ exports.loginService = async (data) => {
     if (!isMatch) {
       return responseHelper.errorHandler(3, `${password}`, 0, 404);
     }
-    let accessToken = tokenHelper.signToken( {_id: personal._id} , 'max', '1h');
+    let accessToken = tokenHelper.signToken( {_id: personal._id} , process.env.TOKEN_SECRET, '1800s');
 
     return responseHelper.success(5, n, 200, 
       {
+        tokenType: 'Bearer',
         email: email,
         password: password,
         token: accessToken
       })
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+exports.refreshTokenService = (refreshToken, payload) => {
+  try {
+    let accessToken = tokenHelper.signToken({ payload }, process.env.TOKEN_SECRET, '1800s')
+    return responseHelper.success(5, n, 200, 
+      {
+        tokenType: 'Bearer',
+        email: email,
+        password: password,
+        token: accessToken,
+        refreshToken: refreshToken
+      })
+  } catch (error) {
     throw error;
   }
 };

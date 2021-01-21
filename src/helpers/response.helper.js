@@ -19,8 +19,8 @@ exports.success = (i, n, status, data = null) => {
 // }
 
 exports.errorHandler = (i, n, mc, status) => {
-  const arr = [ 'Already Exists', 'Not Exists', 'Page Not Found', 'Wrong Input' ];
-  const result = ['invalid'];
+  const arr = [ 'Already Exists', 'Not Exists', 'Page Not Found', 'Wrong Input', 'Expected', 'Authorization Header', 'Have No Access'];
+  const result = ['invalid', 'unauthorization'];
 
   return {
     message: n + ' ' + arr[i],
