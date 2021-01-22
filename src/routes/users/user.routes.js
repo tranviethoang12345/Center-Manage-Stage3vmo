@@ -2,7 +2,7 @@
 const express = require('express');
 
 // // Import Controllers
-const userControllers = require('../../controllers/users/user.controller')
+const userControllers = require('../../controllers/users/user.controller');
 
 // // Import
 const verifyToken = require('../../middleware/tokenHandler.middleware')
@@ -13,6 +13,9 @@ const router = express.Router();
 // // Authenticator
 // Post => Login
 router.post('/login', userControllers.login);
+
+// Delete => Logout
+// router.post('/logout', userControllers.logout);
 
 // // User
 // Post => Create

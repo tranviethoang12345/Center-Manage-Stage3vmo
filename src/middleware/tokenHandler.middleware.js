@@ -17,7 +17,7 @@ exports.verifyToken = async (req, res, next) => {
       return responseHelper.errorHandler(4, 'a Bearer token', 1, 401)
     }   
 
-    const user = tokenHelper.verifyToken(token, process.env.TOKEN_SECRET);
+    const user = tokenHelper.verifyToken(token, process.env.ACCESS_TOKEN_SECRET_KEY);
     req.user = user;
     next();
   } catch (error) {

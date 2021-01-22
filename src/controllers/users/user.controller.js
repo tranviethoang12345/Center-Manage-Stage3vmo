@@ -5,6 +5,9 @@ const authService = require('../../services/users/auth.service');
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
 
+
+const { refreshToken } = require('../../middleware/refreshTokenHandler.middleware');
+
 const Joi = require('joi')
 
 // // Authenticator
@@ -16,6 +19,16 @@ exports.login = async (req, res) => {
     return res.status(500).json(responseHelper.error(error));
   }
 };
+
+// exports.logout = async (req, res) => {
+//   try {
+//     refreshToken = await refreshToken.refreshToken.filter(token => token !== req.headers.token)
+//     return res.status(204).json(refreshToken)
+
+//   } catch (error) {
+//     return res.status(500).json(responseHelper.error(error));
+//   }
+// };
 
 // // User
 // Create User

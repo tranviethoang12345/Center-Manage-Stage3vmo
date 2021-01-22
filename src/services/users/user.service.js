@@ -1,9 +1,6 @@
 // // Connect Database
 const userModel = require('../../models/users/user.model');
 
-// // Connect Util
-const paginationUtil = require("../../utils/pagination.util");
-
 // // Connect Helper
 const responseHelper = require("../../helpers/response.helper");
 
@@ -25,7 +22,7 @@ exports.createUser = async (data) => {
 exports.getListUser = async () => {
   try {
     let result = await userModel.find()
-    return responseHelper.success(0, n, 200, result);
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -35,7 +32,7 @@ exports.getListUser = async () => {
 exports.getUser = async (id) => {
   try {
     let result = await userModel.findOne({_id: id});
-    return responseHelper.success(0, n, 1, result);
+    return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -45,7 +42,7 @@ exports.getUser = async (id) => {
 exports.updateUser = async (id, body) => {
   try {
     let result = await userModel.findOneAndUpdate({_id: id}, body, {new: true});
-    return responseHelper.success(0, n, 1, result);
+    return responseHelper.success(3, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -55,7 +52,7 @@ exports.updateUser = async (id, body) => {
 exports.deleteUser = async (id) => {
   try {
     let result = await userModel.deleteOne({_id: id});
-    return responseHelper.success(0, n, 1, result);
+    return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
   }

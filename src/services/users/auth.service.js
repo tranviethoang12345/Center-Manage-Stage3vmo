@@ -20,14 +20,16 @@ exports.loginService = async (data) => {
     if (!isMatch) {
       return responseHelper.errorHandler(3, `${password}`, 0, 404);
     }
-    let accessToken = tokenHelper.signToken( {_id: personal._id} , process.env.TOKEN_SECRET, '1800s');
+    let accessToken = tokenHelper.signToken({_id: personal._id} , process.env.ACCESS_TOKEN_SECRET_KEY, '1800s');
+    let refreshToken = tokenHelper.signToken({_id: personal._id} , process.env.ACCESS_TOKEN_SECRET_KEY, '1800s');
 
     return responseHelper.success(5, n, 200, 
       {
         tokenType: 'Bearer',
         email: email,
         password: password,
-        token: accessToken
+        token: accessToken,
+        refreshToken: refreshToken
       })
   } catch (error) {
     throw error;
@@ -36,7 +38,7 @@ exports.loginService = async (data) => {
 
 exports.refreshTokenService = (refreshToken, payload) => {
   try {
-    let accessToken = tokenHelper.signToken({ payload }, process.env.TOKEN_SECRET, '1800s')
+    let accessToken = tokenHelper.signToken({ payload }, process.env.ACCESS_TOKEN_SECRET_KEY, '1800s')
     return responseHelper.success(5, n, 200, 
       {
         tokenType: 'Bearer',
