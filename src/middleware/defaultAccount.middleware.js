@@ -7,14 +7,14 @@ exports.adminAccount = async (req, res, next) => {
     let email = 'admin@gmail.com';
     let password = '12345678';
 
-    let accountRecord = await accountModel.findOne({ email }, 'id');
+    let accountRecord = await accountModel.findOne({ email });
     if (accountRecord) {
       return next();
     }
-    await accountModel.create(username, email, password)
+    await accountModel.create({username, email, password})
 
     return next();
   } catch (error) {
-    return error;
+    throw error;
   }
 }
