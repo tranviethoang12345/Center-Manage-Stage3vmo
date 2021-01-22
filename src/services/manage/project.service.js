@@ -45,7 +45,7 @@ exports.getListProject = async (paginatedRequest) => {
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };
-    return result;
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }
@@ -68,12 +68,15 @@ exports.getListProjectPopulate = async (paginatedRequest) => {
       .skip(startIndex)
       .limit(perPage)
       .populate(
-        ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+        [{
+          path: 'project',
+          populate: ['projectType', 'projectStatus', 'techStack', 'center', 'staff']
+      }]
       )
     if (!result) {
       throw responseHelper.errorHandler(1, n, 0, 404)
     };
-    return result;
+    return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
   }

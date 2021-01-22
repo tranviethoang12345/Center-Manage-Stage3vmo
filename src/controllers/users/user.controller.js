@@ -40,6 +40,7 @@ exports.createUser = async (req, res) => {
       email: Joi.string().email()
     })
     await schema.validateAsync(req.body)
+    
     let result = await userService.createUser(req.body);
     console.log(result);
     return res.status(result.status).json(result);

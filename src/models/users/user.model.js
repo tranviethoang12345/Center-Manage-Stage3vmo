@@ -29,7 +29,7 @@ const userSchema = new Schema ({
   }
 }, {timestamps: true});
 
-// Bcrypt password
+// // Bcrypt password
 userSchema.pre('save', function (next) {
   var user = this;
 
