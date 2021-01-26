@@ -1,5 +1,5 @@
 // // Import Database
-const staffModel = require('../../users/staff.model');
+const staffModel = require('../../project/users/staff.model');
 
 // // Connect Util
 const paginationUtil = require('../../utils/pagination.util');

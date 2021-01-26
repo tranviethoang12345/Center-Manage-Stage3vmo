@@ -2,7 +2,7 @@
 const centerService = require('../../services/manage/center.service');
 
 // // Import Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Center';

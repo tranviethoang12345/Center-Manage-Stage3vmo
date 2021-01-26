@@ -2,10 +2,10 @@
 const techStackModel = require("../../models/category/techStack.model");
 
 // // Connect Util
-const paginationUtil = require("../../utils/pagination.util");
+const paginationUtil = require("../../../utils/pagination.util");
 
 // // Connect Helpers
-const responseHelper = require("../../helpers/response.helper");
+const responseHelper = require("../../../helpers/response.helper");
 
 // Name
 const n = 'Tech Stack';
