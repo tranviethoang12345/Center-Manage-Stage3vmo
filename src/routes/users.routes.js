@@ -1,4 +1,4 @@
-const usersRouter = require('./users/user.routes');
+const usersRouter = require('../users/user.routes');
 
 const routes = [usersRouter]
 

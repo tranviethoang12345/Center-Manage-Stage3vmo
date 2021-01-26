@@ -8,7 +8,7 @@ const verifyToken = require('../middleware/tokenHandler.middleware');
 const categoryRoutes = require('../routes/category.routes');
 const manageRoutes = require('../routes/manage.routes');
 const usersRoutes = require('../routes/users.routes');
-const searchRoutes = require('../routes/collections/search.routes');
+const searchRoutes = require('../routes/search.routes');
 
 router.use('/', usersRoutes);
 router.use(verifyToken.verifyToken)
