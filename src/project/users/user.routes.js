@@ -5,7 +5,7 @@ const express = require('express');
 const userControllers = require('./user.controller');
 
 // // Import
-const verifyToken = require('../middleware/tokenHandler.middleware')
+const verifyToken = require('../../middleware/tokenHandler.middleware')
 
 // Create Router
 const router = express.Router();

@@ -2,10 +2,10 @@
 const centerModel = require('./center.model');
 
 // // Connect Util
-const paginationUtil = require('../../utils/pagination.util');
+const paginationUtil = require('../../../utils/pagination.util');
 
 // // Connect Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Center'

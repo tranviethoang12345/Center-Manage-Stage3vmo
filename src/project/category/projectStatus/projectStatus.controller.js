@@ -1,8 +1,8 @@
 // // Import Service
-const projectStatusService =  require('../../services/category/projectStatus.service');
+const projectStatusService =  require('./projectStatus.service');
 
 // // Import Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name 
 const n = 'States Project';

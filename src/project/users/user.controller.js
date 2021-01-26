@@ -1,12 +1,12 @@
 // // Import Service
-const userService = require('../../services/users/user.service');
-const authService = require('../../services/users/auth.service');
+const userService = require('./user.service');
+const authService = require('../../services/auth.service');
 
 // // Import Helper
-const responseHelper = require('../helpers/response.helper');
+const responseHelper = require('../../helpers/response.helper');
 
 
-const { refreshToken } = require('../middleware/refreshTokenHandler.middleware');
+const { refreshToken } = require('../../middleware/refreshTokenHandler.middleware');
 
 const Joi = require('joi')
 

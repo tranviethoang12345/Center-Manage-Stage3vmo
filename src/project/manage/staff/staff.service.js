@@ -1,11 +1,12 @@
 // // Import Database
-const staffModel = require('../../users/staff.model');
+const staffModel = require('./staff.model');
 
 // // Connect Util
-const paginationUtil = require('../../utils/pagination.util');
+// Pagination - Phân trang
+const paginationUtil = require('../../../utils/pagination.util');
 
 // // Connect Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Staff';

@@ -2,7 +2,7 @@
 const express = require('express');
 
 // // Import Controllers
-const customerGroupControllers = require('../../controllers/category/customerGroup.controller');
+const customerGroupControllers = require('./customerGroup.controller');
 
 // Create Router
 const router = express.Router();

@@ -1,5 +1,5 @@
 // // Connect Database
-const techStackModel = require("../../models/category/techStack.model");
+const techStackModel = require("./techStack.model");
 
 // // Connect Util
 const paginationUtil = require("../../../utils/pagination.util");

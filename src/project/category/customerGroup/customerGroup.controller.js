@@ -2,7 +2,7 @@
 const customerGroupService = require('./customerGroup.service');
 
 // // Import Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Customer Group';

@@ -1,8 +1,8 @@
 // // Import Service
-const projectTypeService = require('../projectStatus/projectStatus.service');
+const projectTypeService = require('./projectType.service');
 
 // // Import Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Project Type';

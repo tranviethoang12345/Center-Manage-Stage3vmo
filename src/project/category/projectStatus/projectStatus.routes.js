@@ -2,7 +2,7 @@
 const express = require('express');
 
 // // Import Controllers
-const projectStatusControllers = require('../../controllers/category/projectStatus.controller');
+const projectStatusControllers = require('./projectStatus.controller');
 
 // Create Router
 const router = express.Router();

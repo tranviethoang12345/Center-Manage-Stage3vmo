@@ -2,7 +2,7 @@
 const techStackService = require('./techStack.service');
 
 // // Import Helper
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name
 const n = 'Tech Stack';

@@ -1,5 +1,5 @@
 // // Connect Database
-const accountModel = require('../users/user.model');
+const accountModel = require('../project/users/user.model');
 
 exports.adminAccount = async (req, res, next) => {
   try {

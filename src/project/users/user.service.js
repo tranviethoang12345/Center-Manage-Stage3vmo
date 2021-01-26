@@ -1,5 +1,5 @@
 // // Connect Database
-const userModel = require('../../models/users/user.model');
+const userModel = require('./user.model');
 
 // // Connect Helper
 const responseHelper = require("../../helpers/response.helper");

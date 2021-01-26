@@ -1,9 +1,9 @@
 // // Connect Database
-const userModel = require('../../models/users/user.model');
+const userModel = require('../project/users/user.model');
 
 // // Connect Helper
-const responseHelper = require("../../helpers/response.helper");
-const tokenHelper = require('../../helpers/token.helper');
+const responseHelper = require("../helpers/response.helper");
+const tokenHelper = require('../helpers/token.helper');
 
 // Name
 const n = 'Authenticator';

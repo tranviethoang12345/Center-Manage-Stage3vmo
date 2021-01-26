@@ -2,10 +2,10 @@
 const projectTypeModel = require('./projectType.model');
 
 // // Connect Util
-const paginationUtil = require('../../utils/pagination.util');
+const paginationUtil = require('../../../utils/pagination.util');
 
 // // Connect Helpers
-const responseHelper = require('../../helpers/response.helper');
+const responseHelper = require('../../../helpers/response.helper');
 
 // Name 
 const n = 'Project Type';
