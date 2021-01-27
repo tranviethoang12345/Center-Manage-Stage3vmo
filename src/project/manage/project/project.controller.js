@@ -4,14 +4,11 @@ const projectService = require('./project.service');
 // // Import Helper
 const responseHelper = require('../../../helpers/response.helper');
 
-// Name
-const n = 'Project';
-
 // // Project
 // Create Project
 exports.createProject = async (req, res) => {
   try {
-    let result = await projectService.createProject(req.body);
+    const result = await projectService.createProject(req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -21,11 +18,8 @@ exports.createProject = async (req, res) => {
 // Get All List Project
 exports.getListProject = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
     
-    let result = await projectService.getListProject( paginatedRequest );
+    const result = await projectService.getListProject( req.query );
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -35,7 +29,7 @@ exports.getListProject = async (req, res) => {
 // Get All List Project - Populate
 exports.getListProjectPopulate = async (req, res) => {
   try {
-    let result = await projectService.getListProjectPopulate(req.query);
+    const result = await projectService.getListProjectPopulate(req.query);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -47,7 +41,7 @@ exports.getListProjectPopulate = async (req, res) => {
 // Get 1 Project
 exports.getProject = async (req, res) => {
   try {
-    let result = await projectService.getProject(req.params.id);
+    const result = await projectService.getProject(req.params.id);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -57,9 +51,7 @@ exports.getProject = async (req, res) => {
 // Get 1 Project - Populate
 exports.getProjectPopulate = async (req, res) => {
   try {
-    let id = req.params.id;
-
-    let result = await projectService.getProjectPopulate(id);
+    const result = await projectService.getProjectPopulate(req.params);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -69,10 +61,7 @@ exports.getProjectPopulate = async (req, res) => {
 // Update 1 Project
 exports.updateProject = async (req, res) => {
   try {
-    let id = req.params.id;
-    let body = req.body;
-
-    let result = await projectService.updateProject(id, body);
+    const result = await projectService.updateProject(req.params, req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -82,9 +71,7 @@ exports.updateProject = async (req, res) => {
 // Delete 1 Project
 exports.deleteProject = async (req, res) => {
   try {
-    let id = req.params.id;
-    
-    let deleteData = await projectService.deleteProject(id);
+    const result = await projectService.deleteProject(req.params);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));

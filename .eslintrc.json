@@ -1,0 +1,17 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["eslint:recommended", "airbnb", "prettier"],
+    "plugins": ["prettier"],
+
+    "rules": {
+        "prettier/prettier": "error",
+        "block-scoped-var": [
+            "error"
+        ], 
+        "no-console": "off"
+    }
+}

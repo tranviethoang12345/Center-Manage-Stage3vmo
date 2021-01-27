@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 // // Import
 const projectModel = require('./project.model');
 
@@ -14,13 +15,13 @@ const n = 'Project'
 // Create Project
 exports.createProject = async (data) => {
   try {
-    let { name } = data.projectInformation.name;
-    let checkLenRecord = await projectModel.findOne({ name });
+    const { name } = data.projectInformation.name;
+    const checkLenRecord = await projectModel.findOne({ name });
     if (checkLenRecord) {
       return responseHelper.errorHandler(0, n, 0, 404);
     }
-    let result = await projectModel.create(data);
-    return responseHelper.success(0, n, 200, result._id);
+    const result = await projectModel.create(data);
+    return responseHelper.success(0, n, 200, result.id);
   } catch (error) {
     throw error;
   }
@@ -29,16 +30,16 @@ exports.createProject = async (data) => {
 // Get All List Project
 exports.getListProject = async (paginatedRequest) => {
   try {
-    let { page, limit } = paginatedRequest;
+    const { page, limit } = paginatedRequest;
     // Check total page
-    let totalDoc = await projectModel.find({}).countDocuments();
-    let totalPage = Math.ceil(totalDoc / limit);
+    const totalDoc = await projectModel.find({}).countDocuments();
+    const totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
     
-    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
-    let result = await projectModel
+    const { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
+    const result = await projectModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
       .limit(perPage)
@@ -54,16 +55,16 @@ exports.getListProject = async (paginatedRequest) => {
 // Get All Project - Populate
 exports.getListProjectPopulate = async (paginatedRequest) => {
   try {
-    let { page, limit } = paginatedRequest;
+    const { page, limit } = paginatedRequest;
     // Check total page
-    let totalDoc = await projectModel.find({}).countDocuments();
-    let totalPage = Math.ceil(totalDoc / limit);
+    const totalDoc = await projectModel.find({}).countDocuments();
+    const totalPage = Math.ceil(totalDoc / limit);
     if (page > totalPage) {
       throw responseHelper.errorHandler(2, '', 0, 404)
     };
 
-    let { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
-    let result = await projectModel
+    const { startIndex, perPage } = paginationUtil.paginatedResult(page, limit, projectModel);
+    const result = await projectModel
       .find({}, '-createdAt -updatedAt -__v')
       .skip(startIndex)
       .limit(perPage)
@@ -85,7 +86,7 @@ exports.getListProjectPopulate = async (paginatedRequest) => {
 // Get 1 Project
 exports.getProject = async (id) => {
   try {
-    let result = await projectModel
+    const result = await projectModel
     .findOne({_id: id})
     .populate([{
       path: 'project',
@@ -100,7 +101,7 @@ exports.getProject = async (id) => {
 // Get 1 Project - Populate
 exports.getProjectPopulate = async (id) => {
   try {
-    let result = await projectModel
+    const result = await projectModel
     .findOne({_id: id})
     .populate([{
       path: 'project',
@@ -115,7 +116,7 @@ exports.getProjectPopulate = async (id) => {
 // Update Project
 exports.updateProject = async (id, body) => {
   try {
-    let result = await projectModel
+    const result = await projectModel
       .findOneAndUpdate(
         {_id: id},
         body,
@@ -130,7 +131,7 @@ exports.updateProject = async (id, body) => {
 // Delete Project
 exports.deleteProject = async (id) => {
   try {
-    let result = await projectModel.deleteOne({_id: id});
+    const result = await projectModel.deleteOne({_id: id});
     return result;
   } catch (error) {
     throw error;

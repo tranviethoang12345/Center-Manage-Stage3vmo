@@ -1,6 +1,6 @@
 // // Import npm
 const express = require('express');
-const bodyParser =  require('body-parser');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // // Connect Database
@@ -8,7 +8,7 @@ require('./src/config/database');
 const defaultAccount = require('./src/middleware/defaultAccount.middleware');
 
 // // Import Routers
-const routes = require('./src/config/routes'); 
+const routes = require('./src/config/routes');
 // const test = require('./test/service/test')
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Default Admin Account
-app.use(defaultAccount.adminAccount)
+app.use(defaultAccount.adminAccount);
 
 // Routes
 app.use('/', routes);

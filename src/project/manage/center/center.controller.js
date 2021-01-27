@@ -4,14 +4,11 @@ const centerService = require('./center.service');
 // // Import Helper
 const responseHelper = require('../../../helpers/response.helper');
 
-// Name
-const n = 'Center';
-
 // // Centers || Departments
 // Create Center
 exports.createCenter = async (req, res) => {
   try { 
-    let result = await centerService.createCenter(req.body);
+    const result = await centerService.createCenter(req.body);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -20,12 +17,8 @@ exports.createCenter = async (req, res) => {
 
 // Get All List Center
 exports.getListCenter = async (req, res) => {
-  try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-    
-    let result = await centerService.getListCenter( paginatedRequest );
+  try {    
+    const result = await centerService.getListCenter( req.query );
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -35,7 +28,7 @@ exports.getListCenter = async (req, res) => {
 // Get All List Center - Populate
 exports.getListCenterPopulate = async(req, res) => {
   try {
-    let result = await centerService.getListCenterPopulate();
+    const result = await centerService.getListCenterPopulate();
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -47,7 +40,7 @@ exports.getListCenterPopulate = async(req, res) => {
 // Get 1 Center
 exports.getCenter = async (req, res) => {
   try {
-    let result = await centerService.getCenter(req.params.id);
+    const result = await centerService.getCenter(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -57,7 +50,7 @@ exports.getCenter = async (req, res) => {
 // Get 1 Center - Populate
 exports.getCenterPopulate = async (req, res) => {
   try {
-    let result = await centerService.getCenterPopulate(req.params.id);
+    const result = await centerService.getCenterPopulate(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -67,7 +60,7 @@ exports.getCenterPopulate = async (req, res) => {
 // Update 1 Center
 exports.updateCenter = async (req, res) => {
   try {
-    let result = await centerService.updateCenter(req.params.id, req.body);
+    const result = await centerService.updateCenter(req.params.id, req.body);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
@@ -77,7 +70,7 @@ exports.updateCenter = async (req, res) => {
 // Delete 1 Centers
 exports.deleteCenter = async (req, res) => {
   try {
-    let result = await centerService.deleteCenter(req.params.id);
+    const result = await centerService.deleteCenter(req.params.id);
     return res.status(result.status).json(result);
   } catch (error) {
     return res.status(500).json(responseHelper.error(error));
