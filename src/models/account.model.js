@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 // Account
-const userSchema = new Schema ({
+const accountSchema = new Schema ({
   username: {
     type: String,
     unique: true,
@@ -30,7 +30,7 @@ const userSchema = new Schema ({
 }, {timestamps: true});
 
 // // Bcrypt password
-userSchema.pre('save', function (next) {
+accountSchema.pre('save', function (next) {
   var user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -50,12 +50,12 @@ userSchema.pre('save', function (next) {
 })
 
 // Compare Password (function)
-userSchema.methods.comparePassword = function(password) {
+accountSchema.methods.comparePassword = function(password) {
   return bcrypt.compare(password, this.password)
 }
 
 // // Compile the model from the schema
-const account = mongoose.model('account', userSchema);
+const account = mongoose.model('account', accountSchema);
 
 // // Export
 module.exports = account;

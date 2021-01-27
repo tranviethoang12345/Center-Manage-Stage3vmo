@@ -27,6 +27,7 @@ exports.refreshToken = async (req, res, next) => {
     req.user = refreshPayload.user;
     next();
   } catch (error) {
+    
     return res.status(500).json(responseHelper.error(error));
   }
 }

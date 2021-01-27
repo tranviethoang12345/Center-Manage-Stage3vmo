@@ -10,16 +10,9 @@ const verifyToken = require('../../middleware/tokenHandler.middleware')
 // Create Router
 const router = express.Router();
 
-// // Authenticator
-// Post => Login
-router.post('/login', userControllers.login);
-
-// Delete => Logout
-// router.post('/logout', userControllers.logout);
-
 // // User
 // Post => Create
-router.post('/register',  userControllers.createUser);
+router.post('/register', userControllers.createUser);
 
 // Verify
 router.use(verifyToken.verifyToken)

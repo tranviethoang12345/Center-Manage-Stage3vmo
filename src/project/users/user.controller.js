@@ -1,24 +1,10 @@
 // // Import Service
 const userService = require('./user.service');
-const authService = require('../../services/auth.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
 
-
-const { refreshToken } = require('../../middleware/refreshTokenHandler.middleware');
-
 const Joi = require('joi')
-
-// // Authenticator
-exports.login = async (req, res) => {
-  try {
-    let result = await authService.loginService(req.body);
-    return res.status(result.status).json(result)
-  } catch (error) {
-    return res.status(500).json(responseHelper.error(error));
-  }
-};
 
 // exports.logout = async (req, res) => {
 //   try {
@@ -34,13 +20,17 @@ exports.login = async (req, res) => {
 // Create User
 exports.createUser = async (req, res) => {
   try {
-    const schema = Joi.object({
+    
+          const schema = Joi.object({
       username: Joi.string().required(),
       password: Joi.string().min(8).required(),
       email: Joi.string().email()
     })
     await schema.validateAsync(req.body)
     
+
+    // validateFunction(req.body)
+
     let result = await userService.createUser(req.body);
     console.log(result);
     return res.status(result.status).json(result);
@@ -57,6 +47,7 @@ exports.getListUser = async (req, res) => {
     let result = await userService.getListUser(req.query);
     return res.status(result.status).json(result);
   } catch (error) {
+    
     return res.status(500).json(responseHelper.error(error));
   }
 };

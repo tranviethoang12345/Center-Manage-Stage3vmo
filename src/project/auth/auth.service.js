@@ -1,9 +1,9 @@
 // // Connect Database
-const userModel = require('../models/user.model');
+const accountModel = require('../../models/account.model');
 
 // // Connect Helper
-const responseHelper = require("../helpers/response.helper");
-const tokenHelper = require('../helpers/token.helper');
+const responseHelper = require("../../helpers/response.helper");
+const tokenHelper = require('../../helpers/token.helper');
 
 // Name
 const n = 'Authenticator';
@@ -12,7 +12,7 @@ const n = 'Authenticator';
 exports.loginService = async (data) => {
   try {
     let { email, password } = data;
-    let personal = await userModel.findOne({email})
+    let personal = await accountModel.findOne({email})
     if (!personal) {
       return responseHelper.errorHandler(1, `${email}`, 0, 404);
     }

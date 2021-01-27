@@ -10,7 +10,7 @@ const n = 'Center';
 // // Centers || Departments
 // Create Center
 exports.createCenter = async (req, res) => {
-  try {
+  try { 
     let result = await centerService.createCenter(req.body);
     return res.status(result.status).json(result);
   } catch (error) {

@@ -1,5 +1,5 @@
 // // Connect Database
-const userModel = require('../../models/user.model');
+const accountModel = require('../../models/account.model');
 
 // // Connect Helper
 const responseHelper = require("../../helpers/response.helper");
@@ -11,7 +11,7 @@ const n = 'User';
 // Create One
 exports.createUser = async (data) => {
   try {
-    let result = await userModel.create(data);
+    let result = await accountModel.create(data);
     return responseHelper.success(0, n, 200, result);
   } catch (error) {
     throw error;
@@ -21,7 +21,7 @@ exports.createUser = async (data) => {
 // Get All List User
 exports.getListUser = async () => {
   try {
-    let result = await userModel.find()
+    let result = await accountModel.find()
     return responseHelper.success(1, n, 200, result);
   } catch (error) {
     throw error;
@@ -31,7 +31,7 @@ exports.getListUser = async () => {
 // Get 1 User
 exports.getUser = async (id) => {
   try {
-    let result = await userModel.findOne({_id: id});
+    let result = await accountModel.findOne({_id: id});
     return responseHelper.success(2, n, 200, result);
   } catch (error) {
     throw error;
@@ -41,7 +41,7 @@ exports.getUser = async (id) => {
 // Update 1 User
 exports.updateUser = async (id, body) => {
   try {
-    let result = await userModel.findOneAndUpdate({_id: id}, body, {new: true});
+    let result = await accountModel.findOneAndUpdate({_id: id}, body, {new: true});
     return responseHelper.success(3, n, 200, result);
   } catch (error) {
     throw error;
@@ -51,7 +51,7 @@ exports.updateUser = async (id, body) => {
 // Delete 1 User
 exports.deleteUser = async (id) => {
   try {
-    let result = await userModel.deleteOne({_id: id});
+    let result = await accountModel.deleteOne({_id: id});
     return responseHelper.success(4, n, 200, result);
   } catch (error) {
     throw error;
