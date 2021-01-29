@@ -1,10 +1,10 @@
 // // Import Service
+const Joi = require('joi');
 const userService = require('./user.service');
 
 // // Import Helper
 const responseHelper = require('../../helpers/response.helper');
 
-const Joi = require('joi')
 
 // exports.logout = async (req, res) => {
 //   try {

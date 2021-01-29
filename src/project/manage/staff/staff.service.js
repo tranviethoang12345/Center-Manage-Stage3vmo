@@ -2,7 +2,7 @@
 const staffModel = require('./staff.model');
 
 // // Connect Util
-// Pagination - Phân trang
+// Pagination - Phan Trang
 const paginationUtil = require('../../../utils/pagination.util');
 
 // // Connect Helper
@@ -39,10 +39,11 @@ exports.getListStaff = async (paginatedRequest) => {
       .skip(startIndex)
       .limit(perPage)
     if (!result) {
-      throw responseHelper.errorHandler(1, n, 0, 404)
+      throw responseHelper.errorHandler(1, n, 0, 404);
     };
     return result;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

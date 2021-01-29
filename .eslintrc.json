@@ -1,17 +1,25 @@
 {
-    "env": {
-        "commonjs": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": ["eslint:recommended", "airbnb", "prettier"],
-    "plugins": ["prettier"],
-
-    "rules": {
-        "prettier/prettier": "error",
-        "block-scoped-var": [
-            "error"
-        ], 
-        "no-console": "off"
-    }
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "air-bnb"],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "block-scoped-var": ["error"],
+    "comma-style": ["warn", "last"], // ' , ' end of the current line
+    "curly": ["warn"], // block contains only one statement
+    "handle-callback-err": ["error"], //  callback pattern - catch error
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "no-console": ["off"]
+  }
 }

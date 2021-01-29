@@ -4,9 +4,6 @@ const staffService = require('./staff.service');
 // // Import Helpers
 const responseHelper = require('../../../helpers/response.helper');
 
-// Name
-const n = 'Staff';
-
 // // Staff - HR
 // Create
 exports.createStaff = async (req, res) => {
@@ -21,11 +18,7 @@ exports.createStaff = async (req, res) => {
 // Get All List Staff
 exports.getListStaff = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-    
-    let result = await staffService.getListStaff( paginatedRequest );
+    let result = await staffService.getListStaff(req.query);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -35,11 +28,7 @@ exports.getListStaff = async (req, res) => {
 // Get All List Staff - Populate
 exports.getListStaffPopulate = async (req, res) => {
   try {
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let paginatedRequest = { page, limit };
-
-    let result = await staffService.getListStaffPopulate( paginatedRequest );
+    let result = await staffService.getListStaffPopulate(req.query);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));

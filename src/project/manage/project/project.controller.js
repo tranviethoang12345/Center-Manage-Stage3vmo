@@ -8,7 +8,7 @@ const responseHelper = require('../../../helpers/response.helper');
 // Create Project
 exports.createProject = async (req, res) => {
   try {
-    const result = await projectService.createProject(req.body);
+    let result = await projectService.createProject(req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -19,7 +19,7 @@ exports.createProject = async (req, res) => {
 exports.getListProject = async (req, res) => {
   try {
     
-    const result = await projectService.getListProject( req.query );
+    let result = await projectService.getListProject( req.query );
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -29,7 +29,7 @@ exports.getListProject = async (req, res) => {
 // Get All List Project - Populate
 exports.getListProjectPopulate = async (req, res) => {
   try {
-    const result = await projectService.getListProjectPopulate(req.query);
+    let result = await projectService.getListProjectPopulate(req.query);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -41,7 +41,7 @@ exports.getListProjectPopulate = async (req, res) => {
 // Get 1 Project
 exports.getProject = async (req, res) => {
   try {
-    const result = await projectService.getProject(req.params.id);
+    let result = await projectService.getProject(req.params.id);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -51,7 +51,7 @@ exports.getProject = async (req, res) => {
 // Get 1 Project - Populate
 exports.getProjectPopulate = async (req, res) => {
   try {
-    const result = await projectService.getProjectPopulate(req.params);
+    let result = await projectService.getProjectPopulate(req.params);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -61,7 +61,7 @@ exports.getProjectPopulate = async (req, res) => {
 // Update 1 Project
 exports.updateProject = async (req, res) => {
   try {
-    const result = await projectService.updateProject(req.params, req.body);
+    let result = await projectService.updateProject(req.params, req.body);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
@@ -71,7 +71,7 @@ exports.updateProject = async (req, res) => {
 // Delete 1 Project
 exports.deleteProject = async (req, res) => {
   try {
-    const result = await projectService.deleteProject(req.params);
+    let result = await projectService.deleteProject(req.params);
     res.status(result.status).json(result);
   } catch (error) {
     res.status(500).json(responseHelper.error(error));
